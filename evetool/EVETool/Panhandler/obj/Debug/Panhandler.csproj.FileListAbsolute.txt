@@ -12,3 +12,15 @@ C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Deb
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe.config
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.exe
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.csprojResolveAssemblyReference.cache
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.Form1.resources
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.Properties.Resources.resources
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.csproj.GenerateResource.Cache
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.xml
