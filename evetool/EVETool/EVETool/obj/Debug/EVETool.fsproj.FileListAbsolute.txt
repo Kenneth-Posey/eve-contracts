@@ -1,8 +1,0 @@
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\bin\Debug\EVETool.exe.config
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\bin\Debug\EVETool.XML
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\bin\Debug\EVETool.exe
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\bin\Debug\EVETool.pdb
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\bin\Debug\FSharp.Core.dll
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\bin\Debug\FSharp.Core.xml
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\obj\Debug\EVETool.exe
-C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\EVETool\obj\Debug\EVETool.pdb
