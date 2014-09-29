@@ -9,3 +9,6 @@ C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Deb
 C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.pdb
 C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.pdb
 C:\Users\Virus\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe.config
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.exe
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.pdb
