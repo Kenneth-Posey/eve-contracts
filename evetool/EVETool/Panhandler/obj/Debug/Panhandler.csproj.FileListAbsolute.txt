@@ -22,7 +22,6 @@ C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\De
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.xml
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.dll
-C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.pdb
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.xml
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe.config
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.exe
