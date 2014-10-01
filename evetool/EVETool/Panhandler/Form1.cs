@@ -30,7 +30,7 @@ namespace Panhandler
             label8.Text = "+5%";
             label9.Text = "+10%";
 
-            List<ComboBox> comboBoxes = new List<ComboBox>() {
+            var comboBoxes = new List<ComboBox>() {
                   comboBox1
                 , comboBox2
                 , comboBox3
@@ -52,10 +52,10 @@ namespace Panhandler
             button2.Text = "Remove";
             button3.Text = "Calculate";
 
-            List<string> rawOre = CollectionsProvider.OreList.OreNames.ToList();
-            List<string> rawIce = CollectionsProvider.IceList.IceNames.ToList();
-            List<string> iceProducts = CollectionsProvider.IceProductList.IceProductNames.ToList();
-            List<string> minerals = CollectionsProvider.MineralList.MineralNames.ToList();
+            var rawOre = CollectionsProvider.OreList.OreNames.ToList();
+            var rawIce = CollectionsProvider.IceList.IceNames.ToList();
+            var iceProducts = CollectionsProvider.IceProductList.IceProductNames.ToList();
+            var minerals = CollectionsProvider.MineralList.MineralNames.ToList();
             
             comboBox1.Items.AddRange(rawOre.ToArray<object>());
             comboBox2.Items.AddRange(rawOre.ToArray<object>());
