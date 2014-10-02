@@ -41,3 +41,13 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# VS2013 Files
+*.pdb
+*.exe
+*.dll
+*.exe.config
+*.exe.manifest
+*.dll.config
+*.suo
+*.suo
