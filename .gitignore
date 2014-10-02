@@ -51,3 +51,9 @@ Temporary Items
 *.dll.config
 *.suo
 *.suo
+*.cache
+*.suo
+*.exe
+*.dll
+*.cache
+*.Cache
