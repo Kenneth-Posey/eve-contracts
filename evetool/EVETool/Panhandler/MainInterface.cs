@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using EveOnlineInterop;
 
 namespace Panhandler
@@ -216,9 +216,17 @@ namespace Panhandler
             }
         }
 
-        private List<Tuple<int, double>> ParserToPrices(List<string> pSplitLines)
+        private double CalculateEstimate(List<string> pSplitLines)
         {
-            
+            var tSplitLines = Microsoft.FSharp.Collections.ListModule.OfArray(pSplitLines.ToArray());
+            return Market.Functions.CalculateEstimate(tSplitLines);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<string> tItems = listBox1.Items.OfType<string>().ToList();
+            var estimate = CalculateEstimate(tItems);
+            label13.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
         }
     }
 }
