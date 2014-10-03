@@ -34,7 +34,7 @@ C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.pdb
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.xml
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.csprojResolveAssemblyReference.cache
-C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.Form1.resources
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.Properties.Resources.resources
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.csproj.GenerateResource.Cache
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.MainInterface.resources
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.MainInterface.resources

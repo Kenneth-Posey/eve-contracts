@@ -112,7 +112,7 @@ namespace Panhandler
                 }
             }
 
-            var ores = EveOnlineInterop.CollectionsProvider.AllOreList.OreList.ToList();
+            var ores = CollectionsProvider.AllOreList.OreList.ToList();
 
             foreach (var item in selectedItems)
             {
@@ -127,7 +127,7 @@ namespace Panhandler
                         PopulateListbox(baseAmount, base5Amount, base10Amount, validBase, validBase5, validBase10, ores, itemName);
                     }
                     // Compressed ore
-                    else if (itemCompressed == true)
+                    else
                     {
                         itemName = "Compressed " + itemName;
                         PopulateListbox(baseAmount, base5Amount, base10Amount, validBase, validBase5, validBase10, ores, itemName);
@@ -139,7 +139,7 @@ namespace Panhandler
                     {
                         AddToListbox(baseAmount, itemName);
                     }
-                    else if (itemCompressed == true)
+                    else
                     {
                         itemName = "Compressed " + itemName;
                         AddToListbox(baseAmount, itemName);
@@ -163,28 +163,35 @@ namespace Panhandler
         private void AddToListbox(int baseAmount, string itemName)
         {
 
-            string itemString = String.Format("{0}\t{1}", itemName.PadRight(35), baseAmount);
+            string itemString = String.Format("{0}\t{1}", itemName, baseAmount);
             listBox1.Items.Add(itemString);
         }
 
-        private void PopulateListbox(int baseAmount, int base5Amount, int base10Amount, bool validBase, bool validBase5, bool validBase10, List<EveData.Ore.Types.IRawOre> ores, string itemName)
+        private void PopulateListbox(  int baseAmount
+                                     , int base5Amount
+                                     , int base10Amount
+                                     , bool validBase
+                                     , bool validBase5
+                                     , bool validBase10
+                                     , List<EveData.Ore.Types.IRawOre> ores
+                                     , string itemName)
         {
             if (validBase)
             {
                 var oreName = ores.Find(x => x.GetName() == itemName).GetName();
-                AddToListbox(baseAmount, itemName);
+                AddToListbox(baseAmount, oreName);
             }
 
             if (validBase5)
             {
                 var oreName = ores.Find(x => x.GetName() == itemName).GetName5();
-                AddToListbox(baseAmount, itemName);
+                AddToListbox(base5Amount, oreName);
             }
 
             if (validBase10)
             {
                 var oreName = ores.Find(x => x.GetName() == itemName).GetName10();
-                AddToListbox(baseAmount, itemName);
+                AddToListbox(base10Amount, oreName);
             }
         }
 
@@ -207,6 +214,11 @@ namespace Panhandler
                     listBox1.Items.Add(item);
                 }
             }
+        }
+
+        private List<Tuple<int, double>> ParserToPrices(List<string> pSplitLines)
+        {
+            
         }
     }
 }
