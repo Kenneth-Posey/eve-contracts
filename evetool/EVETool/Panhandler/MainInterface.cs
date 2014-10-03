@@ -101,10 +101,10 @@ namespace Panhandler
             {
                 if (box.SelectedIndex != 0)
                 {
-                    // Non-compressed ore
+                    // Non-compressed ore/ice
                     if (box.Name == "comboBox1" || box.Name == "comboBox3")
                         selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
-                    // Compressed ore
+                    // Compressed ore/ice
                     else if (box.Name == "comboBox2" || box.Name == "comboBox4")
                         selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), true));
                     else
