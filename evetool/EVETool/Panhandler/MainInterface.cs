@@ -23,25 +23,18 @@ namespace Panhandler
         public MainInterface()
         {
             InitializeComponent();
-
-            label1.Text = "Ore";
-            label2.Text = "Compressed Ore";
-            label3.Text = "Ice";
-            label4.Text = "Compressed Ice";
-            label5.Text = "Minerals";
-            label6.Text = "Ice Products";
-
+            
             label7.Text = "+0%";
             label8.Text = "+5%";
             label9.Text = "+10%";
 
             this.MaterialBoxList = new List<ComboBox>() {
-                  comboBox1
-                , comboBox2
-                , comboBox3
-                , comboBox4
-                , comboBox5
-                , comboBox6
+                  oreCombobox
+                , compOreCombobox
+                , iceCombobox
+                , compIceCombobox
+                , mineralsCombobox
+                , iceProductCombobox
             };
 
             foreach (var box in this.MaterialBoxList)
@@ -53,23 +46,23 @@ namespace Panhandler
                 box.SelectedIndexChanged += combox_SelectedIndexChanged;
             }
             
-            button1.Text = "Add";
-            button2.Text = "Remove";
-            button3.Text = "Calculate";
+            Add.Text = "Add";
+            Remove.Text = "Remove";
+            Calculate.Text = "Calculate";
 
             this.RawOre = CollectionsProvider.OreList.OreNames.ToList();
             this.RawIce = CollectionsProvider.IceList.IceNames.ToList();
             this.IceProducts = CollectionsProvider.IceProductList.IceProductNames.ToList();
             this.Minerals = CollectionsProvider.MineralList.MineralNames.ToList();
 
-            comboBox1.Items.AddRange(this.RawOre.ToArray<object>());
-            comboBox2.Items.AddRange(this.RawOre.ToArray<object>());
-            comboBox3.Items.AddRange(this.RawIce.ToArray<object>());
-            comboBox4.Items.AddRange(this.RawIce.ToArray<object>());
-            comboBox5.Items.AddRange(this.Minerals.ToArray<object>());
-            comboBox6.Items.AddRange(this.IceProducts.ToArray<object>());
+            oreCombobox.Items.AddRange(this.RawOre.ToArray<object>());
+            compOreCombobox.Items.AddRange(this.RawOre.ToArray<object>());
+            iceCombobox.Items.AddRange(this.RawIce.ToArray<object>());
+            compIceCombobox.Items.AddRange(this.RawIce.ToArray<object>());
+            mineralsCombobox.Items.AddRange(this.Minerals.ToArray<object>());
+            iceProductCombobox.Items.AddRange(this.IceProducts.ToArray<object>());
 
-            listBox1.SelectionMode = SelectionMode.MultiExtended;
+            inventory.SelectionMode = SelectionMode.MultiExtended;
         }
 
         protected void combox_SelectedIndexChanged(object sender, EventArgs e)
@@ -164,7 +157,7 @@ namespace Panhandler
         {
 
             string itemString = String.Format("{0}\t{1}", itemName, baseAmount);
-            listBox1.Items.Add(itemString);
+            inventory.Items.Add(itemString);
         }
 
         private void PopulateListbox(  int baseAmount
@@ -197,8 +190,8 @@ namespace Panhandler
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List<string> selectedItems = listBox1.SelectedItems.OfType<string>().ToList();
-            var copiedItems = listBox1.Items.OfType<string>().ToList();
+            List<string> selectedItems = inventory.SelectedItems.OfType<string>().ToList();
+            var copiedItems = inventory.Items.OfType<string>().ToList();
 
             if (selectedItems.Count > 0 && copiedItems.Count > 0)
             {
@@ -207,11 +200,11 @@ namespace Panhandler
                     copiedItems.Remove(listItem);
                 }
 
-                listBox1.Items.Clear();
+                inventory.Items.Clear();
 
                 foreach (var item in copiedItems)
                 {
-                    listBox1.Items.Add(item);
+                    inventory.Items.Add(item);
                 }
             }
         }
@@ -224,9 +217,14 @@ namespace Panhandler
 
         private void button3_Click(object sender, EventArgs e)
         {
-            List<string> tItems = listBox1.Items.OfType<string>().ToList();
+            List<string> tItems = inventory.Items.OfType<string>().ToList();
             var estimate = CalculateEstimate(tItems);
-            label13.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
+            nocxiumValue.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
