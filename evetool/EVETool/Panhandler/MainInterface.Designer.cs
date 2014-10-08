@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.refreshPrices = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.morphiteValue = new System.Windows.Forms.Label();
@@ -78,18 +86,14 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.refreshPrices = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -151,6 +155,79 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(513, 431);
             this.panel1.TabIndex = 16;
+            // 
+            // refreshPrices
+            // 
+            this.refreshPrices.Location = new System.Drawing.Point(387, 385);
+            this.refreshPrices.Name = "refreshPrices";
+            this.refreshPrices.Size = new System.Drawing.Size(75, 23);
+            this.refreshPrices.TabIndex = 57;
+            this.refreshPrices.Text = "Refresh";
+            this.refreshPrices.UseVisualStyleBackColor = true;
+            this.refreshPrices.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(450, 362);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(55, 13);
+            this.label31.TabIndex = 56;
+            this.label31.Text = "10,000.00";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(279, 408);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(55, 13);
+            this.label28.TabIndex = 55;
+            this.label28.Text = "10,000.00";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(279, 385);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(55, 13);
+            this.label29.TabIndex = 54;
+            this.label29.Text = "10,000.00";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(279, 362);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(55, 13);
+            this.label30.TabIndex = 53;
+            this.label30.Text = "10,000.00";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(91, 385);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.TabIndex = 52;
+            this.label13.Text = "10,000.00";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(91, 408);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(55, 13);
+            this.label17.TabIndex = 51;
+            this.label17.Text = "10,000.00";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(91, 362);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(55, 13);
+            this.label27.TabIndex = 50;
+            this.label27.Text = "10,000.00";
             // 
             // label23
             // 
@@ -576,90 +653,44 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(525, 501);
+            this.tabPage2.Size = new System.Drawing.Size(525, 445);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.listBox1);
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(513, 489);
+            this.panel2.Size = new System.Drawing.Size(513, 433);
             this.panel2.TabIndex = 0;
             // 
-            // label13
+            // listBox1
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(91, 385);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 13);
-            this.label13.TabIndex = 52;
-            this.label13.Text = "10,000.00";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(18, 101);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(477, 316);
+            this.listBox1.TabIndex = 0;
             // 
-            // label17
+            // button1
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(91, 408);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(55, 13);
-            this.label17.TabIndex = 51;
-            this.label17.Text = "10,000.00";
+            this.button1.Location = new System.Drawing.Point(63, 72);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // label27
+            // textBox4
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(91, 362);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(55, 13);
-            this.label27.TabIndex = 50;
-            this.label27.Text = "10,000.00";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(279, 408);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(55, 13);
-            this.label28.TabIndex = 55;
-            this.label28.Text = "10,000.00";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(279, 385);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(55, 13);
-            this.label29.TabIndex = 54;
-            this.label29.Text = "10,000.00";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(279, 362);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(55, 13);
-            this.label30.TabIndex = 53;
-            this.label30.Text = "10,000.00";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(450, 362);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(55, 13);
-            this.label31.TabIndex = 56;
-            this.label31.Text = "10,000.00";
-            // 
-            // refreshPrices
-            // 
-            this.refreshPrices.Location = new System.Drawing.Point(387, 385);
-            this.refreshPrices.Name = "refreshPrices";
-            this.refreshPrices.Size = new System.Drawing.Size(75, 23);
-            this.refreshPrices.TabIndex = 57;
-            this.refreshPrices.Text = "Refresh";
-            this.refreshPrices.UseVisualStyleBackColor = true;
-            this.refreshPrices.Click += new System.EventHandler(this.button1_Click_1);
+            this.textBox4.Location = new System.Drawing.Point(18, 20);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 2;
             // 
             // MainInterface
             // 
@@ -674,6 +705,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -738,6 +771,9 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button refreshPrices;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

@@ -8,7 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EveData;
 using EveOnlineInterop;
+using Market;
+using Microsoft.FSharp.Collections;
 
 namespace Panhandler
 {
@@ -28,7 +31,7 @@ namespace Panhandler
             label8.Text = "+5%";
             label9.Text = "+10%";
 
-            this.MaterialBoxList = new List<ComboBox>() {
+            MaterialBoxList = new List<ComboBox>() {
                   oreCombobox
                 , compOreCombobox
                 , iceCombobox
@@ -37,7 +40,7 @@ namespace Panhandler
                 , iceProductCombobox
             };
 
-            foreach (var box in this.MaterialBoxList)
+            foreach (var box in MaterialBoxList)
             {
                 box.Items.Insert(0, "Select One");
                 box.SelectedIndex = 0;
@@ -50,35 +53,35 @@ namespace Panhandler
             Remove.Text = "Remove";
             Calculate.Text = "Calculate";
 
-            this.RawOre = CollectionsProvider.OreList.OreNames.ToList();
-            this.RawIce = CollectionsProvider.IceList.IceNames.ToList();
-            this.IceProducts = CollectionsProvider.IceProductList.IceProductNames.ToList();
-            this.Minerals = CollectionsProvider.MineralList.MineralNames.ToList();
+            RawOre = CollectionsProvider.OreList.OreNames.ToList();
+            RawIce = CollectionsProvider.IceList.IceNames.ToList();
+            IceProducts = CollectionsProvider.IceProductList.IceProductNames.ToList();
+            Minerals = CollectionsProvider.MineralList.MineralNames.ToList();
 
-            oreCombobox.Items.AddRange(this.RawOre.ToArray<object>());
-            compOreCombobox.Items.AddRange(this.RawOre.ToArray<object>());
-            iceCombobox.Items.AddRange(this.RawIce.ToArray<object>());
-            compIceCombobox.Items.AddRange(this.RawIce.ToArray<object>());
-            mineralsCombobox.Items.AddRange(this.Minerals.ToArray<object>());
-            iceProductCombobox.Items.AddRange(this.IceProducts.ToArray<object>());
+            oreCombobox.Items.AddRange(RawOre.ToArray<object>());
+            compOreCombobox.Items.AddRange(RawOre.ToArray<object>());
+            iceCombobox.Items.AddRange(RawIce.ToArray<object>());
+            compIceCombobox.Items.AddRange(RawIce.ToArray<object>());
+            mineralsCombobox.Items.AddRange(Minerals.ToArray<object>());
+            iceProductCombobox.Items.AddRange(IceProducts.ToArray<object>());
 
             inventory.SelectionMode = SelectionMode.MultiExtended;
         }
 
         protected void combox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox1.Focus();
+            if (textBox1 != null) textBox1.Focus();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int baseAmount = 0;
-            int base5Amount = 0;
-            int base10Amount = 0;
+            var baseAmount = 0;
+            var base5Amount = 0;
+            var base10Amount = 0;
 
-            bool validBase = false;
-            bool validBase5 = false;
-            bool validBase10 = false;
+            var validBase = false;
+            var validBase5 = false;
+            var validBase10 = false;
 
             var baseValue = textBox1.Text.Trim();
             var base5Value = textBox2.Text.Trim();
@@ -90,18 +93,25 @@ namespace Panhandler
 
             var selectedItems = new List<Tuple<string, bool>>();
 
-            foreach (var box in this.MaterialBoxList)
+            foreach (var box in MaterialBoxList)
             {
                 if (box.SelectedIndex != 0)
                 {
                     // Non-compressed ore/ice
-                    if (box.Name == "comboBox1" || box.Name == "comboBox3")
-                        selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
-                    // Compressed ore/ice
-                    else if (box.Name == "comboBox2" || box.Name == "comboBox4")
-                        selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), true));
-                    else
-                        selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
+                    switch (box.Name)
+                    {
+                        case "comboBox3":
+                        case "comboBox1":
+                            selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
+                            break;
+                        case "comboBox4":
+                        case "comboBox2":
+                            selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), true));
+                            break;
+                        default:
+                            selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
+                            break;
+                    }
                 }
             }
 
@@ -112,7 +122,7 @@ namespace Panhandler
                 var itemName = item.Item1.Trim();
                 var itemCompressed = item.Item2;
 
-                if (this.RawOre.Contains(itemName))
+                if (RawOre.Contains(itemName))
                 {
                     // Uncompressed ore
                     if (itemCompressed == false)
@@ -126,7 +136,7 @@ namespace Panhandler
                         PopulateListbox(baseAmount, base5Amount, base10Amount, validBase, validBase5, validBase10, ores, itemName);
                     }
                 }
-                else if (this.RawIce.Contains(itemName))
+                else if (RawIce.Contains(itemName))
                 {
                     if (itemCompressed == false)
                     {
@@ -138,13 +148,13 @@ namespace Panhandler
                         AddToListbox(baseAmount, itemName);
                     }
                 }
-                else if (this.IceProducts.Contains(itemName) || this.Minerals.Contains(itemName))
+                else if (IceProducts.Contains(itemName) || Minerals.Contains(itemName))
                 {
                     AddToListbox(baseAmount, itemName);
                 }
             }
 
-            foreach (var box in this.MaterialBoxList)
+            foreach (var box in MaterialBoxList)
             {
                 box.SelectedIndex = 0;
                 textBox1.Text = "";
@@ -155,8 +165,7 @@ namespace Panhandler
 
         private void AddToListbox(int baseAmount, string itemName)
         {
-
-            string itemString = String.Format("{0}\t{1}", itemName, baseAmount);
+            var itemString = String.Format("{0}\t{1}", itemName, baseAmount);
             inventory.Items.Add(itemString);
         }
 
@@ -166,7 +175,7 @@ namespace Panhandler
                                      , bool validBase
                                      , bool validBase5
                                      , bool validBase10
-                                     , List<EveData.Ore.Types.IRawOre> ores
+                                     , List<Ore.Types.IRawOre> ores
                                      , string itemName)
         {
             if (validBase)
@@ -190,7 +199,7 @@ namespace Panhandler
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List<string> selectedItems = inventory.SelectedItems.OfType<string>().ToList();
+            var selectedItems = inventory.SelectedItems.OfType<string>().ToList();
             var copiedItems = inventory.Items.OfType<string>().ToList();
 
             if (selectedItems.Count > 0 && copiedItems.Count > 0)
@@ -211,13 +220,13 @@ namespace Panhandler
 
         private double CalculateEstimate(List<string> pSplitLines)
         {
-            var tSplitLines = Microsoft.FSharp.Collections.ListModule.OfArray(pSplitLines.ToArray());
-            return Market.Functions.CalculateEstimate(tSplitLines);
+            var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
+            return Functions.CalculateEstimate(tSplitLines);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            List<string> tItems = inventory.Items.OfType<string>().ToList();
+            var tItems = inventory.Items.OfType<string>().ToList();
             var estimate = CalculateEstimate(tItems);
             nocxiumValue.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
         }
