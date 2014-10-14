@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.refreshPrices = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -45,14 +50,14 @@
             this.mexallonValue = new System.Windows.Forms.Label();
             this.pyeriteValue = new System.Windows.Forms.Label();
             this.tritaniumValue = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.nitrogenIsotopeValue = new System.Windows.Forms.Label();
+            this.heliumIsotopeValue = new System.Windows.Forms.Label();
+            this.oxygenIsotopeValue = new System.Windows.Forms.Label();
+            this.strontiumClathratesValue = new System.Windows.Forms.Label();
+            this.hydrogenIsotopeValue = new System.Windows.Forms.Label();
             this.zydrineValue = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.heavyWaterValue = new System.Windows.Forms.Label();
+            this.liquidOzoneValue = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -64,9 +69,9 @@
             this.inventory = new System.Windows.Forms.ListBox();
             this.Remove = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.percent10Label = new System.Windows.Forms.Label();
+            this.percent5Label = new System.Windows.Forms.Label();
+            this.percent0Label = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -82,15 +87,20 @@
             this.compOreCombobox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.oreCombobox = new System.Windows.Forms.ComboBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.priceCalculator = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.loadingLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.priceCalculator.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -98,6 +108,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.loadingLabel);
+            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.label33);
+            this.panel1.Controls.Add(this.label32);
             this.panel1.Controls.Add(this.refreshPrices);
             this.panel1.Controls.Add(this.label31);
             this.panel1.Controls.Add(this.label28);
@@ -114,14 +130,14 @@
             this.panel1.Controls.Add(this.mexallonValue);
             this.panel1.Controls.Add(this.pyeriteValue);
             this.panel1.Controls.Add(this.tritaniumValue);
-            this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.label20);
-            this.panel1.Controls.Add(this.label21);
+            this.panel1.Controls.Add(this.nitrogenIsotopeValue);
+            this.panel1.Controls.Add(this.heliumIsotopeValue);
+            this.panel1.Controls.Add(this.oxygenIsotopeValue);
+            this.panel1.Controls.Add(this.strontiumClathratesValue);
+            this.panel1.Controls.Add(this.hydrogenIsotopeValue);
             this.panel1.Controls.Add(this.zydrineValue);
-            this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.heavyWaterValue);
+            this.panel1.Controls.Add(this.liquidOzoneValue);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.label16);
@@ -133,9 +149,9 @@
             this.panel1.Controls.Add(this.inventory);
             this.panel1.Controls.Add(this.Remove);
             this.panel1.Controls.Add(this.Add);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.percent10Label);
+            this.panel1.Controls.Add(this.percent5Label);
+            this.panel1.Controls.Add(this.percent0Label);
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
@@ -155,10 +171,54 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(513, 431);
             this.panel1.TabIndex = 16;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(270, 96);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(121, 20);
+            this.textBox6.TabIndex = 62;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(206, 96);
+            this.label7.Name = "label7";
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label7.Size = new System.Drawing.Size(46, 13);
+            this.label7.TabIndex = 61;
+            this.label7.Text = "Item Qty";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(270, 65);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(121, 20);
+            this.textBox5.TabIndex = 60;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(206, 65);
+            this.label33.Name = "label33";
+            this.label33.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label33.Size = new System.Drawing.Size(41, 13);
+            this.label33.TabIndex = 59;
+            this.label33.Text = "Ice Qty";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(205, 31);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(43, 13);
+            this.label32.TabIndex = 58;
+            this.label32.Text = "Ore Qty";
             // 
             // refreshPrices
             // 
-            this.refreshPrices.Location = new System.Drawing.Point(387, 385);
+            this.refreshPrices.Location = new System.Drawing.Point(387, 392);
             this.refreshPrices.Name = "refreshPrices";
             this.refreshPrices.Size = new System.Drawing.Size(75, 23);
             this.refreshPrices.TabIndex = 57;
@@ -169,65 +229,65 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(450, 362);
+            this.label31.Location = new System.Drawing.Point(343, 362);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(55, 13);
+            this.label31.Size = new System.Drawing.Size(101, 13);
             this.label31.TabIndex = 56;
-            this.label31.Text = "10,000.00";
+            this.label31.Text = "Strontium Clathrates";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(279, 408);
+            this.label28.Location = new System.Drawing.Point(171, 408);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(55, 13);
+            this.label28.Size = new System.Drawing.Size(90, 13);
             this.label28.TabIndex = 55;
-            this.label28.Text = "10,000.00";
+            this.label28.Text = "Nitrogen Isotopes";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(279, 385);
+            this.label29.Location = new System.Drawing.Point(171, 385);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(55, 13);
+            this.label29.Size = new System.Drawing.Size(96, 13);
             this.label29.TabIndex = 54;
-            this.label29.Text = "10,000.00";
+            this.label29.Text = "Hydrogen Isotopes";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(279, 362);
+            this.label30.Location = new System.Drawing.Point(171, 362);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(55, 13);
+            this.label30.Size = new System.Drawing.Size(69, 13);
             this.label30.TabIndex = 53;
-            this.label30.Text = "10,000.00";
+            this.label30.Text = "Liquid Ozone";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(91, 385);
+            this.label13.Location = new System.Drawing.Point(3, 385);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.Size = new System.Drawing.Size(82, 13);
             this.label13.TabIndex = 52;
-            this.label13.Text = "10,000.00";
+            this.label13.Text = "Helium Isotopes";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(91, 408);
+            this.label17.Location = new System.Drawing.Point(3, 408);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(55, 13);
+            this.label17.Size = new System.Drawing.Size(86, 13);
             this.label17.TabIndex = 51;
-            this.label17.Text = "10,000.00";
+            this.label17.Text = "Oxygen Isotopes";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(91, 362);
+            this.label27.Location = new System.Drawing.Point(3, 362);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(55, 13);
+            this.label27.Size = new System.Drawing.Size(70, 13);
             this.label27.TabIndex = 50;
-            this.label27.Text = "10,000.00";
+            this.label27.Text = "Heavy Water";
             // 
             // label23
             // 
@@ -301,50 +361,50 @@
             this.tritaniumValue.TabIndex = 42;
             this.tritaniumValue.Text = "10,000.00";
             // 
-            // label22
+            // nitrogenIsotopeValue
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(171, 408);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(90, 13);
-            this.label22.TabIndex = 41;
-            this.label22.Text = "Nitrogen Isotopes";
+            this.nitrogenIsotopeValue.AutoSize = true;
+            this.nitrogenIsotopeValue.Location = new System.Drawing.Point(278, 408);
+            this.nitrogenIsotopeValue.Name = "nitrogenIsotopeValue";
+            this.nitrogenIsotopeValue.Size = new System.Drawing.Size(55, 13);
+            this.nitrogenIsotopeValue.TabIndex = 41;
+            this.nitrogenIsotopeValue.Text = "10,000.00";
             // 
-            // label24
+            // heliumIsotopeValue
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(3, 385);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(82, 13);
-            this.label24.TabIndex = 39;
-            this.label24.Text = "Helium Isotopes";
+            this.heliumIsotopeValue.AutoSize = true;
+            this.heliumIsotopeValue.Location = new System.Drawing.Point(91, 385);
+            this.heliumIsotopeValue.Name = "heliumIsotopeValue";
+            this.heliumIsotopeValue.Size = new System.Drawing.Size(55, 13);
+            this.heliumIsotopeValue.TabIndex = 39;
+            this.heliumIsotopeValue.Text = "10,000.00";
             // 
-            // label25
+            // oxygenIsotopeValue
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(3, 408);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(86, 13);
-            this.label25.TabIndex = 38;
-            this.label25.Text = "Oxygen Isotopes";
+            this.oxygenIsotopeValue.AutoSize = true;
+            this.oxygenIsotopeValue.Location = new System.Drawing.Point(91, 408);
+            this.oxygenIsotopeValue.Name = "oxygenIsotopeValue";
+            this.oxygenIsotopeValue.Size = new System.Drawing.Size(55, 13);
+            this.oxygenIsotopeValue.TabIndex = 38;
+            this.oxygenIsotopeValue.Text = "10,000.00";
             // 
-            // label20
+            // strontiumClathratesValue
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(343, 362);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(101, 13);
-            this.label20.TabIndex = 37;
-            this.label20.Text = "Strontium Clathrates";
+            this.strontiumClathratesValue.AutoSize = true;
+            this.strontiumClathratesValue.Location = new System.Drawing.Point(450, 362);
+            this.strontiumClathratesValue.Name = "strontiumClathratesValue";
+            this.strontiumClathratesValue.Size = new System.Drawing.Size(55, 13);
+            this.strontiumClathratesValue.TabIndex = 37;
+            this.strontiumClathratesValue.Text = "10,000.00";
             // 
-            // label21
+            // hydrogenIsotopeValue
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(171, 385);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(96, 13);
-            this.label21.TabIndex = 36;
-            this.label21.Text = "Hydrogen Isotopes";
+            this.hydrogenIsotopeValue.AutoSize = true;
+            this.hydrogenIsotopeValue.Location = new System.Drawing.Point(278, 385);
+            this.hydrogenIsotopeValue.Name = "hydrogenIsotopeValue";
+            this.hydrogenIsotopeValue.Size = new System.Drawing.Size(55, 13);
+            this.hydrogenIsotopeValue.TabIndex = 36;
+            this.hydrogenIsotopeValue.Text = "10,000.00";
             // 
             // zydrineValue
             // 
@@ -355,23 +415,23 @@
             this.zydrineValue.TabIndex = 35;
             this.zydrineValue.Text = "10,000.00";
             // 
-            // label18
+            // heavyWaterValue
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 362);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 13);
-            this.label18.TabIndex = 34;
-            this.label18.Text = "Heavy Water";
+            this.heavyWaterValue.AutoSize = true;
+            this.heavyWaterValue.Location = new System.Drawing.Point(91, 362);
+            this.heavyWaterValue.Name = "heavyWaterValue";
+            this.heavyWaterValue.Size = new System.Drawing.Size(55, 13);
+            this.heavyWaterValue.TabIndex = 34;
+            this.heavyWaterValue.Text = "10,000.00";
             // 
-            // label19
+            // liquidOzoneValue
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(171, 362);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(69, 13);
-            this.label19.TabIndex = 33;
-            this.label19.Text = "Liquid Ozone";
+            this.liquidOzoneValue.AutoSize = true;
+            this.liquidOzoneValue.Location = new System.Drawing.Point(278, 362);
+            this.liquidOzoneValue.Name = "liquidOzoneValue";
+            this.liquidOzoneValue.Size = new System.Drawing.Size(55, 13);
+            this.liquidOzoneValue.TabIndex = 33;
+            this.liquidOzoneValue.Text = "10,000.00";
             // 
             // label14
             // 
@@ -438,7 +498,7 @@
             // 
             // Calculate
             // 
-            this.Calculate.Location = new System.Drawing.Point(294, 227);
+            this.Calculate.Location = new System.Drawing.Point(393, 139);
             this.Calculate.Name = "Calculate";
             this.Calculate.Size = new System.Drawing.Size(75, 23);
             this.Calculate.TabIndex = 22;
@@ -449,14 +509,14 @@
             // inventory
             // 
             this.inventory.FormattingEnabled = true;
-            this.inventory.Location = new System.Drawing.Point(186, 117);
+            this.inventory.Location = new System.Drawing.Point(186, 172);
             this.inventory.Name = "inventory";
             this.inventory.Size = new System.Drawing.Size(297, 95);
             this.inventory.TabIndex = 21;
             // 
             // Remove
             // 
-            this.Remove.Location = new System.Drawing.Point(294, 72);
+            this.Remove.Location = new System.Drawing.Point(293, 139);
             this.Remove.Name = "Remove";
             this.Remove.Size = new System.Drawing.Size(75, 23);
             this.Remove.TabIndex = 20;
@@ -466,7 +526,7 @@
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(186, 72);
+            this.Add.Location = new System.Drawing.Point(192, 139);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(75, 23);
             this.Add.TabIndex = 19;
@@ -474,50 +534,50 @@
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label9
+            // percent10Label
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(312, 15);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "label9";
+            this.percent10Label.AutoSize = true;
+            this.percent10Label.Location = new System.Drawing.Point(395, 12);
+            this.percent10Label.Name = "percent10Label";
+            this.percent10Label.Size = new System.Drawing.Size(33, 13);
+            this.percent10Label.TabIndex = 17;
+            this.percent10Label.Text = "+10%";
             // 
-            // label8
+            // percent5Label
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(246, 15);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "label8";
+            this.percent5Label.AutoSize = true;
+            this.percent5Label.Location = new System.Drawing.Point(329, 12);
+            this.percent5Label.Name = "percent5Label";
+            this.percent5Label.Size = new System.Drawing.Size(27, 13);
+            this.percent5Label.TabIndex = 16;
+            this.percent5Label.Text = "+5%";
             // 
-            // label7
+            // percent0Label
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(183, 15);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "label7";
+            this.percent0Label.AutoSize = true;
+            this.percent0Label.Location = new System.Drawing.Point(266, 12);
+            this.percent0Label.Name = "percent0Label";
+            this.percent0Label.Size = new System.Drawing.Size(27, 13);
+            this.percent0Label.TabIndex = 15;
+            this.percent0Label.Text = "+0%";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(312, 31);
+            this.textBox3.Location = new System.Drawing.Point(395, 28);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(57, 20);
             this.textBox3.TabIndex = 14;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(249, 31);
+            this.textBox2.Location = new System.Drawing.Point(332, 28);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(57, 20);
             this.textBox2.TabIndex = 13;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(186, 31);
+            this.textBox1.Location = new System.Drawing.Point(269, 28);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(57, 20);
             this.textBox1.TabIndex = 12;
@@ -626,15 +686,15 @@
             this.oreCombobox.Size = new System.Drawing.Size(121, 21);
             this.oreCombobox.TabIndex = 0;
             // 
-            // tabControl1
+            // priceCalculator
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(533, 471);
-            this.tabControl1.TabIndex = 17;
+            this.priceCalculator.Controls.Add(this.tabPage1);
+            this.priceCalculator.Controls.Add(this.tabPage2);
+            this.priceCalculator.Location = new System.Drawing.Point(12, 12);
+            this.priceCalculator.Name = "priceCalculator";
+            this.priceCalculator.SelectedIndex = 0;
+            this.priceCalculator.Size = new System.Drawing.Size(533, 471);
+            this.priceCalculator.TabIndex = 17;
             // 
             // tabPage1
             // 
@@ -660,6 +720,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.textBox7);
+            this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.textBox4);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.listBox1);
@@ -667,6 +731,22 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(513, 433);
             this.panel2.TabIndex = 0;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(18, 42);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(240, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // listBox1
             // 
@@ -676,33 +756,60 @@
             this.listBox1.Size = new System.Drawing.Size(477, 316);
             this.listBox1.TabIndex = 0;
             // 
-            // button1
+            // loadingLabel
             // 
-            this.button1.Location = new System.Drawing.Point(63, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Location = new System.Drawing.Point(398, 414);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(54, 13);
+            this.loadingLabel.TabIndex = 63;
+            this.loadingLabel.Text = "Loading...";
             // 
-            // textBox4
+            // label8
             // 
-            this.textBox4.Location = new System.Drawing.Point(18, 20);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 2;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Player Name";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(124, 42);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(100, 20);
+            this.textBox7.TabIndex = 4;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(121, 23);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Multiplier";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(342, 40);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Remove";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 492);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.priceCalculator);
             this.Name = "MainInterface";
             this.Text = "Custom Value Calculator";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.priceCalculator.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -726,9 +833,9 @@
         private System.Windows.Forms.ComboBox compOreCombobox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox oreCombobox;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label percent10Label;
+        private System.Windows.Forms.Label percent5Label;
+        private System.Windows.Forms.Label percent0Label;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
@@ -740,21 +847,21 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label nocxiumValue;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl priceCalculator;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label zydrineValue;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label heavyWaterValue;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label liquidOzoneValue;
+        private System.Windows.Forms.Label nitrogenIsotopeValue;
+        private System.Windows.Forms.Label heliumIsotopeValue;
+        private System.Windows.Forms.Label oxygenIsotopeValue;
+        private System.Windows.Forms.Label strontiumClathratesValue;
+        private System.Windows.Forms.Label hydrogenIsotopeValue;
         private System.Windows.Forms.Label isogenValue;
         private System.Windows.Forms.Label mexallonValue;
         private System.Windows.Forms.Label pyeriteValue;
@@ -774,6 +881,16 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label loadingLabel;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

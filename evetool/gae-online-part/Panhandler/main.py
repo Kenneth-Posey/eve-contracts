@@ -14,14 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+#import sys
+#import os.path
+
+#sys.path.append('')
+
 import webapp2
-import Handlers
+from python.Handlers import Player
+from python.Handlers import Price
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        self.response.headers['Content-Type'] = 'text/plain'
         self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
-    ('/price', Handlers.)
+      ('/', MainHandler)
+    , ('/price', Price)
+    , ('/player', Player)
 ], debug=True)

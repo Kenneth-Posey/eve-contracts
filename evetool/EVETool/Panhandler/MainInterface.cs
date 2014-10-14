@@ -26,10 +26,8 @@ namespace Panhandler
         public MainInterface()
         {
             InitializeComponent();
-            
-            label7.Text = "+0%";
-            label8.Text = "+5%";
-            label9.Text = "+10%";
+
+            loadingLabel.Text = "";
 
             MaterialBoxList = new List<ComboBox>() {
                   oreCombobox
@@ -231,7 +229,51 @@ namespace Panhandler
             nocxiumValue.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
         }
 
+        private int LoadIdByName(string name)
+        {
+            var allItems = EveData.Collections.RawIceIDPairs.ToList();
+            allItems.AddRange(EveData.Collections.MineralIDPairs.ToList());
+            allItems.AddRange(EveData.Collections.RawIceIDPairs.ToList());
+            allItems.AddRange(EveData.Collections.IceProductIDPairs.ToList());
+
+            return allItems.Find(x => x.Item1 == name).Item2;
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
+        {
+            loadingLabel.Text = "Loading...";
+
+            var allItems = Market.Functions.LoadAllItemsForParser().ToList();
+
+            var priceLabels = new List<Tuple<Label, string>>()
+            {
+                  Tuple.Create(tritaniumValue, "Tritanium")
+                , Tuple.Create(pyeriteValue, "Pyerite")
+                , Tuple.Create(megacyteValue, "Megacyte")
+                , Tuple.Create(mexallonValue, "Mexallon")
+                , Tuple.Create(isogenValue, "Isogen")
+                , Tuple.Create(morphiteValue, "Morphite")
+                , Tuple.Create(nocxiumValue, "Nocxium")
+                , Tuple.Create(zydrineValue, "Zydrine")
+
+                , Tuple.Create(heavyWaterValue, "Heavy Water")
+                , Tuple.Create(liquidOzoneValue, "Liquid Ozone")
+                , Tuple.Create(strontiumClathratesValue, "Strontium Clathrates")
+                , Tuple.Create(heliumIsotopeValue, "Helium Isotopes")
+                , Tuple.Create(hydrogenIsotopeValue, "Hydrogen Isotopes")
+                , Tuple.Create(oxygenIsotopeValue, "Oxygen Isotopes")
+                , Tuple.Create(nitrogenIsotopeValue, "Nitrogen Isotopes")
+            };
+
+            foreach (var pair in priceLabels)
+            {
+                pair.Item1.Text = allItems.Find(x => x.id == LoadIdByName(pair.Item2)).price.ToString();
+            }
+
+            loadingLabel.Text = "";
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
