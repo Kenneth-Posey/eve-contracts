@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.loadingLabel = new System.Windows.Forms.Label();
+            this.itemQty = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.iceQty = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.refreshPrices = new System.Windows.Forms.Button();
@@ -72,9 +73,9 @@
             this.percent10Label = new System.Windows.Forms.Label();
             this.percent5Label = new System.Windows.Forms.Label();
             this.percent0Label = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.oreBase10Qty = new System.Windows.Forms.TextBox();
+            this.oreBase5Qty = new System.Windows.Forms.TextBox();
+            this.oreBase0Qty = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.iceProductCombobox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -88,30 +89,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.oreCombobox = new System.Windows.Forms.ComboBox();
             this.priceCalculator = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.calculatorTabPage = new System.Windows.Forms.TabPage();
+            this.memberTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.loadingLabel = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.playerMultiplier = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.playerNameBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.memberListview = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
             this.priceCalculator.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.calculatorTabPage.SuspendLayout();
+            this.memberTabPage.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.loadingLabel);
-            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.itemQty);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.iceQty);
             this.panel1.Controls.Add(this.label33);
             this.panel1.Controls.Add(this.label32);
             this.panel1.Controls.Add(this.refreshPrices);
@@ -152,9 +152,9 @@
             this.panel1.Controls.Add(this.percent10Label);
             this.panel1.Controls.Add(this.percent5Label);
             this.panel1.Controls.Add(this.percent0Label);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.oreBase10Qty);
+            this.panel1.Controls.Add(this.oreBase5Qty);
+            this.panel1.Controls.Add(this.oreBase0Qty);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.iceProductCombobox);
             this.panel1.Controls.Add(this.label5);
@@ -171,14 +171,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(513, 431);
             this.panel1.TabIndex = 16;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // textBox6
+            // loadingLabel
             // 
-            this.textBox6.Location = new System.Drawing.Point(270, 96);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(121, 20);
-            this.textBox6.TabIndex = 62;
+            this.loadingLabel.AutoSize = true;
+            this.loadingLabel.Location = new System.Drawing.Point(398, 414);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(54, 13);
+            this.loadingLabel.TabIndex = 63;
+            this.loadingLabel.Text = "Loading...";
+            // 
+            // itemQty
+            // 
+            this.itemQty.Location = new System.Drawing.Point(270, 96);
+            this.itemQty.Name = "itemQty";
+            this.itemQty.Size = new System.Drawing.Size(121, 20);
+            this.itemQty.TabIndex = 62;
             // 
             // label7
             // 
@@ -190,12 +198,12 @@
             this.label7.TabIndex = 61;
             this.label7.Text = "Item Qty";
             // 
-            // textBox5
+            // iceQty
             // 
-            this.textBox5.Location = new System.Drawing.Point(270, 65);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(121, 20);
-            this.textBox5.TabIndex = 60;
+            this.iceQty.Location = new System.Drawing.Point(270, 65);
+            this.iceQty.Name = "iceQty";
+            this.iceQty.Size = new System.Drawing.Size(121, 20);
+            this.iceQty.TabIndex = 60;
             // 
             // label33
             // 
@@ -224,7 +232,7 @@
             this.refreshPrices.TabIndex = 57;
             this.refreshPrices.Text = "Refresh";
             this.refreshPrices.UseVisualStyleBackColor = true;
-            this.refreshPrices.Click += new System.EventHandler(this.button1_Click_1);
+            this.refreshPrices.Click += new System.EventHandler(this.refresh_Click);
             // 
             // label31
             // 
@@ -504,7 +512,7 @@
             this.Calculate.TabIndex = 22;
             this.Calculate.Text = "Calculate";
             this.Calculate.UseVisualStyleBackColor = true;
-            this.Calculate.Click += new System.EventHandler(this.button3_Click);
+            this.Calculate.Click += new System.EventHandler(this.calculate_Click);
             // 
             // inventory
             // 
@@ -522,7 +530,7 @@
             this.Remove.TabIndex = 20;
             this.Remove.Text = "Remove";
             this.Remove.UseVisualStyleBackColor = true;
-            this.Remove.Click += new System.EventHandler(this.button2_Click);
+            this.Remove.Click += new System.EventHandler(this.removeItem_Click);
             // 
             // Add
             // 
@@ -532,7 +540,7 @@
             this.Add.TabIndex = 19;
             this.Add.Text = "Add";
             this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.button1_Click);
+            this.Add.Click += new System.EventHandler(this.addItem_Click);
             // 
             // percent10Label
             // 
@@ -561,26 +569,26 @@
             this.percent0Label.TabIndex = 15;
             this.percent0Label.Text = "+0%";
             // 
-            // textBox3
+            // oreBase10Qty
             // 
-            this.textBox3.Location = new System.Drawing.Point(395, 28);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(57, 20);
-            this.textBox3.TabIndex = 14;
+            this.oreBase10Qty.Location = new System.Drawing.Point(395, 28);
+            this.oreBase10Qty.Name = "oreBase10Qty";
+            this.oreBase10Qty.Size = new System.Drawing.Size(57, 20);
+            this.oreBase10Qty.TabIndex = 14;
             // 
-            // textBox2
+            // oreBase5Qty
             // 
-            this.textBox2.Location = new System.Drawing.Point(332, 28);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(57, 20);
-            this.textBox2.TabIndex = 13;
+            this.oreBase5Qty.Location = new System.Drawing.Point(332, 28);
+            this.oreBase5Qty.Name = "oreBase5Qty";
+            this.oreBase5Qty.Size = new System.Drawing.Size(57, 20);
+            this.oreBase5Qty.TabIndex = 13;
             // 
-            // textBox1
+            // oreBase0Qty
             // 
-            this.textBox1.Location = new System.Drawing.Point(269, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(57, 20);
-            this.textBox1.TabIndex = 12;
+            this.oreBase0Qty.Location = new System.Drawing.Point(269, 28);
+            this.oreBase0Qty.Name = "oreBase0Qty";
+            this.oreBase0Qty.Size = new System.Drawing.Size(57, 20);
+            this.oreBase0Qty.TabIndex = 12;
             // 
             // label6
             // 
@@ -688,98 +696,59 @@
             // 
             // priceCalculator
             // 
-            this.priceCalculator.Controls.Add(this.tabPage1);
-            this.priceCalculator.Controls.Add(this.tabPage2);
+            this.priceCalculator.Controls.Add(this.calculatorTabPage);
+            this.priceCalculator.Controls.Add(this.memberTabPage);
             this.priceCalculator.Location = new System.Drawing.Point(12, 12);
             this.priceCalculator.Name = "priceCalculator";
             this.priceCalculator.SelectedIndex = 0;
             this.priceCalculator.Size = new System.Drawing.Size(533, 471);
             this.priceCalculator.TabIndex = 17;
             // 
-            // tabPage1
+            // calculatorTabPage
             // 
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(525, 445);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.calculatorTabPage.Controls.Add(this.panel1);
+            this.calculatorTabPage.Location = new System.Drawing.Point(4, 22);
+            this.calculatorTabPage.Name = "calculatorTabPage";
+            this.calculatorTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.calculatorTabPage.Size = new System.Drawing.Size(525, 445);
+            this.calculatorTabPage.TabIndex = 0;
+            this.calculatorTabPage.Text = "calculatorTabPage";
+            this.calculatorTabPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // memberTabPage
             // 
-            this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(525, 445);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.memberTabPage.Controls.Add(this.panel2);
+            this.memberTabPage.Location = new System.Drawing.Point(4, 22);
+            this.memberTabPage.Name = "memberTabPage";
+            this.memberTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.memberTabPage.Size = new System.Drawing.Size(525, 445);
+            this.memberTabPage.TabIndex = 1;
+            this.memberTabPage.Text = "memberTabPage";
+            this.memberTabPage.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.memberListview);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.textBox7);
+            this.panel2.Controls.Add(this.playerMultiplier);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Controls.Add(this.playerNameBox);
             this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.listBox1);
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(513, 433);
             this.panel2.TabIndex = 0;
             // 
-            // textBox4
+            // button2
             // 
-            this.textBox4.Location = new System.Drawing.Point(18, 42);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(240, 40);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(18, 101);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(477, 316);
-            this.listBox1.TabIndex = 0;
-            // 
-            // loadingLabel
-            // 
-            this.loadingLabel.AutoSize = true;
-            this.loadingLabel.Location = new System.Drawing.Point(398, 414);
-            this.loadingLabel.Name = "loadingLabel";
-            this.loadingLabel.Size = new System.Drawing.Size(54, 13);
-            this.loadingLabel.TabIndex = 63;
-            this.loadingLabel.Text = "Loading...";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 23);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Player Name";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(124, 42);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 4;
+            this.button2.Location = new System.Drawing.Point(321, 40);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Remove";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.removePerson_Click);
             // 
             // label9
             // 
@@ -790,14 +759,46 @@
             this.label9.TabIndex = 5;
             this.label9.Text = "Multiplier";
             // 
-            // button2
+            // playerMultiplier
             // 
-            this.button2.Location = new System.Drawing.Point(342, 40);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Remove";
-            this.button2.UseVisualStyleBackColor = true;
+            this.playerMultiplier.Location = new System.Drawing.Point(124, 42);
+            this.playerMultiplier.Name = "playerMultiplier";
+            this.playerMultiplier.Size = new System.Drawing.Size(100, 20);
+            this.playerMultiplier.TabIndex = 4;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Player Name";
+            // 
+            // playerNameBox
+            // 
+            this.playerNameBox.Location = new System.Drawing.Point(18, 42);
+            this.playerNameBox.Name = "playerNameBox";
+            this.playerNameBox.Size = new System.Drawing.Size(100, 20);
+            this.playerNameBox.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(240, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.addPerson_Click);
+            // 
+            // memberListview
+            // 
+            this.memberListview.Location = new System.Drawing.Point(21, 78);
+            this.memberListview.Name = "memberListview";
+            this.memberListview.Size = new System.Drawing.Size(470, 334);
+            this.memberListview.TabIndex = 7;
+            this.memberListview.UseCompatibleStateImageBehavior = false;
             // 
             // MainInterface
             // 
@@ -810,8 +811,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.priceCalculator.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.calculatorTabPage.ResumeLayout(false);
+            this.memberTabPage.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -836,9 +837,9 @@
         private System.Windows.Forms.Label percent10Label;
         private System.Windows.Forms.Label percent5Label;
         private System.Windows.Forms.Label percent0Label;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox oreBase10Qty;
+        private System.Windows.Forms.TextBox oreBase5Qty;
+        private System.Windows.Forms.TextBox oreBase0Qty;
         private System.Windows.Forms.Button Remove;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button Calculate;
@@ -848,8 +849,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label nocxiumValue;
         private System.Windows.Forms.TabControl priceCalculator;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage calculatorTabPage;
+        private System.Windows.Forms.TabPage memberTabPage;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label zydrineValue;
         private System.Windows.Forms.Label heavyWaterValue;
@@ -878,19 +879,19 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button refreshPrices;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox playerNameBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox iceQty;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox itemQty;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox playerMultiplier;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ListView memberListview;
     }
 }
 

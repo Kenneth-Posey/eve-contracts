@@ -1,4 +1,10 @@
 
+from Base import BaseHandler
 
-class Player(object):
-    Herp = 0
+class Player(BaseHandler):
+    
+    def get(self):        
+        return
+    
+    def post(self):
+        return

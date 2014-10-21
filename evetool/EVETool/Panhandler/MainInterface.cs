@@ -64,14 +64,34 @@ namespace Panhandler
             iceProductCombobox.Items.AddRange(IceProducts.ToArray<object>());
 
             inventory.SelectionMode = SelectionMode.MultiExtended;
+
+            calculatorTabPage.Text = "Calculator";
+            memberTabPage.Text = "Members";
+
+            var memberNameColumn = new ColumnHeader();
+            memberNameColumn.TextAlign = HorizontalAlignment.Left;
+
+            var memberMultiplierColumn = new ColumnHeader();
+            memberMultiplierColumn.TextAlign = HorizontalAlignment.Left;
+
+            var memberGuidColumn = new ColumnHeader();
+            memberGuidColumn.TextAlign = HorizontalAlignment.Left;
+
+            var memberColumns = new List<ColumnHeader>();
+
+            memberColumns.Add(memberNameColumn);
+            memberColumns.Add(memberMultiplierColumn);
+            memberColumns.Add(memberGuidColumn);
+
         }
 
+        // Use the same event for all the comboboxes so the behavior is the same
         protected void combox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (textBox1 != null) textBox1.Focus();
+            if (oreBase0Qty != null) oreBase0Qty.Focus();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addItem_Click(object sender, EventArgs e)
         {
             var baseAmount = 0;
             var base5Amount = 0;
@@ -81,9 +101,9 @@ namespace Panhandler
             var validBase5 = false;
             var validBase10 = false;
 
-            var baseValue = textBox1.Text.Trim();
-            var base5Value = textBox2.Text.Trim();
-            var base10Value = textBox3.Text.Trim();
+            var baseValue = oreBase0Qty.Text.Trim();
+            var base5Value = oreBase5Qty.Text.Trim();
+            var base10Value = oreBase10Qty.Text.Trim();
 
             validBase = Int32.TryParse(baseValue, out baseAmount);
             validBase5 = Int32.TryParse(base5Value, out base5Amount);
@@ -125,13 +145,27 @@ namespace Panhandler
                     // Uncompressed ore
                     if (itemCompressed == false)
                     {
-                        PopulateListbox(baseAmount, base5Amount, base10Amount, validBase, validBase5, validBase10, ores, itemName);
+                        PopulateListbox(baseAmount
+                            , base5Amount
+                            , base10Amount
+                            , validBase
+                            , validBase5
+                            , validBase10
+                            , ores
+                            , itemName);
                     }
                     // Compressed ore
                     else
                     {
                         itemName = "Compressed " + itemName;
-                        PopulateListbox(baseAmount, base5Amount, base10Amount, validBase, validBase5, validBase10, ores, itemName);
+                        PopulateListbox(baseAmount
+                            , base5Amount
+                            , base10Amount
+                            , validBase
+                            , validBase5
+                            , validBase10
+                            , ores
+                            , itemName);
                     }
                 }
                 else if (RawIce.Contains(itemName))
@@ -155,9 +189,9 @@ namespace Panhandler
             foreach (var box in MaterialBoxList)
             {
                 box.SelectedIndex = 0;
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
+                oreBase0Qty.Text = "";
+                oreBase5Qty.Text = "";
+                oreBase10Qty.Text = "";
             }
         }
 
@@ -195,7 +229,7 @@ namespace Panhandler
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void removeItem_Click(object sender, EventArgs e)
         {
             var selectedItems = inventory.SelectedItems.OfType<string>().ToList();
             var copiedItems = inventory.Items.OfType<string>().ToList();
@@ -222,7 +256,7 @@ namespace Panhandler
             return Functions.CalculateEstimate(tSplitLines);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void calculate_Click(object sender, EventArgs e)
         {
             var tItems = inventory.Items.OfType<string>().ToList();
             var estimate = CalculateEstimate(tItems);
@@ -239,7 +273,7 @@ namespace Panhandler
             return allItems.Find(x => x.Item1 == name).Item2;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void refresh_Click(object sender, EventArgs e)
         {
             loadingLabel.Text = "Loading...";
 
@@ -273,7 +307,15 @@ namespace Panhandler
             loadingLabel.Text = "";
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void addPerson_Click(object sender, EventArgs e)
+        {
+            if (playerNameBox.Text.Trim().Length > 0)
+            {
+                
+            }
+        }
+
+        private void removePerson_Click(object sender, EventArgs e)
         {
 
         }
