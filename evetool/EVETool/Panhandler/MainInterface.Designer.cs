@@ -92,13 +92,16 @@
             this.calculatorTabPage = new System.Windows.Forms.TabPage();
             this.memberTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.memberListbox = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.playerMultiplier = new System.Windows.Forms.TextBox();
+            this.playerMultiplierBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.playerNameBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.memberListview = new System.Windows.Forms.ListView();
+            this.updatePerson = new System.Windows.Forms.Button();
+            this.playerCodeBox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.priceCalculator.SuspendLayout();
             this.calculatorTabPage.SuspendLayout();
@@ -728,10 +731,13 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.memberListview);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.playerCodeBox);
+            this.panel2.Controls.Add(this.updatePerson);
+            this.panel2.Controls.Add(this.memberListbox);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.playerMultiplier);
+            this.panel2.Controls.Add(this.playerMultiplierBox);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.playerNameBox);
             this.panel2.Controls.Add(this.button1);
@@ -740,9 +746,17 @@
             this.panel2.Size = new System.Drawing.Size(513, 433);
             this.panel2.TabIndex = 0;
             // 
+            // memberListbox
+            // 
+            this.memberListbox.FormattingEnabled = true;
+            this.memberListbox.Location = new System.Drawing.Point(11, 102);
+            this.memberListbox.Name = "memberListbox";
+            this.memberListbox.Size = new System.Drawing.Size(491, 316);
+            this.memberListbox.TabIndex = 7;
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(321, 40);
+            this.button2.Location = new System.Drawing.Point(205, 73);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
@@ -759,12 +773,12 @@
             this.label9.TabIndex = 5;
             this.label9.Text = "Multiplier";
             // 
-            // playerMultiplier
+            // playerMultiplierBox
             // 
-            this.playerMultiplier.Location = new System.Drawing.Point(124, 42);
-            this.playerMultiplier.Name = "playerMultiplier";
-            this.playerMultiplier.Size = new System.Drawing.Size(100, 20);
-            this.playerMultiplier.TabIndex = 4;
+            this.playerMultiplierBox.Location = new System.Drawing.Point(124, 42);
+            this.playerMultiplierBox.Name = "playerMultiplierBox";
+            this.playerMultiplierBox.Size = new System.Drawing.Size(100, 20);
+            this.playerMultiplierBox.TabIndex = 4;
             // 
             // label8
             // 
@@ -784,7 +798,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(240, 40);
+            this.button1.Location = new System.Drawing.Point(124, 73);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -792,13 +806,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.addPerson_Click);
             // 
-            // memberListview
+            // updatePerson
             // 
-            this.memberListview.Location = new System.Drawing.Point(21, 78);
-            this.memberListview.Name = "memberListview";
-            this.memberListview.Size = new System.Drawing.Size(470, 334);
-            this.memberListview.TabIndex = 7;
-            this.memberListview.UseCompatibleStateImageBehavior = false;
+            this.updatePerson.Location = new System.Drawing.Point(286, 73);
+            this.updatePerson.Name = "updatePerson";
+            this.updatePerson.Size = new System.Drawing.Size(75, 23);
+            this.updatePerson.TabIndex = 8;
+            this.updatePerson.Text = "Update";
+            this.updatePerson.UseVisualStyleBackColor = true;
+            this.updatePerson.Click += new System.EventHandler(this.updatePerson_Click);
+            // 
+            // playerCodeBox
+            // 
+            this.playerCodeBox.Location = new System.Drawing.Point(230, 42);
+            this.playerCodeBox.Name = "playerCodeBox";
+            this.playerCodeBox.Size = new System.Drawing.Size(272, 20);
+            this.playerCodeBox.TabIndex = 9;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(227, 23);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(57, 13);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "User Code";
             // 
             // MainInterface
             // 
@@ -889,9 +921,12 @@
         private System.Windows.Forms.Label loadingLabel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox playerMultiplier;
+        private System.Windows.Forms.TextBox playerMultiplierBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ListView memberListview;
+        private System.Windows.Forms.ListBox memberListbox;
+        private System.Windows.Forms.Button updatePerson;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox playerCodeBox;
     }
 }
 

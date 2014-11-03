@@ -66,6 +66,7 @@
     <Compile Include="MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objects\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainInterface.resx">

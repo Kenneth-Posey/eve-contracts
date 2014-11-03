@@ -12,6 +12,7 @@ using EveData;
 using EveOnlineInterop;
 using Market;
 using Microsoft.FSharp.Collections;
+using Panhandler.Objects;
 
 namespace Panhandler
 {
@@ -68,21 +69,31 @@ namespace Panhandler
             calculatorTabPage.Text = "Calculator";
             memberTabPage.Text = "Members";
 
-            var memberNameColumn = new ColumnHeader();
-            memberNameColumn.TextAlign = HorizontalAlignment.Left;
+            //var memberNameColumn = new ColumnHeader();
+            //memberNameColumn.TextAlign = HorizontalAlignment.Left;
 
-            var memberMultiplierColumn = new ColumnHeader();
-            memberMultiplierColumn.TextAlign = HorizontalAlignment.Left;
+            //var memberMultiplierColumn = new ColumnHeader();
+            //memberMultiplierColumn.TextAlign = HorizontalAlignment.Left;
 
-            var memberGuidColumn = new ColumnHeader();
-            memberGuidColumn.TextAlign = HorizontalAlignment.Left;
+            //var memberGuidColumn = new ColumnHeader();
+            //memberGuidColumn.TextAlign = HorizontalAlignment.Left;
 
-            var memberColumns = new List<ColumnHeader>();
+            //var memberColumns = new List<ColumnHeader>();
 
-            memberColumns.Add(memberNameColumn);
-            memberColumns.Add(memberMultiplierColumn);
-            memberColumns.Add(memberGuidColumn);
+            //memberColumns.Add(memberNameColumn);
+            //memberColumns.Add(memberMultiplierColumn);
+            //memberColumns.Add(memberGuidColumn);
 
+            memberListbox.Text = "";
+            memberListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
+        }
+
+        protected void memberListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var currentUser = new User(memberListbox.SelectedItem);
+
+            playerNameBox.Text = currentUser.userName;
+            playerMultiplierBox.Text = currentUser.multiplier.ToString();
         }
 
         // Use the same event for all the comboboxes so the behavior is the same
@@ -309,15 +320,68 @@ namespace Panhandler
 
         private void addPerson_Click(object sender, EventArgs e)
         {
-            if (playerNameBox.Text.Trim().Length > 0)
+            if (playerNameBox.Text.Trim().Length > 0 && playerMultiplierBox.Text.Trim().Length > 0)
             {
-                
+                string playerName = playerNameBox.Text.Trim();
+                string playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
+                string playerGuid = Guid.NewGuid().ToString();
+
+                string player = String.Format("{0}|{1}|{2}", new string[]{
+                    playerName, playerMultiplier, playerGuid
+                });
+
+                memberListbox.Items.Add(player);
+                SortPlayers();
             }
+        }
+
+        private void SortPlayers()
+        {
+            var userItems = memberListbox.Items.Cast<string>();
+            var sortedUsers = userItems                                
+                                .Select(x => new User(x).userName)
+                                .ToList();
+
+            sortedUsers.Sort();
+
+            var sortedList = sortedUsers
+                                .Select(x => new User(userItems
+                                                        .Where(y => y.Contains(x))
+                                                        .FirstOrDefault().Trim()))
+                                .Select(x => x.ToString())
+                                //.Select(x => new ListViewItem(x))
+                                .ToArray();
+
+            memberListbox.Items.Clear();
+            memberListbox.Items.AddRange(sortedList);
         }
 
         private void removePerson_Click(object sender, EventArgs e)
         {
+            int selectedIndex = memberListbox.SelectedIndex;
+            memberListbox.Items.RemoveAt(selectedIndex);
+            SortPlayers();
+        }
 
+        private void updatePerson_Click(object sender, EventArgs e)
+        {
+            if (playerNameBox.Text.Trim().Length > 0 
+                && playerMultiplierBox.Text.Trim().Length > 0
+                && playerCodeBox.Text.Trim().Length > 0)
+            {
+                int selectedIndex = memberListbox.SelectedIndex;
+                string playerName = playerNameBox.Text.Trim();
+                string playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
+                string playerGuid = playerCodeBox.Text.Trim();
+
+                string player = String.Format("{0}|{1}|{2}", new string[]{
+                    playerName, playerMultiplier, playerGuid
+                });
+
+                memberListbox.Items.RemoveAt(selectedIndex);
+                memberListbox.Items.Add(player);
+                SortPlayers();
+            }
         }
     }
 }
