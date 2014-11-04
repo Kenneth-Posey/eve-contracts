@@ -88,14 +88,6 @@ namespace Panhandler
             memberListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
         }
 
-        protected void memberListbox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var currentUser = new User(memberListbox.SelectedItem);
-
-            playerNameBox.Text = currentUser.userName;
-            playerMultiplierBox.Text = currentUser.multiplier.ToString();
-        }
-
         // Use the same event for all the comboboxes so the behavior is the same
         protected void combox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -326,7 +318,7 @@ namespace Panhandler
                 string playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
                 string playerGuid = Guid.NewGuid().ToString();
 
-                string player = String.Format("{0}|{1}|{2}", new string[]{
+                string player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
                     playerName, playerMultiplier, playerGuid
                 });
 
@@ -349,7 +341,6 @@ namespace Panhandler
                                                         .Where(y => y.Contains(x))
                                                         .FirstOrDefault().Trim()))
                                 .Select(x => x.ToString())
-                                //.Select(x => new ListViewItem(x))
                                 .ToArray();
 
             memberListbox.Items.Clear();
@@ -374,7 +365,7 @@ namespace Panhandler
                 string playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
                 string playerGuid = playerCodeBox.Text.Trim();
 
-                string player = String.Format("{0}|{1}|{2}", new string[]{
+                string player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
                     playerName, playerMultiplier, playerGuid
                 });
 
@@ -382,6 +373,34 @@ namespace Panhandler
                 memberListbox.Items.Add(player);
                 SortPlayers();
             }
+        }
+
+        protected void memberListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (memberListbox.SelectedItem != null && memberListbox.SelectedIndex >= 0)
+            {
+                var currentUser = new User(memberListbox.SelectedItem.ToString());
+
+                playerNameBox.Text = currentUser.userName;
+                playerMultiplierBox.Text = currentUser.multiplier.ToString();
+                playerCodeBox.Text = currentUser.userId;
+            }
+        }
+        
+        private void LoadUserStringIntoList(string userList)
+        {
+            memberListbox.Items.Clear();
+
+            foreach (var user in userList.Split(new char[] { '\n' }))
+            {
+                var currentUser = new User(user);
+                string player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
+                    currentUser.userName, currentUser.multiplier.ToString(), currentUser.userId
+                });
+                memberListbox.Items.Add(player);
+            }
+
+            SortPlayers();
         }
     }
 }
