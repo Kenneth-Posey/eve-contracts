@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using EveData;
 using EveOnlineInterop;
 using Market;
@@ -44,10 +45,18 @@ namespace Panhandler
                 box.Items.Insert(0, "Select One");
                 box.SelectedIndex = 0;
                 box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
                 box.SelectedIndexChanged += combox_SelectedIndexChanged;
             }
-            
+
+            oreCombobox.SelectedIndexChanged += combox_SelectedIndexChanged;
+            compOreCombobox.SelectedIndexChanged += combox_SelectedIndexChanged;
+
+            iceCombobox.SelectedIndexChanged += iceCombobox_SelectedIndexChanged;
+            compIceCombobox.SelectedIndexChanged += iceCombobox_SelectedIndexChanged;
+
+            mineralsCombobox.SelectedIndexChanged += itemCombobox_SelectedIndexChanged;
+            iceProductCombobox.SelectedIndexChanged += itemCombobox_SelectedIndexChanged;
+
             Add.Text = "Add";
             Remove.Text = "Remove";
             Calculate.Text = "Calculate";
@@ -69,29 +78,28 @@ namespace Panhandler
             calculatorTabPage.Text = "Calculator";
             memberTabPage.Text = "Members";
 
-            //var memberNameColumn = new ColumnHeader();
-            //memberNameColumn.TextAlign = HorizontalAlignment.Left;
-
-            //var memberMultiplierColumn = new ColumnHeader();
-            //memberMultiplierColumn.TextAlign = HorizontalAlignment.Left;
-
-            //var memberGuidColumn = new ColumnHeader();
-            //memberGuidColumn.TextAlign = HorizontalAlignment.Left;
-
-            //var memberColumns = new List<ColumnHeader>();
-
-            //memberColumns.Add(memberNameColumn);
-            //memberColumns.Add(memberMultiplierColumn);
-            //memberColumns.Add(memberGuidColumn);
-
             memberListbox.Text = "";
             memberListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
+
+            oreBase0DefaultCheck.Checked = true;
         }
 
-        // Use the same event for all the comboboxes so the behavior is the same
+        protected void itemCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (itemQty != null) itemQty.Focus();
+            if (this.defaultOreBox != null) this.defaultOreBox.Focus();
+        }
+
+        protected void iceCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (iceQty != null) iceQty.Focus();
+            if (this.defaultOreBox != null) this.defaultOreBox.Focus();
+        }
+
         protected void combox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (oreBase0Qty != null) oreBase0Qty.Focus();
+            if (oreBase0Qty != null || this.defaultOreBox == null) oreBase0Qty.Focus();
+            if (this.defaultOreBox != null) this.defaultOreBox.Focus();
         }
 
         private void addItem_Click(object sender, EventArgs e)
@@ -237,23 +245,22 @@ namespace Panhandler
             var selectedItems = inventory.SelectedItems.OfType<string>().ToList();
             var copiedItems = inventory.Items.OfType<string>().ToList();
 
-            if (selectedItems.Count > 0 && copiedItems.Count > 0)
+            if (selectedItems.Count <= 0 || copiedItems.Count <= 0) return;
+
+            foreach (var listItem in selectedItems)
             {
-                foreach (var listItem in selectedItems)
-                {
-                    copiedItems.Remove(listItem);
-                }
+                copiedItems.Remove(listItem);
+            }
 
-                inventory.Items.Clear();
+            inventory.Items.Clear();
 
-                foreach (var item in copiedItems)
-                {
-                    inventory.Items.Add(item);
-                }
+            foreach (var item in copiedItems)
+            {
+                inventory.Items.Add(item);
             }
         }
 
-        private double CalculateEstimate(List<string> pSplitLines)
+        private static double CalculateEstimate(List<string> pSplitLines)
         {
             var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
             return Functions.CalculateEstimate(tSplitLines);
@@ -263,10 +270,10 @@ namespace Panhandler
         {
             var tItems = inventory.Items.OfType<string>().ToList();
             var estimate = CalculateEstimate(tItems);
-            nocxiumValue.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
+            totalBox.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
         }
 
-        private int LoadIdByName(string name)
+        private static int LoadIdByName(string name)
         {
             var allItems = EveData.Collections.RawIceIDPairs.ToList();
             allItems.AddRange(EveData.Collections.MineralIDPairs.ToList());
@@ -312,19 +319,18 @@ namespace Panhandler
 
         private void addPerson_Click(object sender, EventArgs e)
         {
-            if (playerNameBox.Text.Trim().Length > 0 && playerMultiplierBox.Text.Trim().Length > 0)
-            {
-                string playerName = playerNameBox.Text.Trim();
-                string playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
-                string playerGuid = Guid.NewGuid().ToString();
+            if (playerNameBox.Text.Trim().Length <= 0 || playerMultiplierBox.Text.Trim().Length <= 0) return;
 
-                string player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
-                    playerName, playerMultiplier, playerGuid
-                });
+            var playerName = playerNameBox.Text.Trim();
+            var playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
+            var playerGuid = Guid.NewGuid().ToString();
 
-                memberListbox.Items.Add(player);
-                SortPlayers();
-            }
+            var player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
+                playerName, playerMultiplier, playerGuid
+            });
+
+            memberListbox.Items.Add(player);
+            SortPlayers();
         }
 
         private void SortPlayers()
@@ -349,42 +355,39 @@ namespace Panhandler
 
         private void removePerson_Click(object sender, EventArgs e)
         {
-            int selectedIndex = memberListbox.SelectedIndex;
+            var selectedIndex = memberListbox.SelectedIndex;
             memberListbox.Items.RemoveAt(selectedIndex);
             SortPlayers();
         }
 
         private void updatePerson_Click(object sender, EventArgs e)
         {
-            if (playerNameBox.Text.Trim().Length > 0 
-                && playerMultiplierBox.Text.Trim().Length > 0
-                && playerCodeBox.Text.Trim().Length > 0)
-            {
-                int selectedIndex = memberListbox.SelectedIndex;
-                string playerName = playerNameBox.Text.Trim();
-                string playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
-                string playerGuid = playerCodeBox.Text.Trim();
+            if (playerNameBox.Text.Trim().Length <= 0 
+                || playerMultiplierBox.Text.Trim().Length <= 0 
+                || playerCodeBox.Text.Trim().Length <= 0) return;
+            var selectedIndex = memberListbox.SelectedIndex;
+            var playerName = playerNameBox.Text.Trim();
+            var playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();
+            var playerGuid = playerCodeBox.Text.Trim();
 
-                string player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
-                    playerName, playerMultiplier, playerGuid
-                });
+            var player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
+                playerName, playerMultiplier, playerGuid
+            });
 
-                memberListbox.Items.RemoveAt(selectedIndex);
-                memberListbox.Items.Add(player);
-                SortPlayers();
-            }
+            memberListbox.Items.RemoveAt(selectedIndex);
+            memberListbox.Items.Add(player);
+            SortPlayers();
         }
 
         protected void memberListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (memberListbox.SelectedItem != null && memberListbox.SelectedIndex >= 0)
-            {
-                var currentUser = new User(memberListbox.SelectedItem.ToString());
+            if (memberListbox.SelectedItem == null || memberListbox.SelectedIndex < 0) return;
 
-                playerNameBox.Text = currentUser.userName;
-                playerMultiplierBox.Text = currentUser.multiplier.ToString();
-                playerCodeBox.Text = currentUser.userId;
-            }
+            var currentUser = new User(memberListbox.SelectedItem.ToString());
+
+            playerNameBox.Text = currentUser.userName;
+            playerMultiplierBox.Text = currentUser.multiplier.ToString();
+            playerCodeBox.Text = currentUser.userId;
         }
         
         private void LoadUserStringIntoList(string userList)
@@ -394,7 +397,7 @@ namespace Panhandler
             foreach (var user in userList.Split(new char[] { '\n' }))
             {
                 var currentUser = new User(user);
-                string player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
+                var player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
                     currentUser.userName, currentUser.multiplier.ToString(), currentUser.userId
                 });
                 memberListbox.Items.Add(player);
@@ -402,5 +405,59 @@ namespace Panhandler
 
             SortPlayers();
         }
+
+        private void totalLabel_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(totalBox.Text);
+        }
+
+        private void oreBase0DefaultCheck_Checked(object sender, EventArgs e)
+        {
+            if (!oreBase0DefaultCheck.Checked) return;
+
+            oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
+            oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
+            this.defaultOreBox = oreBase0Qty;
+        }
+
+        private void oreBase5DefaultCheck_Checked(object sender, EventArgs e)
+        {
+            if (oreBase5DefaultCheck.Checked)
+            {
+                oreBase0DefaultCheck.CheckState = CheckState.Unchecked;
+                oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
+
+                this.defaultOreBox = oreBase5Qty;
+            }
+            else
+            {
+                oreBase5DefaultCheck.CheckState = CheckState.Checked;
+                oreBase0DefaultCheck.CheckState = CheckState.Checked;
+                oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
+                oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
+                this.defaultOreBox = oreBase0Qty;
+            }
+        }
+
+        private void oreBase10DefaultCheck_Checked(object sender, EventArgs e)
+        {
+            if (oreBase10DefaultCheck.Checked)
+            {
+                oreBase10DefaultCheck.CheckState = CheckState.Checked;
+                oreBase0DefaultCheck.CheckState = CheckState.Unchecked;
+                oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
+
+                this.defaultOreBox = oreBase10Qty;
+            }
+            else
+            {
+                oreBase0DefaultCheck.CheckState = CheckState.Checked;
+                oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
+                oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
+                this.defaultOreBox = oreBase0Qty;
+            }
+        }
+
+        public TextBox defaultOreBox { get; set; }
     }
 }

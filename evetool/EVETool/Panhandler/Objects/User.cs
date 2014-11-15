@@ -14,19 +14,18 @@ namespace Panhandler.Objects
 
         public User(string userLine)
         {
-            var items = userLine.Split(new char[]{'|'}).ToList();
+            var items = userLine.Split(new []{'|'}).ToList();
 
-            if (items.Count == 3) 
-            {
-                this.userName = items[0].Trim();
-                this.multiplier = Decimal.Parse(items[1].Trim());
-                this.userId = items[2].Trim();
-            }
+            if (items.Count != 3) return;
+
+            userName = items[0].Trim();
+            multiplier = Decimal.Parse(items[1].Trim());
+            userId = items[2].Trim();
         }
 
         public override string ToString()
         {
-            return String.Format("{0,-35}|{1,-5}|{2}", new string[]{
+            return String.Format("{0,-35}|{1,-5}|{2}", new []{
                      this.userName, this.multiplier.ToString(), this.userId
                  });
         }

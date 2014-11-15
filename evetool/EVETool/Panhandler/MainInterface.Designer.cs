@@ -1,4 +1,6 @@
-﻿namespace Panhandler
+﻿using System.Security.AccessControl;
+
+namespace Panhandler
 {
     partial class MainInterface
     {
@@ -29,6 +31,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.totalLabel = new System.Windows.Forms.Label();
+            this.totalBox = new System.Windows.Forms.TextBox();
             this.loadingLabel = new System.Windows.Forms.Label();
             this.itemQty = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -92,6 +96,9 @@
             this.calculatorTabPage = new System.Windows.Forms.TabPage();
             this.memberTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.playerCodeBox = new System.Windows.Forms.TextBox();
+            this.updatePerson = new System.Windows.Forms.Button();
             this.memberListbox = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -99,9 +106,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.playerNameBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.updatePerson = new System.Windows.Forms.Button();
-            this.playerCodeBox = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.oreBase0DefaultCheck = new System.Windows.Forms.CheckBox();
+            this.oreBase5DefaultCheck = new System.Windows.Forms.CheckBox();
+            this.oreBase10DefaultCheck = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.priceCalculator.SuspendLayout();
             this.calculatorTabPage.SuspendLayout();
@@ -111,6 +118,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.oreBase10DefaultCheck);
+            this.panel1.Controls.Add(this.oreBase5DefaultCheck);
+            this.panel1.Controls.Add(this.oreBase0DefaultCheck);
+            this.panel1.Controls.Add(this.totalLabel);
+            this.panel1.Controls.Add(this.totalBox);
             this.panel1.Controls.Add(this.loadingLabel);
             this.panel1.Controls.Add(this.itemQty);
             this.panel1.Controls.Add(this.label7);
@@ -175,6 +187,24 @@
             this.panel1.Size = new System.Drawing.Size(513, 431);
             this.panel1.TabIndex = 16;
             // 
+            // totalLabel
+            // 
+            this.totalLabel.AutoSize = true;
+            this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLabel.Location = new System.Drawing.Point(415, 69);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(49, 20);
+            this.totalLabel.TabIndex = 65;
+            this.totalLabel.Text = "Total";
+            this.totalLabel.Click += new System.EventHandler(this.totalLabel_Click);
+            // 
+            // totalBox
+            // 
+            this.totalBox.Location = new System.Drawing.Point(387, 96);
+            this.totalBox.Name = "totalBox";
+            this.totalBox.Size = new System.Drawing.Size(108, 20);
+            this.totalBox.TabIndex = 64;
+            // 
             // loadingLabel
             // 
             this.loadingLabel.AutoSize = true;
@@ -186,7 +216,7 @@
             // 
             // itemQty
             // 
-            this.itemQty.Location = new System.Drawing.Point(270, 96);
+            this.itemQty.Location = new System.Drawing.Point(248, 96);
             this.itemQty.Name = "itemQty";
             this.itemQty.Size = new System.Drawing.Size(121, 20);
             this.itemQty.TabIndex = 62;
@@ -194,7 +224,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(206, 96);
+            this.label7.Location = new System.Drawing.Point(184, 96);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label7.Size = new System.Drawing.Size(46, 13);
@@ -203,7 +233,7 @@
             // 
             // iceQty
             // 
-            this.iceQty.Location = new System.Drawing.Point(270, 65);
+            this.iceQty.Location = new System.Drawing.Point(248, 65);
             this.iceQty.Name = "iceQty";
             this.iceQty.Size = new System.Drawing.Size(121, 20);
             this.iceQty.TabIndex = 60;
@@ -211,7 +241,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(206, 65);
+            this.label33.Location = new System.Drawing.Point(184, 65);
             this.label33.Name = "label33";
             this.label33.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label33.Size = new System.Drawing.Size(41, 13);
@@ -221,7 +251,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(205, 31);
+            this.label32.Location = new System.Drawing.Point(183, 31);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(43, 13);
             this.label32.TabIndex = 58;
@@ -509,7 +539,7 @@
             // 
             // Calculate
             // 
-            this.Calculate.Location = new System.Drawing.Point(393, 139);
+            this.Calculate.Location = new System.Drawing.Point(373, 139);
             this.Calculate.Name = "Calculate";
             this.Calculate.Size = new System.Drawing.Size(75, 23);
             this.Calculate.TabIndex = 22;
@@ -527,7 +557,7 @@
             // 
             // Remove
             // 
-            this.Remove.Location = new System.Drawing.Point(293, 139);
+            this.Remove.Location = new System.Drawing.Point(294, 139);
             this.Remove.Name = "Remove";
             this.Remove.Size = new System.Drawing.Size(75, 23);
             this.Remove.TabIndex = 20;
@@ -537,7 +567,7 @@
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(192, 139);
+            this.Add.Location = new System.Drawing.Point(213, 139);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(75, 23);
             this.Add.TabIndex = 19;
@@ -548,7 +578,7 @@
             // percent10Label
             // 
             this.percent10Label.AutoSize = true;
-            this.percent10Label.Location = new System.Drawing.Point(395, 12);
+            this.percent10Label.Location = new System.Drawing.Point(373, 12);
             this.percent10Label.Name = "percent10Label";
             this.percent10Label.Size = new System.Drawing.Size(33, 13);
             this.percent10Label.TabIndex = 17;
@@ -557,7 +587,7 @@
             // percent5Label
             // 
             this.percent5Label.AutoSize = true;
-            this.percent5Label.Location = new System.Drawing.Point(329, 12);
+            this.percent5Label.Location = new System.Drawing.Point(307, 12);
             this.percent5Label.Name = "percent5Label";
             this.percent5Label.Size = new System.Drawing.Size(27, 13);
             this.percent5Label.TabIndex = 16;
@@ -566,7 +596,7 @@
             // percent0Label
             // 
             this.percent0Label.AutoSize = true;
-            this.percent0Label.Location = new System.Drawing.Point(266, 12);
+            this.percent0Label.Location = new System.Drawing.Point(244, 12);
             this.percent0Label.Name = "percent0Label";
             this.percent0Label.Size = new System.Drawing.Size(27, 13);
             this.percent0Label.TabIndex = 15;
@@ -574,21 +604,21 @@
             // 
             // oreBase10Qty
             // 
-            this.oreBase10Qty.Location = new System.Drawing.Point(395, 28);
+            this.oreBase10Qty.Location = new System.Drawing.Point(373, 28);
             this.oreBase10Qty.Name = "oreBase10Qty";
             this.oreBase10Qty.Size = new System.Drawing.Size(57, 20);
             this.oreBase10Qty.TabIndex = 14;
             // 
             // oreBase5Qty
             // 
-            this.oreBase5Qty.Location = new System.Drawing.Point(332, 28);
+            this.oreBase5Qty.Location = new System.Drawing.Point(310, 28);
             this.oreBase5Qty.Name = "oreBase5Qty";
             this.oreBase5Qty.Size = new System.Drawing.Size(57, 20);
             this.oreBase5Qty.TabIndex = 13;
             // 
             // oreBase0Qty
             // 
-            this.oreBase0Qty.Location = new System.Drawing.Point(269, 28);
+            this.oreBase0Qty.Location = new System.Drawing.Point(247, 28);
             this.oreBase0Qty.Name = "oreBase0Qty";
             this.oreBase0Qty.Size = new System.Drawing.Size(57, 20);
             this.oreBase0Qty.TabIndex = 12;
@@ -746,6 +776,32 @@
             this.panel2.Size = new System.Drawing.Size(513, 433);
             this.panel2.TabIndex = 0;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(227, 23);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(57, 13);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "User Code";
+            // 
+            // playerCodeBox
+            // 
+            this.playerCodeBox.Location = new System.Drawing.Point(230, 42);
+            this.playerCodeBox.Name = "playerCodeBox";
+            this.playerCodeBox.Size = new System.Drawing.Size(272, 20);
+            this.playerCodeBox.TabIndex = 9;
+            // 
+            // updatePerson
+            // 
+            this.updatePerson.Location = new System.Drawing.Point(286, 73);
+            this.updatePerson.Name = "updatePerson";
+            this.updatePerson.Size = new System.Drawing.Size(75, 23);
+            this.updatePerson.TabIndex = 8;
+            this.updatePerson.Text = "Update";
+            this.updatePerson.UseVisualStyleBackColor = true;
+            this.updatePerson.Click += new System.EventHandler(this.updatePerson_Click);
+            // 
             // memberListbox
             // 
             this.memberListbox.FormattingEnabled = true;
@@ -806,31 +862,35 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.addPerson_Click);
             // 
-            // updatePerson
+            // checkBox1
             // 
-            this.updatePerson.Location = new System.Drawing.Point(286, 73);
-            this.updatePerson.Name = "updatePerson";
-            this.updatePerson.Size = new System.Drawing.Size(75, 23);
-            this.updatePerson.TabIndex = 8;
-            this.updatePerson.Text = "Update";
-            this.updatePerson.UseVisualStyleBackColor = true;
-            this.updatePerson.Click += new System.EventHandler(this.updatePerson_Click);
+            this.oreBase0DefaultCheck.AutoSize = true;
+            this.oreBase0DefaultCheck.Location = new System.Drawing.Point(270, 12);
+            this.oreBase0DefaultCheck.Name = "checkBox1";
+            this.oreBase0DefaultCheck.Size = new System.Drawing.Size(15, 14);
+            this.oreBase0DefaultCheck.TabIndex = 66;
+            this.oreBase0DefaultCheck.UseVisualStyleBackColor = true;
+            this.oreBase0DefaultCheck.CheckedChanged += new System.EventHandler(this.oreBase0DefaultCheck_Checked);
             // 
-            // playerCodeBox
+            // checkBox2
             // 
-            this.playerCodeBox.Location = new System.Drawing.Point(230, 42);
-            this.playerCodeBox.Name = "playerCodeBox";
-            this.playerCodeBox.Size = new System.Drawing.Size(272, 20);
-            this.playerCodeBox.TabIndex = 9;
+            this.oreBase5DefaultCheck.AutoSize = true;
+            this.oreBase5DefaultCheck.Location = new System.Drawing.Point(333, 12);
+            this.oreBase5DefaultCheck.Name = "checkBox2";
+            this.oreBase5DefaultCheck.Size = new System.Drawing.Size(15, 14);
+            this.oreBase5DefaultCheck.TabIndex = 67;
+            this.oreBase5DefaultCheck.UseVisualStyleBackColor = true;
+            this.oreBase5DefaultCheck.CheckedChanged += new System.EventHandler(this.oreBase5DefaultCheck_Checked);
             // 
-            // label18
+            // checkBox3
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(227, 23);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(57, 13);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "User Code";
+            this.oreBase10DefaultCheck.AutoSize = true;
+            this.oreBase10DefaultCheck.Location = new System.Drawing.Point(406, 12);
+            this.oreBase10DefaultCheck.Name = "checkBox3";
+            this.oreBase10DefaultCheck.Size = new System.Drawing.Size(15, 14);
+            this.oreBase10DefaultCheck.TabIndex = 68;
+            this.oreBase10DefaultCheck.UseVisualStyleBackColor = true;
+            this.oreBase10DefaultCheck.CheckedChanged += new System.EventHandler(this.oreBase10DefaultCheck_Checked);
             // 
             // MainInterface
             // 
@@ -927,6 +987,11 @@
         private System.Windows.Forms.Button updatePerson;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox playerCodeBox;
+        private System.Windows.Forms.Label totalLabel;
+        private System.Windows.Forms.TextBox totalBox;
+        private System.Windows.Forms.CheckBox oreBase10DefaultCheck;
+        private System.Windows.Forms.CheckBox oreBase5DefaultCheck;
+        private System.Windows.Forms.CheckBox oreBase0DefaultCheck;
     }
 }
 
