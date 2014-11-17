@@ -1,0 +1,13 @@
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\bin\Debug\PanhandlerFsharp.exe.config
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\bin\Debug\PanhandlerFsharp.exe
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\bin\Debug\PanhandlerFsharp.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp.csprojResolveAssemblyReference.cache
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\MainWindow.baml
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\MainWindow.g.cs
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\App.g.cs
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp_MarkupCompile.cache
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp.g.resources
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp.Properties.Resources.resources
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp.csproj.GenerateResource.Cache
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp.exe
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp.pdb

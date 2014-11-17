@@ -38,3 +38,4 @@ C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.csproj.GenerateResource.Cache
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.MainInterface.resources
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.MainInterface.resources
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Windows.Interactivity.dll
