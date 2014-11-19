@@ -18,4 +18,5 @@ type MainWindowViewController() =
     override __.OnInitialized window =            
         // Subscribe to an event handler on the ExitButton
         // window.ExitButton.Click.Add shutdown
+        window.TestTextbox.Text <- "Test text"
         ()

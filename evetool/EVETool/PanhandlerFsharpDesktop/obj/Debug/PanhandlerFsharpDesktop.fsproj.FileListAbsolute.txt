@@ -57,3 +57,11 @@ C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpD
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\obj\Debug\PanhandlerFsharpDesktop.exe
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\obj\Debug\PanhandlerFsharpDesktop.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.PlatformServices.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.PlatformServices.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.Core.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.Core.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.Interfaces.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.Linq.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.Interfaces.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Reactive.Linq.xml
