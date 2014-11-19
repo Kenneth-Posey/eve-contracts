@@ -1,1 +1,0 @@
-C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharp\obj\Debug\PanhandlerFsharp.fsproj.PanhandlerFsharpXaml.exe.config
