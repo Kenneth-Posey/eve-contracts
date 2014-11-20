@@ -39,7 +39,6 @@ C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpD
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\Castle.Core.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\FSharp.Core.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\FSharp.Desktop.UI.dll
-C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\FSharpx.Collections.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\FsXaml.Wpf.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\FsXaml.Wpf.TypeProvider.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\PanhandlerFsharpDesktop\bin\Debug\System.Windows.Interactivity.dll
