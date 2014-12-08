@@ -76,6 +76,10 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FSharp.Data.SqlProvider">
+      <HintPath>..\packages\SQLProvider.0.0.9-alpha\lib\net40\FSharp.Data.SqlProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FSharp.Desktop.UI">
       <HintPath>..\packages\FSharp.Desktop.UI.0.7.0\lib\net45\FSharp.Desktop.UI.dll</HintPath>
       <Private>True</Private>
