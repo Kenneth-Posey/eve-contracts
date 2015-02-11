@@ -18,7 +18,6 @@ C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\De
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.pdb
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.pdb
-C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.xml
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.xml
@@ -51,3 +50,14 @@ C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Core.xml
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Interfaces.xml
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Linq.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\DomainDriven.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Core.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Interfaces.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Linq.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.PlatformServices.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\DomainDriven.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Core.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Interfaces.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.Linq.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\System.Reactive.PlatformServices.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.pdb

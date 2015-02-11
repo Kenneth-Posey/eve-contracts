@@ -143,7 +143,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\LearningFsharp\FsharpTutorial\YeFsharpLibrary\YeFsharpLibrary.fsproj">
+    <ProjectReference Include="..\..\..\..\LearningFsharp\CodeProjects\DomainDriven\DomainDrivenDesign.fsproj">
+      <Project>{d0baa48e-7842-457d-8cb4-b4f2069cbc63}</Project>
+      <Name>DomainDrivenDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\LearningFsharp\CodeProjects\YeFsharpLibrary\YeFsharpLibrary.fsproj">
       <Project>{20b439fc-8cc8-4621-9c17-824c431f7766}</Project>
       <Name>YeFsharpLibrary</Name>
     </ProjectReference>

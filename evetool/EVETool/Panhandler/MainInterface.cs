@@ -9,11 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using EveData;
-using EveOnlineInterop;
-using Market;
 using Microsoft.FSharp.Collections;
 using Panhandler.Objects;
+using EveData;
+using EveOnlineInterop;
 
 namespace Panhandler
 {
@@ -263,7 +262,7 @@ namespace Panhandler
         private static double CalculateEstimate(List<string> pSplitLines)
         {
             var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
-            return Functions.CalculateEstimate(tSplitLines);
+            return Market.Functions.CalculateEstimate(tSplitLines);
         }
 
         private void calculate_Click(object sender, EventArgs e)
@@ -431,9 +430,7 @@ namespace Panhandler
             }
             else
             {
-                oreBase5DefaultCheck.CheckState = CheckState.Checked;
                 oreBase0DefaultCheck.CheckState = CheckState.Checked;
-                oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
                 oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
                 this.defaultOreBox = oreBase0Qty;
             }
@@ -443,7 +440,6 @@ namespace Panhandler
         {
             if (oreBase10DefaultCheck.Checked)
             {
-                oreBase10DefaultCheck.CheckState = CheckState.Checked;
                 oreBase0DefaultCheck.CheckState = CheckState.Unchecked;
                 oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
 
@@ -453,7 +449,6 @@ namespace Panhandler
             {
                 oreBase0DefaultCheck.CheckState = CheckState.Checked;
                 oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
-                oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
                 this.defaultOreBox = oreBase0Qty;
             }
         }
