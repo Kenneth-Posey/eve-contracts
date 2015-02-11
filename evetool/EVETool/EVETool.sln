@@ -13,9 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E6EECA
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DomainDrivenDesign", "..\..\..\LearningFsharp\CodeProjects\DomainDriven\DomainDrivenDesign.fsproj", "{D0BAA48E-7842-457D-8CB4-B4F2069CBC63}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DomainDrivenDesign", "DomainDriven\DomainDrivenDesign.fsproj", "{D0BAA48E-7842-457D-8CB4-B4F2069CBC63}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "YeFsharpLibrary", "..\..\..\LearningFsharp\CodeProjects\YeFsharpLibrary\YeFsharpLibrary.fsproj", "{20B439FC-8CC8-4621-9C17-824C431F7766}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "YeFsharpLibrary", "YeFsharpLibrary\YeFsharpLibrary.fsproj", "{20B439FC-8CC8-4621-9C17-824C431F7766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
