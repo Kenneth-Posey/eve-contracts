@@ -44,11 +44,11 @@ namespace Panhandler
                 box.Items.Insert(0, "Select One");
                 box.SelectedIndex = 0;
                 box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                // box.SelectedIndexChanged += combox_SelectedIndexChanged;
+                box.SelectedIndexChanged += combox_SelectedIndexChanged;
             }
 
-            oreCombobox.SelectedIndexChanged += oreCombobox_SelectedIndexChanged;
-            compOreCombobox.SelectedIndexChanged += oreCombobox_SelectedIndexChanged;
+            oreCombobox.SelectedIndexChanged += combox_SelectedIndexChanged;
+            compOreCombobox.SelectedIndexChanged += combox_SelectedIndexChanged;
 
             iceCombobox.SelectedIndexChanged += iceCombobox_SelectedIndexChanged;
             compIceCombobox.SelectedIndexChanged += iceCombobox_SelectedIndexChanged;
@@ -80,29 +80,45 @@ namespace Panhandler
             memberListbox.Text = "";
             memberListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
 
+            oreBase0DefaultCheck.Checked = true;
         }
 
         protected void itemCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            qty.Focus();
+            if (itemQty != null) itemQty.Focus();
+            if (this.defaultOreBox != null) this.defaultOreBox.Focus();
         }
 
         protected void iceCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            qty.Focus();
+            if (iceQty != null) iceQty.Focus();
+            if (this.defaultOreBox != null) this.defaultOreBox.Focus();
         }
 
-        protected void oreCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        protected void combox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            qty.Focus();
+            if (oreBase0Qty != null || this.defaultOreBox == null) oreBase0Qty.Focus();
+            if (this.defaultOreBox != null) this.defaultOreBox.Focus();
         }
 
         private void addItem_Click(object sender, EventArgs e)
         {
-            var oreAmount = 0;
-            var validOre = false;
-            var oreValue = qty.Text.Trim();
-            validOre = Int32.TryParse(oreValue, out oreAmount);
+            var baseAmount = 0;
+            var base5Amount = 0;
+            var base10Amount = 0;
+
+            var validBase = false;
+            var validBase5 = false;
+            var validBase10 = false;
+
+            var baseValue = oreBase0Qty.Text.Trim();
+            var base5Value = oreBase5Qty.Text.Trim();
+            var base10Value = oreBase10Qty.Text.Trim();
+
+            validBase = Int32.TryParse(baseValue, out baseAmount);
+            validBase5 = Int32.TryParse(base5Value, out base5Amount);
+            validBase10 = Int32.TryParse(base10Value, out base10Amount);
+
             var selectedItems = new List<Tuple<string, bool>>();
 
             foreach (var box in MaterialBoxList)
@@ -139,8 +155,12 @@ namespace Panhandler
                     // Uncompressed ore
                     if (itemCompressed == false)
                     {
-                        AddOreToInventory(oreAmount
-                            , validOre
+                        PopulateListbox(baseAmount
+                            , base5Amount
+                            , base10Amount
+                            , validBase
+                            , validBase5
+                            , validBase10
                             , ores
                             , itemName);
                     }
@@ -148,8 +168,12 @@ namespace Panhandler
                     else
                     {
                         itemName = "Compressed " + itemName;
-                        AddOreToInventory(oreAmount
-                            , validOre
+                        PopulateListbox(baseAmount
+                            , base5Amount
+                            , base10Amount
+                            , validBase
+                            , validBase5
+                            , validBase10
                             , ores
                             , itemName);
                     }
@@ -157,51 +181,62 @@ namespace Panhandler
                 else if (RawIce.Contains(itemName))
                 {
                     if (itemCompressed == false)
-                        AddItemToInventory(oreAmount, itemName);
+                    {
+                        AddToListbox(baseAmount, itemName);
+                    }
                     else
-                        AddItemToInventory(oreAmount, "Compressed " + itemName);
+                    {
+                        itemName = "Compressed " + itemName;
+                        AddToListbox(baseAmount, itemName);
+                    }
                 }
                 else if (IceProducts.Contains(itemName) || Minerals.Contains(itemName))
                 {
-                    AddItemToInventory(oreAmount, itemName);
+                    AddToListbox(baseAmount, itemName);
                 }
             }
 
             foreach (var box in MaterialBoxList)
             {
                 box.SelectedIndex = 0;
+                oreBase0Qty.Text = "";
+                oreBase5Qty.Text = "";
+                oreBase10Qty.Text = "";
             }
-
-            qty.Text = "";
         }
 
-        private void AddItemToInventory(int baseAmount, string itemName)
+        private void AddToListbox(int baseAmount, string itemName)
         {
-            inventory.Items.Add(String.Format("{0}\t{1}", itemName, baseAmount));
+            var itemString = String.Format("{0}\t{1}", itemName, baseAmount);
+            inventory.Items.Add(itemString);
         }
 
-        private void AddOreToInventory( int baseAmount
-                                      , bool validBase
-                                      , List<Ore.Types.IRawOre> ores
-                                      , string itemName)
+        private void PopulateListbox(  int baseAmount
+                                     , int base5Amount
+                                     , int base10Amount
+                                     , bool validBase
+                                     , bool validBase5
+                                     , bool validBase10
+                                     , List<Ore.Types.IRawOre> ores
+                                     , string itemName)
         {
             if (validBase)
             {
                 var oreName = ores.Find(x => x.GetName() == itemName).GetName();
-                AddItemToInventory(baseAmount, oreName);
+                AddToListbox(baseAmount, oreName);
             }
 
-            //if (validBase5)
-            //{
-            //    var oreName = ores.Find(x => x.GetName() == itemName).GetName5();
-            //    AddItemToInventory(base5Amount, oreName);
-            //}
+            if (validBase5)
+            {
+                var oreName = ores.Find(x => x.GetName() == itemName).GetName5();
+                AddToListbox(base5Amount, oreName);
+            }
 
-            //if (validBase10)
-            //{
-            //    var oreName = ores.Find(x => x.GetName() == itemName).GetName10();
-            //    AddItemToInventory(base10Amount, oreName);
-            //}
+            if (validBase10)
+            {
+                var oreName = ores.Find(x => x.GetName() == itemName).GetName10();
+                AddToListbox(base10Amount, oreName);
+            }
         }
 
         private void removeItem_Click(object sender, EventArgs e)
@@ -373,6 +408,49 @@ namespace Panhandler
         private void totalLabel_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(totalBox.Text);
+        }
+
+        private void oreBase0DefaultCheck_Checked(object sender, EventArgs e)
+        {
+            if (!oreBase0DefaultCheck.Checked) return;
+
+            oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
+            oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
+            this.defaultOreBox = oreBase0Qty;
+        }
+
+        private void oreBase5DefaultCheck_Checked(object sender, EventArgs e)
+        {
+            if (oreBase5DefaultCheck.Checked)
+            {
+                oreBase0DefaultCheck.CheckState = CheckState.Unchecked;
+                oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
+
+                this.defaultOreBox = oreBase5Qty;
+            }
+            else
+            {
+                oreBase0DefaultCheck.CheckState = CheckState.Checked;
+                oreBase10DefaultCheck.CheckState = CheckState.Unchecked;
+                this.defaultOreBox = oreBase0Qty;
+            }
+        }
+
+        private void oreBase10DefaultCheck_Checked(object sender, EventArgs e)
+        {
+            if (oreBase10DefaultCheck.Checked)
+            {
+                oreBase0DefaultCheck.CheckState = CheckState.Unchecked;
+                oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
+
+                this.defaultOreBox = oreBase10Qty;
+            }
+            else
+            {
+                oreBase0DefaultCheck.CheckState = CheckState.Checked;
+                oreBase5DefaultCheck.CheckState = CheckState.Unchecked;
+                this.defaultOreBox = oreBase0Qty;
+            }
         }
 
         public TextBox defaultOreBox { get; set; }

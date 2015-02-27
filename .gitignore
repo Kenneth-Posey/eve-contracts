@@ -59,3 +59,9 @@ Temporary Items
 *.Cache
 *.exe
 *.pdb
+evetool/EVETool/Panhandler/obj/Debug/Panhandler.csproj.GenerateResource.Cache
+*.exe
+evetool/EVETool/Panhandler/obj/Debug/Panhandler.csproj.GenerateResource.Cache
+*.Cache
+evetool/EVETool/Panhandler/obj/Debug/Panhandler.exe
+*.exe
