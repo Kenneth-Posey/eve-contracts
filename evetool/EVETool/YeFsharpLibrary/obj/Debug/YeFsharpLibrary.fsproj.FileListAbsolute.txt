@@ -67,7 +67,6 @@ C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\b
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\bin\Debug\FSharp.Data.xml
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\bin\Debug\FSharpx.Core.pdb
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\bin\Debug\FSharpx.Core.xml
-C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\bin\Debug\Newtonsoft.Json.xml
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\bin\Debug\System.Reactive.Core.xml
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\bin\Debug\System.Reactive.Interfaces.xml
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\YeFsharpLibrary\bin\Debug\System.Reactive.Linq.xml

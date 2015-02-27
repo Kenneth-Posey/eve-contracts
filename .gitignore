@@ -65,3 +65,6 @@ evetool/EVETool/Panhandler/obj/Debug/Panhandler.csproj.GenerateResource.Cache
 *.Cache
 evetool/EVETool/Panhandler/obj/Debug/Panhandler.exe
 *.exe
+*.nupkg
+*.sigdata
+*.optdata
