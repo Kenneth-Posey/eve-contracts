@@ -1,0 +1,52 @@
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\DomainDriven.dll.config
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\DomainDriven.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\DomainDriven.pdb
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\FSharp.Core.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\FSharp.Data.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\FSharp.Data.pdb
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\FSharp.Data.xml
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\FSharp.Core.xml
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\obj\Debug\DomainDriven.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\obj\Debug\DomainDriven.pdb
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\DomainDriven.dll.config
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\DomainDriven.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\DomainDriven.pdb
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\FSharp.Core.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\FSharp.Data.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\FSharp.Data.pdb
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\FSharp.Data.xml
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\bin\Debug\FSharp.Core.xml
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\obj\Debug\DomainDriven.dll
+C:\Users\kposey\Documents\GitHub\LearningFsharp\CodeProjects\DomainDriven\obj\Debug\DomainDriven.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\DomainDriven.dll.config
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\DomainDriven.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\DomainDriven.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Core.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Data.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Data.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Data.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Core.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDriven.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDriven.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\DomainDriven.dll.config
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\DomainDriven.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\DomainDriven.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Core.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Data.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Data.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Data.xml
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\FSharp.Core.xml
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDriven.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDriven.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDrivenDesign.fsprojResolveAssemblyReference.cache
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\obj\Debug\DomainDrivenDesign.fsprojResolveAssemblyReference.cache
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\obj\Debug\DomainDriven.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\obj\Debug\DomainDriven.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\DomainDriven.dll.config
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\DomainDriven.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\DomainDriven.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\FSharp.Core.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\FSharp.Data.dll
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\FSharp.Data.pdb
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\FSharp.Data.xml
+C:\Users\KennethPosey\Documents\GitHub\eve-contracts\New folder\EVETool\EVETool\DomainDriven\bin\Debug\FSharp.Core.xml
