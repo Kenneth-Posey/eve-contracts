@@ -41,3 +41,6 @@ C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\De
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\DomainDriven.dll
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\DomainDriven.pdb
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.pdb
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.CalculatorTab.CalculatorContainer.resources
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.MarketTab.MarketContainer.resources
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.UserTab.UserContainer.resources
