@@ -128,6 +128,7 @@
             this.totalLabel.TabIndex = 151;
             this.totalLabel.Text = "Total Value";
             this.totalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.totalLabel.Click += totalLabel_Click;
             // 
             // totalBox
             // 
@@ -153,6 +154,7 @@
             this.Calculate.TabIndex = 148;
             this.Calculate.Text = "Calculate";
             this.Calculate.UseVisualStyleBackColor = true;
+            this.Calculate.Click += calculate_Click;
             // 
             // inventory
             // 
@@ -170,6 +172,7 @@
             this.Remove.TabIndex = 146;
             this.Remove.Text = "Remove";
             this.Remove.UseVisualStyleBackColor = true;
+            this.Remove.Click += removeItem_Click;
             // 
             // Add
             // 
@@ -179,6 +182,7 @@
             this.Add.TabIndex = 145;
             this.Add.Text = "Add";
             this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += addItem_Click;
             // 
             // qty
             // 

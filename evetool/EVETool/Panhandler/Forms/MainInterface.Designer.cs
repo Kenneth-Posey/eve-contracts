@@ -8,6 +8,7 @@ namespace Panhandler
 {
     partial class MainInterface
     {
+        #region Form Setup
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -25,6 +26,7 @@ namespace Panhandler
             }
             base.Dispose(disposing);
         }
+        #endregion
 
         #region Windows Form Designer generated code
 
@@ -82,26 +84,6 @@ namespace Panhandler
             this.calculator.TabIndex = 132;
 
             // 
-            // userTabPage
-            // 
-            this.userTabPage.Controls.Add(this.users);
-            this.userTabPage.Location = new System.Drawing.Point(4, 22);
-            this.userTabPage.Name = "userTabPage";
-            this.userTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.userTabPage.Size = new System.Drawing.Size(1153, 381);
-            this.userTabPage.TabIndex = 1;
-            this.userTabPage.Text = "Members";
-            this.userTabPage.UseVisualStyleBackColor = true;
-
-            //
-            // users
-            // 
-            this.users.Location = new System.Drawing.Point(3, 3);
-            this.users.Name = "users";
-            this.users.Size = new System.Drawing.Size(434, 337);
-            this.users.TabIndex = 132;
-
-            // 
             // marketTabPage
             // 
             this.marketTabPage.Controls.Add(this.market);
@@ -120,6 +102,26 @@ namespace Panhandler
             this.market.Name = "market";
             this.market.Size = new System.Drawing.Size(434, 337);
             this.market.TabIndex = 132;
+
+            // 
+            // userTabPage
+            // 
+            this.userTabPage.Controls.Add(this.users);
+            this.userTabPage.Location = new System.Drawing.Point(4, 22);
+            this.userTabPage.Name = "userTabPage";
+            this.userTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.userTabPage.Size = new System.Drawing.Size(1153, 381);
+            this.userTabPage.TabIndex = 1;
+            this.userTabPage.Text = "Members";
+            this.userTabPage.UseVisualStyleBackColor = true;
+
+            //
+            // users
+            // 
+            this.users.Location = new System.Drawing.Point(3, 3);
+            this.users.Name = "users";
+            this.users.Size = new System.Drawing.Size(434, 337);
+            this.users.TabIndex = 132;
 
             // 
             // MainInterface

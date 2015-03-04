@@ -41,17 +41,8 @@ namespace Panhandler.CalculatorTab
                 box.Items.Insert(0, "Select One");
                 box.SelectedIndex = 0;
                 box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                // box.SelectedIndexChanged += combox_SelectedIndexChanged;
+                box.SelectedIndexChanged += combobox_SelectedIndexChanged;
             }
-
-            oreCombobox.SelectedIndexChanged += oreCombobox_SelectedIndexChanged;
-            compOreCombobox.SelectedIndexChanged += oreCombobox_SelectedIndexChanged;
-
-            iceCombobox.SelectedIndexChanged += iceCombobox_SelectedIndexChanged;
-            compIceCombobox.SelectedIndexChanged += iceCombobox_SelectedIndexChanged;
-
-            mineralsCombobox.SelectedIndexChanged += itemCombobox_SelectedIndexChanged;
-            iceProductCombobox.SelectedIndexChanged += itemCombobox_SelectedIndexChanged;
 
             Add.Text = "Add";
             Remove.Text = "Remove";
@@ -81,22 +72,15 @@ namespace Panhandler.CalculatorTab
             qty.TabIndex = 7;
             Add.TabIndex = 8;
         }
-
-        protected void itemCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        
+        protected void combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            qty.Focus();
+            if (oreCombobox.SelectedIndex >= 1 || compOreCombobox.SelectedIndex >= 1)
+                isCommonOre.Focus();
+            else
+                qty.Focus();
         }
-
-        protected void iceCombobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            qty.Focus();
-        }
-
-        protected void oreCombobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            isCommonOre.Focus();
-        }
-
+        
         private async void addItem_Click(object sender, EventArgs e)
         {
             var amount = 0;
@@ -141,46 +125,44 @@ namespace Panhandler.CalculatorTab
                 var itemName = item.Item1.Trim();
                 var itemCompressed = item.Item2;
 
-                bool isValidItem = RawOre.Contains(itemName) || RawIce.Contains(itemName) || IceProducts.Contains(itemName) || Minerals.Contains(itemName);
+                var isOre = RawOre.Contains(itemName);
+                var isIce = RawIce.Contains(itemName);
+                var isIceProduct = IceProducts.Contains(itemName);
+                var isMineral = Minerals.Contains(itemName);
 
+                bool isValidItem = isOre || isIce || isIceProduct || isMineral;
+
+                // skips unknown items in the list
                 if (!isValidItem) continue;
 
-                if (RawOre.Contains(itemName))
-                {
-                    if (itemCompressed == false)
-                        AddOreToInventory(amount, itemName);
-                    else
-                        AddOreToInventory(amount, "Compressed " + itemName);
-                }
+                if (itemCompressed == false)
+                    AddItemToInventory(amount, itemName, isOre);
                 else
-                {
-                    if (itemCompressed == false)
-                        AddItemToInventory(amount, itemName);
-                    else
-                        AddItemToInventory(amount, "Compressed " + itemName);
-                }
+                    AddItemToInventory(amount, "Compressed " + itemName, isOre);
             }
 
             return true;
         }
 
-        private void AddOreToInventory(int amount, string name)
+        private void AddItemToInventory(int amount, string name, bool isOre)
         {
-            var ores = CollectionsProvider.AllOreList.OreList.ToList();
-            var oreName = "";
-            if (isCommonOre.Checked)
-                oreName = ores.Find(x => x.GetName() == name).GetName();
-            else if (isUncommonOre.Checked)
-                oreName = ores.Find(x => x.GetName() == name).GetName5();
+            string tName;
+            if (isOre)
+            {
+                var ores = CollectionsProvider.AllOreList.OreList.ToList();
+                if (isCommonOre.Checked)
+                    tName = ores.Find(x => x.GetName() == name).GetName();
+                else if (isUncommonOre.Checked)
+                    tName = ores.Find(x => x.GetName() == name).GetName5();
+                else
+                    tName = ores.Find(x => x.GetName() == name).GetName10();
+            }
             else
-                oreName = ores.Find(x => x.GetName() == name).GetName10();
+            {
+                tName = name;
+            }
 
-            AddItemToInventory(amount, oreName);
-        }
-
-        private void AddItemToInventory(int amount, string name)
-        {
-            inventory.Items.Add(string.Format("{0}\t{1}", name, amount));
+            inventory.Items.Add(string.Format("{0}\t{1}", tName, amount));
         }
 
         private void removeItem_Click(object sender, EventArgs e)
@@ -188,7 +170,8 @@ namespace Panhandler.CalculatorTab
             var selectedItems = inventory.SelectedItems.OfType<string>().ToList();
             var copiedItems = inventory.Items.OfType<string>().ToList();
 
-            if (selectedItems.Count <= 0 || copiedItems.Count <= 0) return;
+            if (selectedItems.Count <= 0 || copiedItems.Count <= 0) 
+                return;
 
             foreach (var listItem in selectedItems)
                 copiedItems.Remove(listItem);

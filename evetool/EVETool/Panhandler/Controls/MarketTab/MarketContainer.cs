@@ -17,11 +17,6 @@ namespace Panhandler.MarketTab
             InitializeComponent();
         }
 
-        private async Task<List<EveData.RawMaterials.ParserMaterial>> loadItems()
-        {
-            return Market.Functions.LoadAllItemsForParser().ToList();
-        }
-
         private async void refresh_Click(object sender, EventArgs e)
         {
             loadingLabel.Text = "Loading...";
@@ -47,11 +42,9 @@ namespace Panhandler.MarketTab
                 , Tuple.Create(nitrogenIsotopeValue, "Nitrogen Isotopes")
             };
 
-            List<EveData.RawMaterials.ParserMaterial> allItems = await loadItems();
+            var allItems = await loadItems();
             foreach (var pair in priceLabels)
-            {
                 pair.Item1.Text = allItems.Find(x => x.id == LoadIdByName(pair.Item2)).price.ToString();
-            }
 
             loadingLabel.Text = "";
         }
@@ -64,6 +57,11 @@ namespace Panhandler.MarketTab
             allItems.AddRange(EveData.Collections.IceProductIDPairs.ToList());
 
             return allItems.Find(x => x.Item1 == name).Item2;
+        }
+
+        private async Task<List<EveData.RawMaterials.ParserMaterial>> loadItems()
+        {
+            return Market.Functions.LoadAllItemsForParser().ToList();
         }
     }
 }
