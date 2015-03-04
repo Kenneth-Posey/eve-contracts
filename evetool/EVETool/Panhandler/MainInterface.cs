@@ -80,6 +80,15 @@ namespace Panhandler
             memberListbox.Text = "";
             memberListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
 
+            oreCombobox.TabIndex = 0;
+            compOreCombobox.TabIndex = 1;
+            iceCombobox.TabIndex = 2;
+            compIceCombobox.TabIndex = 3;
+            mineralsCombobox.TabIndex = 4;
+            iceProductCombobox.TabIndex = 5;
+            oreRadioButtonPanel.TabIndex = 6;
+            qty.TabIndex = 7;
+            Add.TabIndex = 8;
         }
 
         protected void itemCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,114 +103,93 @@ namespace Panhandler
 
         protected void oreCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            qty.Focus();
+            isCommonOre.Focus();
         }
 
-        private void addItem_Click(object sender, EventArgs e)
+        private async void addItem_Click(object sender, EventArgs e)
         {
-            var oreAmount = 0;
-            var validOre = false;
-            var oreValue = qty.Text.Trim();
-            validOre = Int32.TryParse(oreValue, out oreAmount);
+            var amount = 0;
+            var successfulParse = Int32.TryParse(qty.Text.Trim(), out amount);
             var selectedItems = new List<Tuple<string, bool>>();
 
+            qty.Text = "";
+            calculatorTabPage.Focus();
+
+            var success = await addItems(selectedItems, amount);
+        }
+
+        private async Task<bool> addItems(List<Tuple<string, bool>> selectedItems, int amount)
+        {
             foreach (var box in MaterialBoxList)
             {
                 if (box.SelectedIndex != 0)
                 {
-                    // Non-compressed ore/ice
                     switch (box.Name)
                     {
                         case "comboBox3":
                         case "comboBox1":
+                            // Non-compressed ore/ice
                             selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
                             break;
                         case "comboBox4":
                         case "comboBox2":
+                            // Compressed ore/ice
                             selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), true));
                             break;
                         default:
                             selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
                             break;
                     }
+
+                    box.SelectedIndex = 0;
                 }
             }
-
-            var ores = CollectionsProvider.AllOreList.OreList.ToList();
 
             foreach (var item in selectedItems)
             {
                 var itemName = item.Item1.Trim();
                 var itemCompressed = item.Item2;
 
+                bool isValidItem = RawOre.Contains(itemName) || RawIce.Contains(itemName) || IceProducts.Contains(itemName) || Minerals.Contains(itemName);
+
+                if (!isValidItem) continue;
+
                 if (RawOre.Contains(itemName))
                 {
-                    // Uncompressed ore
                     if (itemCompressed == false)
-                    {
-                        AddOreToInventory(oreAmount
-                            , validOre
-                            , ores
-                            , itemName);
-                    }
-                    // Compressed ore
+                        AddOreToInventory(amount, itemName);
                     else
-                    {
-                        itemName = "Compressed " + itemName;
-                        AddOreToInventory(oreAmount
-                            , validOre
-                            , ores
-                            , itemName);
-                    }
+                        AddOreToInventory(amount, "Compressed " + itemName);
                 }
-                else if (RawIce.Contains(itemName))
+                else
                 {
                     if (itemCompressed == false)
-                        AddItemToInventory(oreAmount, itemName);
+                        AddItemToInventory(amount, itemName);
                     else
-                        AddItemToInventory(oreAmount, "Compressed " + itemName);
-                }
-                else if (IceProducts.Contains(itemName) || Minerals.Contains(itemName))
-                {
-                    AddItemToInventory(oreAmount, itemName);
+                        AddItemToInventory(amount, "Compressed " + itemName);
                 }
             }
 
-            foreach (var box in MaterialBoxList)
-            {
-                box.SelectedIndex = 0;
-            }
-
-            qty.Text = "";
+            return true;
         }
 
-        private void AddItemToInventory(int baseAmount, string itemName)
+        private void AddOreToInventory(int amount, string name)
         {
-            inventory.Items.Add(String.Format("{0}\t{1}", itemName, baseAmount));
+            var ores = CollectionsProvider.AllOreList.OreList.ToList();
+            var oreName = "";
+            if (isCommonOre.Checked)
+                oreName = ores.Find(x => x.GetName() == name).GetName();
+            else if (isUncommonOre.Checked)
+                oreName = ores.Find(x => x.GetName() == name).GetName5();
+            else
+                oreName = ores.Find(x => x.GetName() == name).GetName10();
+            
+            AddItemToInventory(amount, oreName);
         }
 
-        private void AddOreToInventory( int baseAmount
-                                      , bool validBase
-                                      , List<Ore.Types.IRawOre> ores
-                                      , string itemName)
+        private void AddItemToInventory(int amount, string name)
         {
-            if (validBase)
-            {
-                var oreName = ores.Find(x => x.GetName() == itemName).GetName();
-                AddItemToInventory(baseAmount, oreName);
-            }
-
-            //if (validBase5)
-            //{
-            //    var oreName = ores.Find(x => x.GetName() == itemName).GetName5();
-            //    AddItemToInventory(base5Amount, oreName);
-            //}
-
-            //if (validBase10)
-            //{
-            //    var oreName = ores.Find(x => x.GetName() == itemName).GetName10();
-            //    AddItemToInventory(base10Amount, oreName);
-            //}
+            inventory.Items.Add(string.Format("{0}\t{1}", name, amount));
         }
 
         private void removeItem_Click(object sender, EventArgs e)
@@ -224,16 +212,16 @@ namespace Panhandler
             }
         }
 
-        private static double CalculateEstimate(List<string> pSplitLines)
+        private static async Task<double> CalculateEstimate(List<string> pSplitLines)
         {
             var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
             return Market.Functions.CalculateEstimate(tSplitLines);
         }
 
-        private void calculate_Click(object sender, EventArgs e)
+        private async void calculate_Click(object sender, EventArgs e)
         {
             var tItems = inventory.Items.OfType<string>().ToList();
-            var estimate = CalculateEstimate(tItems);
+            var estimate = await CalculateEstimate(tItems);
             totalBox.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
         }
 
@@ -247,11 +235,15 @@ namespace Panhandler
             return allItems.Find(x => x.Item1 == name).Item2;
         }
 
-        private void refresh_Click(object sender, EventArgs e)
+        private async Task<List<EveData.RawMaterials.ParserMaterial>> loadItems()
+        {
+            return Market.Functions.LoadAllItemsForParser().ToList();
+        }
+
+        private async void refresh_Click(object sender, EventArgs e)
         {
             loadingLabel.Text = "Loading...";
-
-            var allItems = Market.Functions.LoadAllItemsForParser().ToList();
+            loadingLabel.Refresh();
 
             var priceLabels = new List<Tuple<Label, string>>()
             {
@@ -273,6 +265,7 @@ namespace Panhandler
                 , Tuple.Create(nitrogenIsotopeValue, "Nitrogen Isotopes")
             };
 
+            List<EveData.RawMaterials.ParserMaterial> allItems = await loadItems();
             foreach (var pair in priceLabels)
             {
                 pair.Item1.Text = allItems.Find(x => x.id == LoadIdByName(pair.Item2)).price.ToString();
@@ -329,6 +322,7 @@ namespace Panhandler
             if (playerNameBox.Text.Trim().Length <= 0 
                 || playerMultiplierBox.Text.Trim().Length <= 0 
                 || playerCodeBox.Text.Trim().Length <= 0) return;
+
             var selectedIndex = memberListbox.SelectedIndex;
             var playerName = playerNameBox.Text.Trim();
             var playerMultiplier = Decimal.Parse(playerMultiplierBox.Text.Trim()).ToString();

@@ -31,11 +31,12 @@ namespace Panhandler
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.oreRadioButtonPanel = new System.Windows.Forms.Panel();
+            this.isCommonOre = new System.Windows.Forms.RadioButton();
+            this.isUncommonOre = new System.Windows.Forms.RadioButton();
+            this.isRareOre = new System.Windows.Forms.RadioButton();
             this.loadingLabel = new System.Windows.Forms.Label();
             this.refreshPrices = new System.Windows.Forms.Button();
-            this.isRareOre = new System.Windows.Forms.RadioButton();
-            this.isUncommonOre = new System.Windows.Forms.RadioButton();
-            this.isCommonOre = new System.Windows.Forms.RadioButton();
             this.totalLabel = new System.Windows.Forms.Label();
             this.totalBox = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
@@ -108,6 +109,7 @@ namespace Panhandler
             this.heavyWaterValue = new System.Windows.Forms.Label();
             this.liquidOzoneValue = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.oreRadioButtonPanel.SuspendLayout();
             this.priceCalculator.SuspendLayout();
             this.calculatorTabPage.SuspendLayout();
             this.memberTabPage.SuspendLayout();
@@ -123,11 +125,9 @@ namespace Panhandler
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.oreRadioButtonPanel);
             this.panel1.Controls.Add(this.loadingLabel);
             this.panel1.Controls.Add(this.refreshPrices);
-            this.panel1.Controls.Add(this.isRareOre);
-            this.panel1.Controls.Add(this.isUncommonOre);
-            this.panel1.Controls.Add(this.isCommonOre);
             this.panel1.Controls.Add(this.totalLabel);
             this.panel1.Controls.Add(this.totalBox);
             this.panel1.Controls.Add(this.label32);
@@ -150,8 +150,51 @@ namespace Panhandler
             this.panel1.Controls.Add(this.oreCombobox);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(450, 346);
+            this.panel1.Size = new System.Drawing.Size(880, 346);
             this.panel1.TabIndex = 16;
+            // 
+            // oreRadioButtonPanel
+            // 
+            this.oreRadioButtonPanel.Controls.Add(this.isCommonOre);
+            this.oreRadioButtonPanel.Controls.Add(this.isUncommonOre);
+            this.oreRadioButtonPanel.Controls.Add(this.isRareOre);
+            this.oreRadioButtonPanel.Location = new System.Drawing.Point(15, 104);
+            this.oreRadioButtonPanel.Name = "oreRadioButtonPanel";
+            this.oreRadioButtonPanel.Size = new System.Drawing.Size(145, 26);
+            this.oreRadioButtonPanel.TabIndex = 131;
+            // 
+            // isCommonOre
+            // 
+            this.isCommonOre.AutoSize = true;
+            this.isCommonOre.Location = new System.Drawing.Point(3, 3);
+            this.isCommonOre.Name = "isCommonOre";
+            this.isCommonOre.Size = new System.Drawing.Size(45, 17);
+            this.isCommonOre.TabIndex = 66;
+            this.isCommonOre.TabStop = true;
+            this.isCommonOre.Text = "+0%";
+            this.isCommonOre.UseVisualStyleBackColor = true;
+            // 
+            // isUncommonOre
+            // 
+            this.isUncommonOre.AutoSize = true;
+            this.isUncommonOre.Location = new System.Drawing.Point(50, 3);
+            this.isUncommonOre.Name = "isUncommonOre";
+            this.isUncommonOre.Size = new System.Drawing.Size(45, 17);
+            this.isUncommonOre.TabIndex = 67;
+            this.isUncommonOre.TabStop = true;
+            this.isUncommonOre.Text = "+5%";
+            this.isUncommonOre.UseVisualStyleBackColor = true;
+            // 
+            // isRareOre
+            // 
+            this.isRareOre.AutoSize = true;
+            this.isRareOre.Location = new System.Drawing.Point(95, 3);
+            this.isRareOre.Name = "isRareOre";
+            this.isRareOre.Size = new System.Drawing.Size(51, 17);
+            this.isRareOre.TabIndex = 68;
+            this.isRareOre.TabStop = true;
+            this.isRareOre.Text = "+10%";
+            this.isRareOre.UseVisualStyleBackColor = true;
             // 
             // loadingLabel
             // 
@@ -170,39 +213,7 @@ namespace Panhandler
             this.refreshPrices.TabIndex = 128;
             this.refreshPrices.Text = "Refresh";
             this.refreshPrices.UseVisualStyleBackColor = true;
-            // 
-            // isRareOre
-            // 
-            this.isRareOre.AutoSize = true;
-            this.isRareOre.Location = new System.Drawing.Point(109, 108);
-            this.isRareOre.Name = "isRareOre";
-            this.isRareOre.Size = new System.Drawing.Size(51, 17);
-            this.isRareOre.TabIndex = 68;
-            this.isRareOre.TabStop = true;
-            this.isRareOre.Text = "+10%";
-            this.isRareOre.UseVisualStyleBackColor = true;
-            // 
-            // isUncommonOre
-            // 
-            this.isUncommonOre.AutoSize = true;
-            this.isUncommonOre.Location = new System.Drawing.Point(63, 108);
-            this.isUncommonOre.Name = "isUncommonOre";
-            this.isUncommonOre.Size = new System.Drawing.Size(45, 17);
-            this.isUncommonOre.TabIndex = 67;
-            this.isUncommonOre.TabStop = true;
-            this.isUncommonOre.Text = "+5%";
-            this.isUncommonOre.UseVisualStyleBackColor = true;
-            // 
-            // isCommonOre
-            // 
-            this.isCommonOre.AutoSize = true;
-            this.isCommonOre.Location = new System.Drawing.Point(18, 108);
-            this.isCommonOre.Name = "isCommonOre";
-            this.isCommonOre.Size = new System.Drawing.Size(45, 17);
-            this.isCommonOre.TabIndex = 66;
-            this.isCommonOre.TabStop = true;
-            this.isCommonOre.Text = "+0%";
-            this.isCommonOre.UseVisualStyleBackColor = true;
+            this.refreshPrices.Click += new System.EventHandler(this.refresh_Click);
             // 
             // totalLabel
             // 
@@ -389,7 +400,7 @@ namespace Panhandler
             this.priceCalculator.Location = new System.Drawing.Point(12, 12);
             this.priceCalculator.Name = "priceCalculator";
             this.priceCalculator.SelectedIndex = 0;
-            this.priceCalculator.Size = new System.Drawing.Size(478, 407);
+            this.priceCalculator.Size = new System.Drawing.Size(900, 407);
             this.priceCalculator.TabIndex = 17;
             // 
             // calculatorTabPage
@@ -398,7 +409,7 @@ namespace Panhandler
             this.calculatorTabPage.Location = new System.Drawing.Point(4, 22);
             this.calculatorTabPage.Name = "calculatorTabPage";
             this.calculatorTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.calculatorTabPage.Size = new System.Drawing.Size(470, 381);
+            this.calculatorTabPage.Size = new System.Drawing.Size(892, 381);
             this.calculatorTabPage.TabIndex = 0;
             this.calculatorTabPage.Text = "calculatorTabPage";
             this.calculatorTabPage.UseVisualStyleBackColor = true;
@@ -409,7 +420,7 @@ namespace Panhandler
             this.memberTabPage.Location = new System.Drawing.Point(4, 22);
             this.memberTabPage.Name = "memberTabPage";
             this.memberTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.memberTabPage.Size = new System.Drawing.Size(470, 381);
+            this.memberTabPage.Size = new System.Drawing.Size(892, 381);
             this.memberTabPage.TabIndex = 1;
             this.memberTabPage.Text = "memberTabPage";
             this.memberTabPage.UseVisualStyleBackColor = true;
@@ -523,7 +534,7 @@ namespace Panhandler
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(470, 381);
+            this.tabPage1.Size = new System.Drawing.Size(892, 381);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -886,12 +897,14 @@ namespace Panhandler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 426);
+            this.ClientSize = new System.Drawing.Size(924, 426);
             this.Controls.Add(this.priceCalculator);
             this.Name = "MainInterface";
             this.Text = "Custom Value Calculator";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.oreRadioButtonPanel.ResumeLayout(false);
+            this.oreRadioButtonPanel.PerformLayout();
             this.priceCalculator.ResumeLayout(false);
             this.calculatorTabPage.ResumeLayout(false);
             this.memberTabPage.ResumeLayout(false);
@@ -989,6 +1002,7 @@ namespace Panhandler
         private System.Windows.Forms.Label hydrogenIsotopeValue;
         private System.Windows.Forms.Label heavyWaterValue;
         private System.Windows.Forms.Label liquidOzoneValue;
+        private System.Windows.Forms.Panel oreRadioButtonPanel;
     }
 }
 
