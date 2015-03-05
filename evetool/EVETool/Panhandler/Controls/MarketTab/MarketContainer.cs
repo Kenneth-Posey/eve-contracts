@@ -34,7 +34,7 @@ namespace Panhandler.MarketTab
                 , Tuple.Create(zydrineValue, "Zydrine")
 
                 , Tuple.Create(heavyWaterValue, "Heavy Water")
-                , Tuple.Create(liquidOzoneValue, "Liquid Ozone")
+                , Tuple.Create(ozoneValue, "Liquid Ozone")
                 , Tuple.Create(strontiumClathratesValue, "Strontium Clathrates")
                 , Tuple.Create(heliumIsotopeValue, "Helium Isotopes")
                 , Tuple.Create(hydrogenIsotopeValue, "Hydrogen Isotopes")

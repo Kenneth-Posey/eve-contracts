@@ -41,12 +41,8 @@ namespace Panhandler.CalculatorTab
                 box.Items.Insert(0, "Select One");
                 box.SelectedIndex = 0;
                 box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                box.SelectedIndexChanged += combobox_SelectedIndexChanged;
+                box.SelectedIndexChanged += materialCombobox_SelectedIndexChanged;
             }
-
-            Add.Text = "Add";
-            Remove.Text = "Remove";
-            Calculate.Text = "Calculate";
 
             RawOre = CollectionsProvider.OreList.OreNames.ToList();
             RawIce = CollectionsProvider.IceList.IceNames.ToList();
@@ -69,32 +65,35 @@ namespace Panhandler.CalculatorTab
             mineralsCombobox.TabIndex = 4;
             iceProductCombobox.TabIndex = 5;
             oreRadioButtonPanel.TabIndex = 6;
-            qty.TabIndex = 7;
-            Add.TabIndex = 8;
+            qtyTextbox.TabIndex = 7;
+            addItemButton.TabIndex = 8;
+
+            this.totalLabel.Click += totalLabel_Click;
+            this.calculateButton.Click += calculate_Click;
+            this.removeItemButton.Click += removeItem_Click;
+            this.addItemButton.Click += addItem_Click;
         }
         
-        protected void combobox_SelectedIndexChanged(object sender, EventArgs e)
+        protected void materialCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (oreCombobox.SelectedIndex >= 1 || compOreCombobox.SelectedIndex >= 1)
                 isCommonOre.Focus();
             else
-                qty.Focus();
+                qtyTextbox.Focus();
         }
         
         private async void addItem_Click(object sender, EventArgs e)
         {
             var amount = 0;
-            var successfulParse = Int32.TryParse(qty.Text.Trim(), out amount);
-            var selectedItems = new List<Tuple<string, bool>>();
-
-            qty.Text = "";
+            var successfulParse = Int32.TryParse(qtyTextbox.Text.Trim(), out amount);
+            qtyTextbox.Text = "";
             this.Parent.Focus();
-
-            var success = await addItems(selectedItems, amount);
+            await addItems(amount);
         }
 
-        private async Task<bool> addItems(List<Tuple<string, bool>> selectedItems, int amount)
+        private async Task addItems(int amount)
         {
+            var selectedItems = new List<Tuple<string, bool>>();
             foreach (var box in MaterialBoxList)
             {
                 if (box.SelectedIndex != 0)
@@ -140,8 +139,6 @@ namespace Panhandler.CalculatorTab
                 else
                     AddItemToInventory(amount, "Compressed " + itemName, isOre);
             }
-
-            return true;
         }
 
         private void AddItemToInventory(int amount, string name, bool isOre)

@@ -33,29 +33,30 @@
             this.isUncommonOre = new System.Windows.Forms.RadioButton();
             this.isRareOre = new System.Windows.Forms.RadioButton();
             this.loadingLabel = new System.Windows.Forms.Label();
-            this.refreshPrices = new System.Windows.Forms.Button();
+            this.refreshPriceButton = new System.Windows.Forms.Button();
             this.totalLabel = new System.Windows.Forms.Label();
             this.totalBox = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.Calculate = new System.Windows.Forms.Button();
+            this.qtyLabel = new System.Windows.Forms.Label();
+            this.calculateButton = new System.Windows.Forms.Button();
             this.inventory = new System.Windows.Forms.ListBox();
-            this.Remove = new System.Windows.Forms.Button();
-            this.Add = new System.Windows.Forms.Button();
-            this.qty = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.removeItemButton = new System.Windows.Forms.Button();
+            this.addItemButton = new System.Windows.Forms.Button();
+            this.qtyTextbox = new System.Windows.Forms.TextBox();
+            this.iceProductLabel = new System.Windows.Forms.Label();
             this.iceProductCombobox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.mineralLabel = new System.Windows.Forms.Label();
             this.mineralsCombobox = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.compIceLabel = new System.Windows.Forms.Label();
             this.compIceCombobox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.iceLabel = new System.Windows.Forms.Label();
             this.iceCombobox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.compOreLabel = new System.Windows.Forms.Label();
             this.compOreCombobox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.oreLabel = new System.Windows.Forms.Label();
             this.oreCombobox = new System.Windows.Forms.ComboBox();
             this.oreRadioButtonPanel.SuspendLayout();
             this.SuspendLayout();
+
             // 
             // oreRadioButtonPanel
             // 
@@ -66,6 +67,7 @@
             this.oreRadioButtonPanel.Name = "oreRadioButtonPanel";
             this.oreRadioButtonPanel.Size = new System.Drawing.Size(145, 26);
             this.oreRadioButtonPanel.TabIndex = 154;
+
             // 
             // isCommonOre
             // 
@@ -99,6 +101,7 @@
             this.isRareOre.TabStop = true;
             this.isRareOre.Text = "+10%";
             this.isRareOre.UseVisualStyleBackColor = true;
+
             // 
             // loadingLabel
             // 
@@ -108,15 +111,17 @@
             this.loadingLabel.Size = new System.Drawing.Size(54, 13);
             this.loadingLabel.TabIndex = 153;
             this.loadingLabel.Text = "Loading...";
+
             // 
-            // refreshPrices
+            // refreshPriceButton
             // 
-            this.refreshPrices.Location = new System.Drawing.Point(251, 249);
-            this.refreshPrices.Name = "refreshPrices";
-            this.refreshPrices.Size = new System.Drawing.Size(75, 23);
-            this.refreshPrices.TabIndex = 152;
-            this.refreshPrices.Text = "Refresh";
-            this.refreshPrices.UseVisualStyleBackColor = true;
+            this.refreshPriceButton.Location = new System.Drawing.Point(251, 249);
+            this.refreshPriceButton.Name = "refreshPriceButton";
+            this.refreshPriceButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshPriceButton.TabIndex = 152;
+            this.refreshPriceButton.Text = "Refresh";
+            this.refreshPriceButton.UseVisualStyleBackColor = true;
+
             // 
             // totalLabel
             // 
@@ -128,7 +133,6 @@
             this.totalLabel.TabIndex = 151;
             this.totalLabel.Text = "Total Value";
             this.totalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.totalLabel.Click += totalLabel_Click;
             // 
             // totalBox
             // 
@@ -136,25 +140,25 @@
             this.totalBox.Name = "totalBox";
             this.totalBox.Size = new System.Drawing.Size(189, 20);
             this.totalBox.TabIndex = 150;
+
             // 
-            // label32
+            // qtyLabel
             // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(160, 106);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(43, 13);
-            this.label32.TabIndex = 149;
-            this.label32.Text = "Amount";
+            this.qtyLabel.AutoSize = true;
+            this.qtyLabel.Location = new System.Drawing.Point(160, 106);
+            this.qtyLabel.Name = "qtyLabel";
+            this.qtyLabel.Size = new System.Drawing.Size(43, 13);
+            this.qtyLabel.TabIndex = 149;
+            this.qtyLabel.Text = "Quantity";
+
             // 
-            // Calculate
+            // qtyTextbox
             // 
-            this.Calculate.Location = new System.Drawing.Point(170, 249);
-            this.Calculate.Name = "Calculate";
-            this.Calculate.Size = new System.Drawing.Size(75, 23);
-            this.Calculate.TabIndex = 148;
-            this.Calculate.Text = "Calculate";
-            this.Calculate.UseVisualStyleBackColor = true;
-            this.Calculate.Click += calculate_Click;
+            this.qtyTextbox.Location = new System.Drawing.Point(209, 103);
+            this.qtyTextbox.Name = "qtyTextbox";
+            this.qtyTextbox.Size = new System.Drawing.Size(101, 20);
+            this.qtyTextbox.TabIndex = 144;
+
             // 
             // inventory
             // 
@@ -163,42 +167,44 @@
             this.inventory.Name = "inventory";
             this.inventory.Size = new System.Drawing.Size(297, 108);
             this.inventory.TabIndex = 147;
+
             // 
-            // Remove
+            // addItemButton
             // 
-            this.Remove.Location = new System.Drawing.Point(89, 249);
-            this.Remove.Name = "Remove";
-            this.Remove.Size = new System.Drawing.Size(75, 23);
-            this.Remove.TabIndex = 146;
-            this.Remove.Text = "Remove";
-            this.Remove.UseVisualStyleBackColor = true;
-            this.Remove.Click += removeItem_Click;
+            this.addItemButton.Location = new System.Drawing.Point(332, 102);
+            this.addItemButton.Name = "addItemButton";
+            this.addItemButton.Size = new System.Drawing.Size(75, 23);
+            this.addItemButton.TabIndex = 145;
+            this.addItemButton.Text = "Add";
+            this.addItemButton.UseVisualStyleBackColor = true;
             // 
-            // Add
+            // removeItemButton
             // 
-            this.Add.Location = new System.Drawing.Point(332, 102);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(75, 23);
-            this.Add.TabIndex = 145;
-            this.Add.Text = "Add";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += addItem_Click;
+            this.removeItemButton.Location = new System.Drawing.Point(89, 249);
+            this.removeItemButton.Name = "removeItemButton";
+            this.removeItemButton.Size = new System.Drawing.Size(75, 23);
+            this.removeItemButton.TabIndex = 146;
+            this.removeItemButton.Text = "Remove";
+            this.removeItemButton.UseVisualStyleBackColor = true;
             // 
-            // qty
+            // calculateButton
             // 
-            this.qty.Location = new System.Drawing.Point(209, 103);
-            this.qty.Name = "qty";
-            this.qty.Size = new System.Drawing.Size(101, 20);
-            this.qty.TabIndex = 144;
+            this.calculateButton.Location = new System.Drawing.Point(170, 249);
+            this.calculateButton.Name = "calculateButton";
+            this.calculateButton.Size = new System.Drawing.Size(75, 23);
+            this.calculateButton.TabIndex = 148;
+            this.calculateButton.Text = "Calculate";
+            this.calculateButton.UseVisualStyleBackColor = true;
+
             // 
-            // label6
+            // iceProductLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(296, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 13);
-            this.label6.TabIndex = 143;
-            this.label6.Text = "Ice Products";
+            this.iceProductLabel.AutoSize = true;
+            this.iceProductLabel.Location = new System.Drawing.Point(296, 51);
+            this.iceProductLabel.Name = "iceProductLabel";
+            this.iceProductLabel.Size = new System.Drawing.Size(67, 13);
+            this.iceProductLabel.TabIndex = 143;
+            this.iceProductLabel.Text = "Ice Products";
             // 
             // iceProductCombobox
             // 
@@ -207,15 +213,16 @@
             this.iceProductCombobox.Name = "iceProductCombobox";
             this.iceProductCombobox.Size = new System.Drawing.Size(121, 21);
             this.iceProductCombobox.TabIndex = 142;
+
             // 
-            // label5
+            // mineralLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(296, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 13);
-            this.label5.TabIndex = 141;
-            this.label5.Text = "Minerals";
+            this.mineralLabel.AutoSize = true;
+            this.mineralLabel.Location = new System.Drawing.Point(296, 8);
+            this.mineralLabel.Name = "mineralLabel";
+            this.mineralLabel.Size = new System.Drawing.Size(46, 13);
+            this.mineralLabel.TabIndex = 141;
+            this.mineralLabel.Text = "Minerals";
             // 
             // mineralsCombobox
             // 
@@ -224,15 +231,16 @@
             this.mineralsCombobox.Name = "mineralsCombobox";
             this.mineralsCombobox.Size = new System.Drawing.Size(121, 21);
             this.mineralsCombobox.TabIndex = 140;
+
             // 
-            // label4
+            // compIceLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(155, 51);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 13);
-            this.label4.TabIndex = 139;
-            this.label4.Text = "Compressed Raw Ice";
+            this.compIceLabel.AutoSize = true;
+            this.compIceLabel.Location = new System.Drawing.Point(155, 51);
+            this.compIceLabel.Name = "compIceLabel";
+            this.compIceLabel.Size = new System.Drawing.Size(108, 13);
+            this.compIceLabel.TabIndex = 139;
+            this.compIceLabel.Text = "Compressed Raw Ice";
             // 
             // compIceCombobox
             // 
@@ -241,15 +249,16 @@
             this.compIceCombobox.Name = "compIceCombobox";
             this.compIceCombobox.Size = new System.Drawing.Size(121, 21);
             this.compIceCombobox.TabIndex = 138;
+
             // 
-            // label3
+            // iceLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(155, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 137;
-            this.label3.Text = "Raw Ice";
+            this.iceLabel.AutoSize = true;
+            this.iceLabel.Location = new System.Drawing.Point(155, 8);
+            this.iceLabel.Name = "iceLabel";
+            this.iceLabel.Size = new System.Drawing.Size(47, 13);
+            this.iceLabel.TabIndex = 137;
+            this.iceLabel.Text = "Raw Ice";
             // 
             // iceCombobox
             // 
@@ -258,15 +267,16 @@
             this.iceCombobox.Name = "iceCombobox";
             this.iceCombobox.Size = new System.Drawing.Size(121, 21);
             this.iceCombobox.TabIndex = 136;
+
             // 
-            // label2
+            // compOreLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 13);
-            this.label2.TabIndex = 135;
-            this.label2.Text = "Compressed Raw Ore";
+            this.compOreLabel.AutoSize = true;
+            this.compOreLabel.Location = new System.Drawing.Point(14, 51);
+            this.compOreLabel.Name = "compOreLabel";
+            this.compOreLabel.Size = new System.Drawing.Size(110, 13);
+            this.compOreLabel.TabIndex = 135;
+            this.compOreLabel.Text = "Compressed Raw Ore";
             // 
             // compOreCombobox
             // 
@@ -275,15 +285,16 @@
             this.compOreCombobox.Name = "compOreCombobox";
             this.compOreCombobox.Size = new System.Drawing.Size(121, 21);
             this.compOreCombobox.TabIndex = 134;
+
             // 
-            // label1
+            // oreLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 133;
-            this.label1.Text = "Raw Ore";
+            this.oreLabel.AutoSize = true;
+            this.oreLabel.Location = new System.Drawing.Point(14, 8);
+            this.oreLabel.Name = "oreLabel";
+            this.oreLabel.Size = new System.Drawing.Size(49, 13);
+            this.oreLabel.TabIndex = 133;
+            this.oreLabel.Text = "Raw Ore";
             // 
             // oreCombobox
             // 
@@ -294,6 +305,7 @@
             this.oreCombobox.Name = "oreCombobox";
             this.oreCombobox.Size = new System.Drawing.Size(121, 21);
             this.oreCombobox.TabIndex = 132;
+
             // 
             // ContainerControl
             // 
@@ -301,26 +313,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.oreRadioButtonPanel);
             this.Controls.Add(this.loadingLabel);
-            this.Controls.Add(this.refreshPrices);
+            this.Controls.Add(this.refreshPriceButton);
             this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.totalBox);
-            this.Controls.Add(this.label32);
-            this.Controls.Add(this.Calculate);
+            this.Controls.Add(this.qtyLabel);
+            this.Controls.Add(this.calculateButton);
             this.Controls.Add(this.inventory);
-            this.Controls.Add(this.Remove);
-            this.Controls.Add(this.Add);
-            this.Controls.Add(this.qty);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.removeItemButton);
+            this.Controls.Add(this.addItemButton);
+            this.Controls.Add(this.qtyTextbox);
+            this.Controls.Add(this.iceProductLabel);
             this.Controls.Add(this.iceProductCombobox);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.mineralLabel);
             this.Controls.Add(this.mineralsCombobox);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.compIceLabel);
             this.Controls.Add(this.compIceCombobox);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.iceLabel);
             this.Controls.Add(this.iceCombobox);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.compOreLabel);
             this.Controls.Add(this.compOreCombobox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.oreLabel);
             this.Controls.Add(this.oreCombobox);
             this.Name = "ContainerControl";
             this.Size = new System.Drawing.Size(435, 340);
@@ -338,26 +350,26 @@
         private System.Windows.Forms.RadioButton isUncommonOre;
         private System.Windows.Forms.RadioButton isRareOre;
         private System.Windows.Forms.Label loadingLabel;
-        private System.Windows.Forms.Button refreshPrices;
+        private System.Windows.Forms.Button refreshPriceButton;
         private System.Windows.Forms.Label totalLabel;
         private System.Windows.Forms.TextBox totalBox;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Button Calculate;
+        private System.Windows.Forms.Label qtyLabel;
+        private System.Windows.Forms.Button calculateButton;
         private System.Windows.Forms.ListBox inventory;
-        private System.Windows.Forms.Button Remove;
-        private System.Windows.Forms.Button Add;
-        private System.Windows.Forms.TextBox qty;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button removeItemButton;
+        private System.Windows.Forms.Button addItemButton;
+        private System.Windows.Forms.TextBox qtyTextbox;
+        private System.Windows.Forms.Label iceProductLabel;
         private System.Windows.Forms.ComboBox iceProductCombobox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label mineralLabel;
         private System.Windows.Forms.ComboBox mineralsCombobox;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label compIceLabel;
         private System.Windows.Forms.ComboBox compIceCombobox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label iceLabel;
         private System.Windows.Forms.ComboBox iceCombobox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label compOreLabel;
         private System.Windows.Forms.ComboBox compOreCombobox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label oreLabel;
         private System.Windows.Forms.ComboBox oreCombobox;
 
     }

@@ -28,87 +28,99 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
-            this.playerCodeBox = new System.Windows.Forms.TextBox();
-            this.updatePerson = new System.Windows.Forms.Button();
-            this.memberListbox = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
+            this.userPanel = new System.Windows.Forms.Panel();
+            this.userCodeLabel = new System.Windows.Forms.Label();
+            this.userCodeBox = new System.Windows.Forms.TextBox();
+            this.updateUserButton = new System.Windows.Forms.Button();
+            this.userListbox = new System.Windows.Forms.ListBox();
+            this.removeUserButton = new System.Windows.Forms.Button();
+            this.userMultiplierLabel = new System.Windows.Forms.Label();
             this.playerMultiplierBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.playerNameBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
+            this.userNameLabel = new System.Windows.Forms.Label();
+            this.userNameBox = new System.Windows.Forms.TextBox();
+            this.addUserButton = new System.Windows.Forms.Button();
+            this.userPanel.SuspendLayout();
             this.SuspendLayout();
+
             // 
-            // panel2
+            // userPanel
             // 
-            this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.playerCodeBox);
-            this.panel2.Controls.Add(this.updatePerson);
-            this.panel2.Controls.Add(this.memberListbox);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.playerMultiplierBox);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.playerNameBox);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(460, 365);
-            this.panel2.TabIndex = 1;
+            this.userPanel.Controls.Add(this.userCodeLabel);
+            this.userPanel.Controls.Add(this.userCodeBox);
+            this.userPanel.Controls.Add(this.updateUserButton);
+            this.userPanel.Controls.Add(this.userListbox);
+            this.userPanel.Controls.Add(this.removeUserButton);
+            this.userPanel.Controls.Add(this.userMultiplierLabel);
+            this.userPanel.Controls.Add(this.playerMultiplierBox);
+            this.userPanel.Controls.Add(this.userNameLabel);
+            this.userPanel.Controls.Add(this.userNameBox);
+            this.userPanel.Controls.Add(this.addUserButton);
+            this.userPanel.Location = new System.Drawing.Point(3, 3);
+            this.userPanel.Name = "userPanel";
+            this.userPanel.Size = new System.Drawing.Size(460, 365);
+            this.userPanel.TabIndex = 1;
             // 
-            // label18
+            // userCodeLabel
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(227, 23);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(57, 13);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "User Code";
+            this.userCodeLabel.AutoSize = true;
+            this.userCodeLabel.Location = new System.Drawing.Point(227, 23);
+            this.userCodeLabel.Name = "userCodeLabel";
+            this.userCodeLabel.Size = new System.Drawing.Size(57, 13);
+            this.userCodeLabel.TabIndex = 10;
+            this.userCodeLabel.Text = "User Code";
             // 
-            // playerCodeBox
+            // userCodeBox
             // 
-            this.playerCodeBox.Location = new System.Drawing.Point(230, 42);
-            this.playerCodeBox.Name = "playerCodeBox";
-            this.playerCodeBox.Size = new System.Drawing.Size(219, 20);
-            this.playerCodeBox.TabIndex = 9;
+            this.userCodeBox.Location = new System.Drawing.Point(230, 42);
+            this.userCodeBox.Name = "userCodeBox";
+            this.userCodeBox.Size = new System.Drawing.Size(219, 20);
+            this.userCodeBox.TabIndex = 9;
             // 
-            // updatePerson
+            // userListbox
             // 
-            this.updatePerson.Location = new System.Drawing.Point(286, 73);
-            this.updatePerson.Name = "updatePerson";
-            this.updatePerson.Size = new System.Drawing.Size(75, 23);
-            this.updatePerson.TabIndex = 8;
-            this.updatePerson.Text = "Update";
-            this.updatePerson.UseVisualStyleBackColor = true;
+            this.userListbox.FormattingEnabled = true;
+            this.userListbox.Location = new System.Drawing.Point(11, 102);
+            this.userListbox.Name = "userListbox";
+            this.userListbox.Size = new System.Drawing.Size(438, 238);
+            this.userListbox.TabIndex = 7;
+
             // 
-            // memberListbox
+            // addUserButton
             // 
-            this.memberListbox.FormattingEnabled = true;
-            this.memberListbox.Location = new System.Drawing.Point(11, 102);
-            this.memberListbox.Name = "memberListbox";
-            this.memberListbox.Size = new System.Drawing.Size(438, 238);
-            this.memberListbox.TabIndex = 7;
+            this.addUserButton.Location = new System.Drawing.Point(124, 73);
+            this.addUserButton.Name = "addUserButton";
+            this.addUserButton.Size = new System.Drawing.Size(75, 23);
+            this.addUserButton.TabIndex = 1;
+            this.addUserButton.Text = "Add";
+            this.addUserButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // updateUserButton
             // 
-            this.button2.Location = new System.Drawing.Point(205, 73);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Remove";
-            this.button2.UseVisualStyleBackColor = true;
+            this.updateUserButton.Location = new System.Drawing.Point(286, 73);
+            this.updateUserButton.Name = "updateUserButton";
+            this.updateUserButton.Size = new System.Drawing.Size(75, 23);
+            this.updateUserButton.TabIndex = 8;
+            this.updateUserButton.Text = "Update";
+            this.updateUserButton.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // removeUserButton
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(121, 23);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 13);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Multiplier";
+            this.removeUserButton.Location = new System.Drawing.Point(205, 73);
+            this.removeUserButton.Name = "removeUserButton";
+            this.removeUserButton.Size = new System.Drawing.Size(75, 23);
+            this.removeUserButton.TabIndex = 6;
+            this.removeUserButton.Text = "Remove";
+            this.removeUserButton.UseVisualStyleBackColor = true;
+
+            // 
+            // userMultiplierLabel
+            // 
+            this.userMultiplierLabel.AutoSize = true;
+            this.userMultiplierLabel.Location = new System.Drawing.Point(121, 23);
+            this.userMultiplierLabel.Name = "userMultiplierLabel";
+            this.userMultiplierLabel.Size = new System.Drawing.Size(48, 13);
+            this.userMultiplierLabel.TabIndex = 5;
+            this.userMultiplierLabel.Text = "Multiplier";
             // 
             // playerMultiplierBox
             // 
@@ -117,56 +129,48 @@
             this.playerMultiplierBox.Size = new System.Drawing.Size(100, 20);
             this.playerMultiplierBox.TabIndex = 4;
             // 
-            // label8
+            // userNameLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 23);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Player Name";
+            this.userNameLabel.AutoSize = true;
+            this.userNameLabel.Location = new System.Drawing.Point(18, 23);
+            this.userNameLabel.Name = "userNameLabel";
+            this.userNameLabel.Size = new System.Drawing.Size(67, 13);
+            this.userNameLabel.TabIndex = 3;
+            this.userNameLabel.Text = "User Name";
             // 
-            // playerNameBox
+            // userNameBox
             // 
-            this.playerNameBox.Location = new System.Drawing.Point(18, 42);
-            this.playerNameBox.Name = "playerNameBox";
-            this.playerNameBox.Size = new System.Drawing.Size(100, 20);
-            this.playerNameBox.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(124, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
+            this.userNameBox.Location = new System.Drawing.Point(18, 42);
+            this.userNameBox.Name = "userNameBox";
+            this.userNameBox.Size = new System.Drawing.Size(100, 20);
+            this.userNameBox.TabIndex = 2;
+
             // 
             // ContainerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.userPanel);
             this.Name = "ContainerControl";
             this.Size = new System.Drawing.Size(468, 374);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.userPanel.ResumeLayout(false);
+            this.userPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox playerCodeBox;
-        private System.Windows.Forms.Button updatePerson;
-        private System.Windows.Forms.ListBox memberListbox;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel userPanel;
+        private System.Windows.Forms.Label userCodeLabel;
+        private System.Windows.Forms.TextBox userCodeBox;
+        private System.Windows.Forms.Button updateUserButton;
+        private System.Windows.Forms.ListBox userListbox;
+        private System.Windows.Forms.Button removeUserButton;
+        private System.Windows.Forms.Label userMultiplierLabel;
         private System.Windows.Forms.TextBox playerMultiplierBox;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox playerNameBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label userNameLabel;
+        private System.Windows.Forms.TextBox userNameBox;
+        private System.Windows.Forms.Button addUserButton;
     }
 }

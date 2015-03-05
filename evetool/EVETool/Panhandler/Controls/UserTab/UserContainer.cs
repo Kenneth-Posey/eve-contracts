@@ -17,19 +17,13 @@ namespace Panhandler.UserTab
         {
             InitializeComponent();
 
-            memberListbox.Text = "";
-            memberListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
-
-        }
-
-        private async void addPerson_Click(object sender, EventArgs e)
-        {
-
+            userListbox.Text = "";
+            userListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
         }
 
         private void SortPlayers()
         {
-            var userItems = memberListbox.Items.Cast<string>();
+            var userItems = userListbox.Items.Cast<string>();
             var sortedUsers = userItems
                                 .Select(x => new User(x).userName)
                                 .ToList();
@@ -43,34 +37,39 @@ namespace Panhandler.UserTab
                                 .Select(x => x.ToString())
                                 .ToArray();
 
-            memberListbox.Items.Clear();
-            memberListbox.Items.AddRange(sortedList);
+            userListbox.Items.Clear();
+            userListbox.Items.AddRange(sortedList);
         }
 
-        private void removePerson_Click(object sender, EventArgs e)
+        private async void addPerson_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void updatePerson_Click(object sender, EventArgs e)
+        private async void updatePerson_Click(object sender, EventArgs e)
         {
 
         }
 
+        private async void removePerson_Click(object sender, EventArgs e)
+        {
+
+        }
+        
         protected void memberListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (memberListbox.SelectedItem == null || memberListbox.SelectedIndex < 0) return;
+            if (userListbox.SelectedItem == null || userListbox.SelectedIndex < 0) return;
 
-            var currentUser = new User(memberListbox.SelectedItem.ToString());
+            var currentUser = new User(userListbox.SelectedItem.ToString());
 
-            playerNameBox.Text = currentUser.userName;
+            userNameBox.Text = currentUser.userName;
             playerMultiplierBox.Text = currentUser.multiplier.ToString();
-            playerCodeBox.Text = currentUser.userId;
+            userCodeBox.Text = currentUser.userId;
         }
 
         private void LoadUserStringIntoList(string userList)
         {
-            memberListbox.Items.Clear();
+            userListbox.Items.Clear();
 
             foreach (var user in userList.Split(new char[] { '\n' }))
             {
@@ -78,7 +77,7 @@ namespace Panhandler.UserTab
                 var player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
                     currentUser.userName, currentUser.multiplier.ToString(), currentUser.userId
                 });
-                memberListbox.Items.Add(player);
+                userListbox.Items.Add(player);
             }
 
             SortPlayers();
