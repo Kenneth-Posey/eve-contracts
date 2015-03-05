@@ -68,10 +68,10 @@ namespace Panhandler.CalculatorTab
             qtyTextbox.TabIndex = 7;
             addItemButton.TabIndex = 8;
 
-            this.totalLabel.Click += totalLabel_Click;
-            this.calculateButton.Click += calculate_Click;
-            this.removeItemButton.Click += removeItem_Click;
-            this.addItemButton.Click += addItem_Click;
+            totalLabel.Click += totalLabel_Click;
+            calculateButton.Click += calculate_Click;
+            removeItemButton.Click += removeItem_Click;
+            addItemButton.Click += addItem_Click;
         }
         
         protected void materialCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,57 +87,41 @@ namespace Panhandler.CalculatorTab
             var amount = 0;
             var successfulParse = Int32.TryParse(qtyTextbox.Text.Trim(), out amount);
             qtyTextbox.Text = "";
-            this.Parent.Focus();
+            // this.Parent.Focus();
             await addItems(amount);
         }
 
         private async Task addItems(int amount)
         {
-            var selectedItems = new List<Tuple<string, bool>>();
             foreach (var box in MaterialBoxList)
             {
-                if (box.SelectedIndex != 0)
-                {
-                    switch (box.Name)
-                    {
-                        case "comboBox3":
-                        case "comboBox1":
-                            // Non-compressed ore/ice
-                            selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
-                            break;
-                        case "comboBox4":
-                        case "comboBox2":
-                            // Compressed ore/ice
-                            selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), true));
-                            break;
-                        default:
-                            selectedItems.Add(Tuple.Create(box.SelectedItem.ToString(), false));
-                            break;
-                    }
+                if (box.SelectedIndex <= 0)
+                    continue;
 
-                    box.SelectedIndex = 0;
-                }
-            }
-
-            foreach (var item in selectedItems)
-            {
-                var itemName = item.Item1.Trim();
-                var itemCompressed = item.Item2;
+                var itemName = box.SelectedItem.ToString();
+                box.SelectedIndex = 0;
 
                 var isOre = RawOre.Contains(itemName);
                 var isIce = RawIce.Contains(itemName);
                 var isIceProduct = IceProducts.Contains(itemName);
                 var isMineral = Minerals.Contains(itemName);
 
-                bool isValidItem = isOre || isIce || isIceProduct || isMineral;
-
                 // skips unknown items in the list
-                if (!isValidItem) continue;
+                if ((isOre || isIce || isIceProduct || isMineral) == false)
+                    continue;
 
-                if (itemCompressed == false)
-                    AddItemToInventory(amount, itemName, isOre);
-                else
-                    AddItemToInventory(amount, "Compressed " + itemName, isOre);
+                switch (box.Name)
+                {
+                    case "compOreCombobox":
+                    case "compIceCombobox":
+                        AddItemToInventory(amount, "Compressed " + itemName, isOre);
+                        break;
+                    case "oreCombobox":
+                    case "iceCombobox":
+                    default:                            
+                        AddItemToInventory(amount, itemName, isOre);
+                        break;
+                }
             }
         }
 
@@ -147,12 +131,14 @@ namespace Panhandler.CalculatorTab
             if (isOre)
             {
                 var ores = CollectionsProvider.AllOreList.OreList.ToList();
+                var ore = (EveData.Ore.Types.IOre)(ores.Find(x => x.GetName() == name));
+
                 if (isCommonOre.Checked)
-                    tName = ores.Find(x => x.GetName() == name).GetName();
+                    tName = ore.GetName();
                 else if (isUncommonOre.Checked)
-                    tName = ores.Find(x => x.GetName() == name).GetName5();
+                    tName = ore.GetName5();
                 else
-                    tName = ores.Find(x => x.GetName() == name).GetName10();
+                    tName = ore.GetName10();
             }
             else
             {
@@ -165,18 +151,16 @@ namespace Panhandler.CalculatorTab
         private void removeItem_Click(object sender, EventArgs e)
         {
             var selectedItems = inventory.SelectedItems.OfType<string>().ToList();
-            var copiedItems = inventory.Items.OfType<string>().ToList();
+            var nonSelectedItems = inventory.Items.OfType<string>().ToList();
 
-            if (selectedItems.Count <= 0 || copiedItems.Count <= 0) 
+            if (selectedItems.Count <= 0 || nonSelectedItems.Count <= 0) 
                 return;
 
             foreach (var listItem in selectedItems)
-                copiedItems.Remove(listItem);
+                nonSelectedItems.Remove(listItem);
 
             inventory.Items.Clear();
-
-            foreach (var item in copiedItems)
-                inventory.Items.Add(item);
+            inventory.Items.AddRange(nonSelectedItems);
         }
 
         private static async Task<double> CalculateEstimate(List<string> pSplitLines)
