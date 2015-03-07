@@ -98,13 +98,13 @@ namespace Panhandler.CalculatorTab
                 if (box.SelectedIndex <= 0)
                     continue;
 
-                var itemName = box.SelectedItem.ToString();
+                var name = box.SelectedItem.ToString();
                 box.SelectedIndex = 0;
 
-                var isOre = RawOre.Contains(itemName);
-                var isIce = RawIce.Contains(itemName);
-                var isIceProduct = IceProducts.Contains(itemName);
-                var isMineral = Minerals.Contains(itemName);
+                var isOre = RawOre.Contains(name);
+                var isIce = RawIce.Contains(name);
+                var isIceProduct = IceProducts.Contains(name);
+                var isMineral = Minerals.Contains(name);
 
                 // skips unknown items in the list
                 if ((isOre || isIce || isIceProduct || isMineral) == false)
@@ -114,12 +114,12 @@ namespace Panhandler.CalculatorTab
                 {
                     case "compOreCombobox":
                     case "compIceCombobox":
-                        AddItemToInventory(amount, "Compressed " + itemName, isOre);
+                        AddItemToInventory(amount, "Compressed " + name, isOre);
                         break;
                     case "oreCombobox":
                     case "iceCombobox":
                     default:                            
-                        AddItemToInventory(amount, itemName, isOre);
+                        AddItemToInventory(amount, name, isOre);
                         break;
                 }
             }
