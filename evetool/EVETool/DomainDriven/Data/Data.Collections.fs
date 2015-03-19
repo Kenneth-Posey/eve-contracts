@@ -5,6 +5,8 @@ module Collections =
     open EveOnline.OreDomain.Types
     open EveOnline.IceDomain.Types
 
+    open Microsoft.FSharp.Reflection
+
     type SystemName =
     | Jita    = 30000142
     | Dodixie = 30002659
@@ -22,7 +24,7 @@ module Collections =
     | BuyOrder
     | SellOrder
 
-    let MineralList = 
+    let MineralList2 = 
         [
             Mineral Isogen
             Mineral Megacyte 
@@ -34,7 +36,13 @@ module Collections =
             Mineral Zydrine  
         ]
 
-    let IceProductList = 
+    let MineralList = 
+        [
+            for mineral in FSharpType.GetUnionCases typeof<Mineral> do
+                yield FSharpValue.MakeUnion(mineral, [| |]) |> unbox |> Mineral
+        ]
+
+    let IceProductList2 = 
         [
             IceProduct HeavyWater
             IceProduct HeliumIsotopes
@@ -45,10 +53,16 @@ module Collections =
             IceProduct StrontiumClathrates
         ]
 
+    let IceProductList = 
+        [
+            for product in FSharpType.GetUnionCases typeof<IceProduct> do
+                yield FSharpValue.MakeUnion (product, [| |]) |> unbox |> IceProduct
+        ]
+
     let RefinedProducts = 
         MineralList @ IceProductList
 
-    let IceList = 
+    let IceList2 = 
         [   
             IceType BlueIce             
             IceType ClearIcicle         
@@ -64,7 +78,13 @@ module Collections =
             IceType WhiteGlaze          
         ]
 
-    let OreList = 
+    let IceList = 
+        [
+            for ice in FSharpType.GetUnionCases typeof<IceType> do
+                yield FSharpValue.MakeUnion (ice, [| |]) |> unbox |> IceType
+        ]
+
+    let OreList2 = 
         [
             OreType Arkonor    
             OreType Bistot     
@@ -84,6 +104,12 @@ module Collections =
             OreType Veldspar   
         ]
     
+    let OreList = 
+        [
+            for ore in FSharpType.GetUnionCases typeof<OreType> do
+                yield FSharpValue.MakeUnion (ore, [| |]) |> unbox |> OreType
+        ]
+
 //    let RawOreList :RawOre list = [
 //        for rawOre in FSharpType.GetUnionCases typeof<OreType> do     
 //            yield FSharpValue.MakeUnion(rawOre, [| box 1 |])

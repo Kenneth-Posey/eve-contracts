@@ -11,8 +11,6 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Microsoft.FSharp.Collections;
 using Panhandler.Objects;
-using EveData;
-using EveOnlineInterop;
 
 namespace Panhandler
 {

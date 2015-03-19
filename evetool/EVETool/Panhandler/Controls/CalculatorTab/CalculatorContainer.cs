@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EveOnlineInterop;
 using Microsoft.FSharp.Collections;
 using System.Globalization;
+using EveOnlineInterop;
+using EveData;
 
 namespace Panhandler.CalculatorTab
 {
@@ -44,10 +45,10 @@ namespace Panhandler.CalculatorTab
                 box.SelectedIndexChanged += materialCombobox_SelectedIndexChanged;
             }
 
-            RawOre = CollectionsProvider.OreList.OreNames.ToList();
-            RawIce = CollectionsProvider.IceList.IceNames.ToList();
-            IceProducts = CollectionsProvider.IceProductList.IceProductNames.ToList();
-            Minerals = CollectionsProvider.MineralList.MineralNames.ToList();
+            RawOre = EveOnline.Interop.CollectionsProvider.OreNameList.OreNames.ToList();
+            RawIce = EveOnline.Interop.CollectionsProvider.IceNameList.IceNames.ToList();
+            IceProducts = EveOnline.Interop.CollectionsProvider.IceProductNameList.IceProductNames.ToList();
+            Minerals = EveOnline.Interop.CollectionsProvider.MineralNameList.MineralNames.ToList();
 
             oreCombobox.Items.AddRange(RawOre.ToArray<object>());
             compOreCombobox.Items.AddRange(RawOre.ToArray<object>());
@@ -160,7 +161,8 @@ namespace Panhandler.CalculatorTab
                 nonSelectedItems.Remove(listItem);
 
             inventory.Items.Clear();
-            inventory.Items.AddRange(nonSelectedItems);
+            foreach (var item in nonSelectedItems)
+                inventory.Items.Add(item);
         }
 
         private static async Task<double> CalculateEstimate(List<string> pSplitLines)
