@@ -49,13 +49,17 @@ module Collections =
                 yield FSharpValue.MakeUnion (o, [| |]) |> unbox |> OreType
         ]
         
+    type StrongWeakMap = {
+        Weak : string
+        Strong : (OreType) * (OreRarity) * (EveOnline.ProductDomain.Types.Compressed)
+    }
     type oreDataFunc = (OreType -> OreRarity -> EveOnline.OreDomain.Records.OreData)
     let OreDataList = 
         let oreTypes = FSharpType.GetUnionCases typeof<EveOnline.OreDomain.Types.OreType> 
         let comp x y = OreData x y EveOnline.ProductDomain.Types.Compressed.IsCompressed
         let ncomp x y = OreData x y EveOnline.ProductDomain.Types.Compressed.IsNotCompressed        
 
-        let tuple (ore) (func:oreDataFunc) :(string * string * string)= 
+        let tuple (ore) (func:oreDataFunc) = 
             let x = FSharpValue.MakeUnion (ore, [| |]) |> unbox             
             ( (func x Common).Name.Value, (func x Uncommon).Name.Value, (func x Rare).Name.Value )
 
@@ -64,3 +68,20 @@ module Collections =
                 yield tuple ore comp
                 yield tuple ore ncomp
         ]
+
+    // This function essentially pivots the raw string names of an ore list
+    // and returns a strongly typed tuple representing the ore object
+    open EveOnline.ProductDomain.Types
+    let OreDataMap = 
+        let compFunc (x:string) = 
+            match x with
+            | x when x.Contains("Compressed") -> IsCompressed
+            | _ -> IsNotCompressed
+
+        [
+            for common, uncommon, rare in OreDataList do
+                yield common, (RawOreFromName common, Common, compFunc common)
+                yield uncommon, (RawOreFromName uncommon, Uncommon, compFunc uncommon)
+                yield rare, (RawOreFromName rare, Rare, compFunc rare)                    
+        ]
+        |> Map.ofList

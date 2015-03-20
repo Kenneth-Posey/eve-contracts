@@ -178,3 +178,33 @@ module Market =
         |> fun (refine, unitVolume) -> refine.Value / unitVolume.Value * vol.Value
         |> Price
         
+
+    // Ported from Market.Functions.CalculateEstimate in OOP code
+    let CalculateEstimate (rawList:string list) =
+        let mineralPrices = MineralPrices <| loadMineralPrices OrderType.SellOrder TradeHub.Jita 
+
+        let calcValue (item:string * int) = 
+            let oreType, oreRarity, _ = OreDataMap.Item (fst item)                    
+            let refineValue = GetRefineValue (GetYield (OreType oreType)) mineralPrices
+            match oreRarity with
+            | Common -> refineValue.Value
+            | Uncommon -> refineValue.Value * 1.05f
+            | Rare -> refineValue.Value * 1.1f
+            |> (fun x -> double x * (double (snd item)))
+            
+        let SumItems (items:(string * int) list) =
+            let rec SumRec (items:(string * int) list) (total:double) = 
+                match items.Length with 
+                // There's still items in the list to process
+                | length when length > 0 ->
+                    let value = calcValue items.Head
+                    SumRec items.Tail (total + value)
+                // In all other cases we want to just return a total
+                | _ -> total 
+
+            SumRec items 0.0
+
+        rawList 
+        |> List.map (fun x -> x.Split [|'\t'|])
+        |> List.map (fun x -> string(x.[0]), int(x.[1]))
+        |> SumItems 

@@ -251,6 +251,26 @@ module Ore =
             | Bistot        -> "Bistot"
             | Mercoxit      -> "Mercoxit"     
 
+    let RawOreFromName (x:string) :OreType = 
+        match x with
+        | x when x = (RawOreName Veldspar).Value -> Veldspar
+        | x when x = (RawOreName Scordite).Value -> Scordite
+        | x when x = (RawOreName Pyroxeres).Value -> Pyroxeres
+        | x when x = (RawOreName Plagioclase).Value -> Plagioclase
+        | x when x = (RawOreName Omber).Value -> Omber
+        | x when x = (RawOreName Kernite).Value -> Kernite
+        | x when x = (RawOreName Jaspet).Value -> Jaspet
+        | x when x = (RawOreName Hedbergite).Value -> Hedbergite
+        | x when x = (RawOreName Hemorphite).Value -> Hemorphite
+        | x when x = (RawOreName Gneiss).Value -> Gneiss
+        | x when x = (RawOreName DarkOchre).Value -> DarkOchre
+        | x when x = (RawOreName Spodumain).Value -> Spodumain
+        | x when x = (RawOreName Arkonor).Value -> Arkonor
+        | x when x = (RawOreName Crokite).Value -> Crokite
+        | x when x = (RawOreName Bistot).Value -> Bistot
+        | x when x = (RawOreName Mercoxit).Value -> Mercoxit
+        | _ -> Veldspar
+
 
     let OreFactory (r:OreRarity) (c:Compressed) (q:Qty) (n:OreType) :RawOre= 
         OreData (n) (r) (c) |> fun x -> 
