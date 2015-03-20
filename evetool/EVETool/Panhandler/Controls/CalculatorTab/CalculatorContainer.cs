@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.FSharp.Collections;
 using System.Globalization;
-using EveOnlineInterop;
-using EveData;
 using EveOnline.Interop;
 
 namespace Panhandler.CalculatorTab
@@ -132,7 +130,7 @@ namespace Panhandler.CalculatorTab
             string tName;
             if (isOre)
             {
-                var ores = EveOnline.Interop.Data.Ore.Data.ToList();
+                var ores = EveOnline.Interop.Data.Ore.OreNames.ToList();
                 var ore = ores.Find(x => x.Item1 == name);
 
                 if (isCommonOre.Checked)
@@ -169,7 +167,7 @@ namespace Panhandler.CalculatorTab
         private static async Task<double> CalculateEstimate(List<string> pSplitLines)
         {
             var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
-            return Market.Functions.CalculateEstimate(tSplitLines);
+            return EveOnline.MarketDomain.Market.CalculateEstimate(tSplitLines);
         }
 
         private async void calculate_Click(object sender, EventArgs e)

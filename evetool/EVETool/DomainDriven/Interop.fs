@@ -40,7 +40,8 @@ module Data =
     type Ore () = 
         static member TypeIds = [ ("", 0) ]
         static member Names = InternalInterop.OreNames
-        static member Data = InternalInterop.OreDataList
+        static member OreNames = InternalInterop.OreDataList
+        static member Data = EveOnline.DataDomain.Collections.OreDataMap
 
     type Ice () = 
         static member TypeIds = [ ("", 0) ]

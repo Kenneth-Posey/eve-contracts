@@ -49,13 +49,9 @@ module Collections =
                 yield FSharpValue.MakeUnion (o, [| |]) |> unbox |> OreType
         ]
         
-    type StrongWeakMap = {
-        Weak : string
-        Strong : (OreType) * (OreRarity) * (EveOnline.ProductDomain.Types.Compressed)
-    }
     type oreDataFunc = (OreType -> OreRarity -> EveOnline.OreDomain.Records.OreData)
     let OreDataList = 
-        let oreTypes = FSharpType.GetUnionCases typeof<EveOnline.OreDomain.Types.OreType> 
+        let oreTypes = FSharpType.GetUnionCases typeof<EveOnline.OreDomain.Types.OreType>
         let comp x y = OreData x y EveOnline.ProductDomain.Types.Compressed.IsCompressed
         let ncomp x y = OreData x y EveOnline.ProductDomain.Types.Compressed.IsNotCompressed        
 
@@ -69,19 +65,19 @@ module Collections =
                 yield tuple ore ncomp
         ]
 
-    // This function essentially pivots the raw string names of an ore list
-    // and returns a strongly typed tuple representing the ore object
-    open EveOnline.ProductDomain.Types
-    let OreDataMap = 
-        let compFunc (x:string) = 
-            match x with
-            | x when x.Contains("Compressed") -> IsCompressed
-            | _ -> IsNotCompressed
 
+    open EveOnline.ProductDomain.Types
+    open EveOnline.OreDomain.Ore
+    let OreDataMap = 
         [
-            for common, uncommon, rare in OreDataList do
-                yield common, (RawOreFromName common, Common, compFunc common)
-                yield uncommon, (RawOreFromName uncommon, Uncommon, compFunc uncommon)
-                yield rare, (RawOreFromName rare, Rare, compFunc rare)                    
+            for oreType in FSharpType.GetUnionCases typeof<EveOnline.OreDomain.Types.OreType> do
+                let ore = FSharpValue.MakeUnion (oreType, [| |]) |> unbox
+
+                yield (RawOreName ore).Value, (ore, Common, IsCompressed)
+                yield (RawOreName ore).Value, (ore, Uncommon, IsCompressed)
+                yield (RawOreName ore).Value, (ore, Rare, IsCompressed)
+                yield (RawOreName ore).Value, (ore, Common, IsNotCompressed)
+                yield (RawOreName ore).Value, (ore, Uncommon, IsNotCompressed)
+                yield (RawOreName ore).Value, (ore, Rare, IsNotCompressed)
         ]
         |> Map.ofList

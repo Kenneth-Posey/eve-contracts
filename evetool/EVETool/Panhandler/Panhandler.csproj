@@ -147,10 +147,6 @@
       <Project>{d0baa48e-7842-457d-8cb4-b4f2069cbc63}</Project>
       <Name>DomainDrivenDesign</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YeFsharpLibrary\YeFsharpLibrary.fsproj">
-      <Project>{20b439fc-8cc8-4621-9c17-824c431f7766}</Project>
-      <Name>YeFsharpLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
