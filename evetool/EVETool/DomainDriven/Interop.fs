@@ -33,21 +33,24 @@ module internal InternalInterop =
     let IceProductNames = name IceProducts
     let MineralNames = name Minerals
 
+    let OreDataList = EveOnline.DataDomain.Collections.OreDataList
 
-module CollectionsProvider = 
-    type OreNameList () = 
-        static member OreNames = 
-            List.toSeq <| InternalInterop.OreNames
 
-    type IceNameList () = 
-        static member IceNames = 
-            List.toSeq <| InternalInterop.IceNames
+module Data = 
+    type Ore () = 
+        static member TypeIds = [ ("", 0) ]
+        static member Names = InternalInterop.OreNames
+        static member Data = InternalInterop.OreDataList
 
-    type IceProductNameList () = 
-        static member IceProductNames = 
-            List.toSeq <| InternalInterop.IceProductNames
+    type Ice () = 
+        static member TypeIds = [ ("", 0) ]
+        static member Names = InternalInterop.IceNames
 
-    type MineralNameList () = 
-        static member MineralNames = 
-            List.toSeq <| InternalInterop.MineralNames
+    type IceProduct () = 
+        static member TypeIds = [ ("", 0) ]
+        static member Names = InternalInterop.IceProductNames
+
+    type Mineral () = 
+        static member TypeIds = [ ("", 0) ]
+        static member Names = InternalInterop.MineralNames
 

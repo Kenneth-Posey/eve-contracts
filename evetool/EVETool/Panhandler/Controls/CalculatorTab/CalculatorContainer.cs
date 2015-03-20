@@ -11,6 +11,7 @@ using Microsoft.FSharp.Collections;
 using System.Globalization;
 using EveOnlineInterop;
 using EveData;
+using EveOnline.Interop;
 
 namespace Panhandler.CalculatorTab
 {
@@ -45,10 +46,10 @@ namespace Panhandler.CalculatorTab
                 box.SelectedIndexChanged += materialCombobox_SelectedIndexChanged;
             }
 
-            RawOre = EveOnline.Interop.CollectionsProvider.OreNameList.OreNames.ToList();
-            RawIce = EveOnline.Interop.CollectionsProvider.IceNameList.IceNames.ToList();
-            IceProducts = EveOnline.Interop.CollectionsProvider.IceProductNameList.IceProductNames.ToList();
-            Minerals = EveOnline.Interop.CollectionsProvider.MineralNameList.MineralNames.ToList();
+            RawOre = Data.Ore.Names.ToList();
+            RawIce = Data.Ice.Names.ToList();
+            IceProducts = Data.IceProduct.Names.ToList();
+            Minerals = Data.Mineral.Names.ToList();
 
             oreCombobox.Items.AddRange(RawOre.ToArray<object>());
             compOreCombobox.Items.AddRange(RawOre.ToArray<object>());
@@ -131,15 +132,15 @@ namespace Panhandler.CalculatorTab
             string tName;
             if (isOre)
             {
-                var ores = CollectionsProvider.AllOreList.OreList.ToList();
-                var ore = (EveData.Ore.Types.IOre)(ores.Find(x => x.GetName() == name));
+                var ores = EveOnline.Interop.Data.Ore.Data.ToList();
+                var ore = ores.Find(x => x.Item1 == name);
 
                 if (isCommonOre.Checked)
-                    tName = ore.GetName();
+                    tName = ore.Item1;
                 else if (isUncommonOre.Checked)
-                    tName = ore.GetName5();
+                    tName = ore.Item2;
                 else
-                    tName = ore.GetName10();
+                    tName = ore.Item3;
             }
             else
             {
