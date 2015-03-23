@@ -71,13 +71,9 @@ module Collections =
     let OreDataMap = 
         [
             for oreType in FSharpType.GetUnionCases typeof<EveOnline.OreDomain.Types.OreType> do
-                let ore = FSharpValue.MakeUnion (oreType, [| |]) |> unbox
-
-                yield (RawOreName ore).Value, (ore, Common, IsCompressed)
-                yield (RawOreName ore).Value, (ore, Uncommon, IsCompressed)
-                yield (RawOreName ore).Value, (ore, Rare, IsCompressed)
-                yield (RawOreName ore).Value, (ore, Common, IsNotCompressed)
-                yield (RawOreName ore).Value, (ore, Uncommon, IsNotCompressed)
-                yield (RawOreName ore).Value, (ore, Rare, IsNotCompressed)
+                for common in [ Common; Uncommon; Rare ] do
+                    for compressed in [ IsCompressed; IsNotCompressed ] do
+                        let ore = FSharpValue.MakeUnion (oreType, [| |]) |> unbox
+                        yield (RawOreName ore).Value, (ore, common, compressed)
         ]
         |> Map.ofList
