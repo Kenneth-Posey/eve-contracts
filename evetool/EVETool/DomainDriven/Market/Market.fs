@@ -93,7 +93,7 @@ module Market =
         }
         
         
-    let accumulator = (fun total (refine, price) -> total + (single refine * price))
+    let accumulator = fun total (refine, price) -> total + (single refine * price)
     let refineValueProcessor (pairs:(int *single) list) :Price =
         pairs |> List.fold accumulator (0.0f) |> Price
 
@@ -104,7 +104,7 @@ module Market =
         |> function
            | IceProductPrices x -> x
            | _ -> BaseIceProductPrices
-        |> (fun price -> 
+        |> fun price -> 
             [
                 refine.HeliumIsotopes.Value,    price.HeliumIsotopes.Value
                 refine.HydrogenIsotopes.Value,  price.HydrogenIsotopes.Value
@@ -114,7 +114,7 @@ module Market =
                 refine.HeavyWater.Value,        price.HeavyWater.Value
                 refine.LiquidOzone.Value,       price.LiquidOzone.Value
                 refine.StrontiumClathrates.Value,   price.StrontiumClathrates.Value
-            ])
+            ]
         |> refineValueProcessor
 
     
@@ -124,7 +124,7 @@ module Market =
         |> function
            | MineralPrices x -> x
            | _ -> BaseMineralPrices
-        |> (fun price -> 
+        |> fun price -> 
             [
                 refine.Isogen.Value,      price.Isogen.Value    * 0.01f
                 refine.Megacyte.Value,    price.Megacyte.Value  * 0.01f
@@ -134,7 +134,7 @@ module Market =
                 refine.Pyerite.Value,     price.Pyerite.Value   * 0.01f
                 refine.Tritanium.Value,   price.Tritanium.Value * 0.01f
                 refine.Zydrine.Value,     price.Zydrine.Value   * 0.01f
-            ])
+            ]
         |> refineValueProcessor
     
 
@@ -187,10 +187,10 @@ module Market =
             let oreType, oreRarity, _ = OreDataMap.Item (fst item)                    
             let refineValue = GetRefineValue (GetYield (OreType oreType)) mineralPrices
             match oreRarity with
-            | Common -> refineValue.Value
-            | Uncommon -> refineValue.Value * 1.05f
-            | Rare -> refineValue.Value * 1.1f
-            |> (fun x -> double x * (double (snd item)))
+                | Common -> refineValue.Value
+                | Uncommon -> refineValue.Value * 1.05f
+                | Rare -> refineValue.Value * 1.1f
+            |> fun x -> double x * (double (snd item))
             
         let SumItems (items:(string * int) list) =
             let rec SumRec (items:(string * int) list) (total:double) = 
@@ -208,3 +208,47 @@ module Market =
         |> List.map (fun x -> x.Split [|'\t'|])
         |> List.map (fun x -> string(x.[0]), int(x.[1]))
         |> SumItems 
+
+        
+    // this should be cleaned up later 3-30-2015
+    open EveOnline.DataDomain.Collections
+    type MaterialNameId = {
+        Name : string
+        Id : int    
+    }
+    let MaterialNameIdList = 
+        [
+            for mat in Materials do
+                yield {
+                    Name = (Name mat).Value
+                    Id   = (TypeId mat).Value
+                }
+        ]
+
+    // this should be cleaned up later 3-30-2015
+    let internal loadPrice mat = (loadItem Jita mat).prices
+    type MaterialData = {
+        Name  : string
+        Id    : int
+        Value : single
+    }
+
+    let LoadRefinedMaterialPricesHighBuy () = 
+        [
+            for mat in IceProductList @ MineralList do
+                yield {
+                    Name = (Name mat).Value
+                    Id = (TypeId mat).Value
+                    Value = (loadPrice mat).highBuy
+                }
+        ]        
+
+    let LoadRefinedMaterialPricesLowSell () = 
+        [
+            for mat in IceProductList @ MineralList do
+                yield {
+                    Name = (Name mat).Value
+                    Id = (TypeId mat).Value
+                    Value = (loadPrice mat).lowSell
+                }
+        ]

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EveOnline.MarketDomain;
 
 namespace Panhandler.MarketTab
 {
@@ -44,24 +45,20 @@ namespace Panhandler.MarketTab
 
             var allItems = await loadItems();
             foreach (var pair in priceLabels)
-                pair.Item1.Text = allItems.Find(x => x.id == LoadIdByName(pair.Item2)).price.ToString();
+                pair.Item1.Text = allItems.Find(x => x.Id == LoadIdByName(pair.Item2)).Value.ToString();
 
             loadingLabel.Text = "";
         }
 
         private static int LoadIdByName(string name)
         {
-            var allItems = EveData.Collections.RawIceIDPairs.ToList();
-            allItems.AddRange(EveData.Collections.MineralIDPairs.ToList());
-            allItems.AddRange(EveData.Collections.RawIceIDPairs.ToList());
-            allItems.AddRange(EveData.Collections.IceProductIDPairs.ToList());
-
-            return allItems.Find(x => x.Item1 == name).Item2;
+            var allItems = Market.MaterialNameIdList.ToList();
+            return allItems.Find(x => x.Name == name).Id;
         }
 
-        private async Task<List<EveData.RawMaterials.ParserMaterial>> loadItems()
+        private async Task<List<Market.MaterialData>> loadItems()
         {
-            return Market.Functions.LoadAllItemsForParser().ToList();
+            return Market.LoadRefinedMaterialPricesLowSell().ToList();
         }
     }
 }

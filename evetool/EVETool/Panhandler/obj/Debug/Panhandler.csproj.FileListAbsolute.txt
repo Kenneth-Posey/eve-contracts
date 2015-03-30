@@ -17,8 +17,6 @@ C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\De
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.csproj.GenerateResource.Cache
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.pdb
-C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.pdb
-C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\YeFsharpLibrary.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.dll
 C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.xml
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe.config

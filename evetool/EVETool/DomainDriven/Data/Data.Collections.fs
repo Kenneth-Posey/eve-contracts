@@ -3,8 +3,10 @@ namespace EveOnline.DataDomain
 module Collections = 
     open EveOnline.ProductDomain.UnionTypes
     open EveOnline.OreDomain.Types
-    open EveOnline.OreDomain.Ore
     open EveOnline.IceDomain.Types
+    open EveOnline.ProductDomain.Types
+    open EveOnline.OreDomain.Ore
+    open EveOnline.OreDomain.Records
 
     open Microsoft.FSharp.Reflection
 
@@ -15,6 +17,8 @@ module Collections =
     | Hek     = 30002053
     | Rens    = 30002510
     
+    // Using a union case here to enable functions to operate on all types
+    // of ore, ice and refined materials
     type Material = 
     | Mineral    of Mineral
     | IceProduct of IceProduct
@@ -24,56 +28,58 @@ module Collections =
     type OrderType = 
     | BuyOrder
     | SellOrder
-    
-    let MineralList = 
-        [
-            for m in FSharpType.GetUnionCases typeof<Mineral> do
-                yield FSharpValue.MakeUnion (m, [| |]) |> unbox |> Mineral
-        ]
 
-    let IceProductList = 
-        [
-            for p in FSharpType.GetUnionCases typeof<IceProduct> do
-                yield FSharpValue.MakeUnion (p, [| |]) |> unbox |> IceProduct
-        ]
+    // hidden helper functionality
+    module internal internalModule = 
+        let OreUnionCases = FSharpType.GetUnionCases typeof<OreType>
+        let makeOreType x = FSharpValue.MakeUnion (x, [| |]) |> unbox<OreType>
+        let makeOreMaterial x = makeOreType x |> Material.OreType
 
-    let IceList = 
-        [
-            for i in FSharpType.GetUnionCases typeof<IceType> do
-                yield FSharpValue.MakeUnion (i, [| |]) |> unbox |> IceType
-        ]
+        let IceUnionCases = FSharpType.GetUnionCases typeof<IceType>
+        let makeIceType x = FSharpValue.MakeUnion (x, [| |]) |> unbox<IceType>
+        let makeIceMaterial x = makeIceType x |> Material.IceType
+
+        let IceProductUnionCases = FSharpType.GetUnionCases typeof<IceProduct>
+        let makeIceProductType x = FSharpValue.MakeUnion (x, [| |]) |> unbox<IceProduct>
+        let makeIceProductMaterial x = makeIceProductType x |> Material.IceProduct
+
+        let MineralUnionCases = FSharpType.GetUnionCases typeof<Mineral>
+        let makeMineralType x = FSharpValue.MakeUnion (x, [| |]) |> unbox<Mineral>
+        let makeMineralMaterial x = makeMineralType x |> Material.Mineral
+
+    open internalModule
+
+    let OreTypeList = [ for x in OreUnionCases do yield makeOreType x ]
+    let OreList = [ for x in OreUnionCases do yield makeOreMaterial x ]       
             
-    let OreList = 
+    let MineralTypeList = [ for x in MineralUnionCases do yield makeMineralType x ]
+    let MineralList = [ for x in MineralUnionCases do yield makeMineralMaterial x ]
+        
+    let IceTypeList = [ for x in IceUnionCases do yield makeIceType x ]
+    let IceList = [ for x in IceUnionCases do yield makeIceMaterial x ]
+
+    let IceProductTypeList = [ for x in IceProductUnionCases do yield makeIceProductType x ]
+    let IceProductList = [ for x in IceProductUnionCases do yield makeIceProductMaterial x ] 
+
+    let Materials = OreList @ MineralList @ IceList @ IceProductList
+        
+    let OreNameList = 
+        let buildTuple (ore) (compressed) = 
+            fun oreRarity -> (OreData ore oreRarity compressed).Name.Value
+            |> fun getName -> (getName Common, getName Uncommon, getName Rare)
+
         [
-            for o in FSharpType.GetUnionCases typeof<OreType> do
-                yield FSharpValue.MakeUnion (o, [| |]) |> unbox |> OreType
+            for ore in OreTypeList do
+                for compressed in [ IsCompressed; IsNotCompressed; ] do                    
+                    yield buildTuple ore compressed
         ]
         
-    type oreDataFunc = (OreType -> OreRarity -> EveOnline.OreDomain.Records.OreData)
-    let OreDataList = 
-        let oreTypes = FSharpType.GetUnionCases typeof<EveOnline.OreDomain.Types.OreType>
-        let comp x y = OreData x y EveOnline.ProductDomain.Types.Compressed.IsCompressed
-        let ncomp x y = OreData x y EveOnline.ProductDomain.Types.Compressed.IsNotCompressed        
-
-        let tuple (ore) (func:oreDataFunc) = 
-            let x = FSharpValue.MakeUnion (ore, [| |]) |> unbox             
-            ( (func x Common).Name.Value, (func x Uncommon).Name.Value, (func x Rare).Name.Value )
-
-        [
-            for ore in oreTypes do
-                yield tuple ore comp
-                yield tuple ore ncomp
-        ]
-
-
-    open EveOnline.ProductDomain.Types
-    open EveOnline.OreDomain.Ore
     let OreDataMap = 
         [
-            for oreType in FSharpType.GetUnionCases typeof<EveOnline.OreDomain.Types.OreType> do
-                for common in [ Common; Uncommon; Rare ] do
+            for ore in OreTypeList do
+                for rarity in [ Common; Uncommon; Rare ] do
                     for compressed in [ IsCompressed; IsNotCompressed ] do
-                        let ore = FSharpValue.MakeUnion (oreType, [| |]) |> unbox
-                        yield (RawOreName ore).Value, (ore, common, compressed)
+                        yield (RawOreName ore).Value, (ore, rarity, compressed)
         ]
         |> Map.ofList
+            
