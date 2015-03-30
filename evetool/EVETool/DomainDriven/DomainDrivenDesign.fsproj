@@ -108,6 +108,7 @@
     <Compile Include="Interop.fs" />
     <Content Include="packages.config" />
     <Content Include="app.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Data">
