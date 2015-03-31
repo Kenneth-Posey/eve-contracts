@@ -44,17 +44,12 @@ namespace Panhandler.CalculatorTab
                 box.SelectedIndexChanged += materialCombobox_SelectedIndexChanged;
             }
 
-            RawOre = Data.Ore.Names.ToList();
-            RawIce = Data.Ice.Names.ToList();
-            IceProducts = Data.IceProduct.Names.ToList();
-            Minerals = Data.Mineral.Names.ToList();
-
-            oreCombobox.Items.AddRange(RawOre.ToArray<object>());
-            compOreCombobox.Items.AddRange(RawOre.ToArray<object>());
-            iceCombobox.Items.AddRange(RawIce.ToArray<object>());
-            compIceCombobox.Items.AddRange(RawIce.ToArray<object>());
-            mineralsCombobox.Items.AddRange(Minerals.ToArray<object>());
-            iceProductCombobox.Items.AddRange(IceProducts.ToArray<object>());
+            oreCombobox.Items.AddRange(Data.Ore.Names.ToArray<object>());
+            compOreCombobox.Items.AddRange(Data.Ore.Names.ToArray<object>());
+            iceCombobox.Items.AddRange(Data.Ice.Names.ToArray<object>());
+            compIceCombobox.Items.AddRange(Data.Ice.Names.ToArray<object>());
+            mineralsCombobox.Items.AddRange(Data.Mineral.Names.ToArray<object>());
+            iceProductCombobox.Items.AddRange(Data.IceProduct.Names.ToArray<object>());
 
             inventory.SelectionMode = SelectionMode.MultiExtended;
             
@@ -107,8 +102,8 @@ namespace Panhandler.CalculatorTab
                 var isMineral = Minerals.Contains(name);
 
                 // skips unknown items in the list
-                if ((isOre || isIce || isIceProduct || isMineral) == false)
-                    continue;
+                var isKnown = isOre || isIce || isIceProduct || isMineral;
+                if (isKnown == false) continue;
 
                 switch (box.Name)
                 {
