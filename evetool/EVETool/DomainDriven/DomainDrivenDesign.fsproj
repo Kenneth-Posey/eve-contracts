@@ -105,6 +105,7 @@
     <Compile Include="Market\Market.Records.fs" />
     <Compile Include="Market\Market.Parser.fs" />
     <Compile Include="Market\Market.fs" />
+    <Compile Include="DataCache.fs" />
     <Compile Include="Interop.fs" />
     <Content Include="packages.config" />
     <Content Include="app.config" />
