@@ -22,40 +22,30 @@ module Market =
 
     let TypeId x = 
         match x with
+        | OreType x     -> OreTypeId x
+        | IceType x     -> IceTypeId x
         | Mineral x     -> MineralTypeid x
         | IceProduct x  -> IceProductTypeid x
-        | IceType x     -> IceTypeId x
-        | OreType x     -> OreTypeId x
-
-    let StringId x = 
-        string (TypeId x).Value
-
-
+        
     // functions for finding the name of a material type
-    let IceName x = RawIceName (x)
-    let OreName x = RawOreName (x)
-
     let Name x = 
         match x with
-        | IceType x -> IceName x
-        | OreType x -> OreName x
+        | OreType x -> RawOreName x
+        | IceType x -> RawIceName x
         | Mineral x    -> MineralName x
         | IceProduct x -> IceProductName x
-
-
+        
     // load a material's data
     let loadItem (loc:TradeHub) (item:Material)= 
-        StringId item
+        string (TypeId item).Value
         |> baseUrl loc
         |> loadUrl
         |> parse 
 
     // load a list of material's data
     let loadItems (loc:TradeHub) (items:Material list) = 
-        items
-        |> List.map (fun x -> loadItem loc x)
-
-
+        items |> List.map (fun x -> loadItem loc x)
+        
     // loads ice product prices based on the highest buy offer or lowest sell offer in system
     let loadIceProductPrices (orderType:OrderType) (loc:TradeHub) :IceProductPrices = 
         let loadItem (item:Material) = Price <|
@@ -153,13 +143,6 @@ module Market =
         | OreType x -> OreYield <| RawOreYield x
         | IceProduct _ -> IceYield <| BaseIceYield
         | Mineral _ -> OreYield <| BaseOreYield
-    
-
-    // main refined product price function
-    let GetPrice material order loc :RefinePrice = 
-        match material with
-        | RefinedProduct.Mineral     -> MineralPrices    <| loadMineralPrices order loc
-        | RefinedProduct.IceProduct  -> IceProductPrices <| loadIceProductPrices order loc
 
 
     // main refine function
@@ -169,20 +152,11 @@ module Market =
         | IceYield x -> refineIceValue x price
         
 
-    // If I have the volume of 100 units and the value of 100 units, I can work out
-    // the value per m^3 by dividing the value by the volume
-    let GetVolumePrice (vol:Volume) price com mat :Price =         
-        GetYield mat
-        |> fun _yield -> GetRefineValue _yield price
-        |> fun refine -> refine, GetVolume com mat
-        |> fun (refine, unitVolume) -> refine.Value / unitVolume.Value * vol.Value
-        |> Price
-        
-
     // Ported from Market.Functions.CalculateEstimate in OOP code
     let CalculateEstimate (rawList:string list) =
-        let mineralPrices = MineralPrices <| loadMineralPrices OrderType.SellOrder TradeHub.Jita 
-
+        // MineralPrices is a member of a union case here, so this is 
+        // essentially upcasting MineralPrices to RefinePrice
+        let mineralPrices = RefinePrice.MineralPrices <| loadMineralPrices SellOrder Jita 
         let calcValue (item:string * int) = 
             let oreType, oreRarity, _ = OreDataMap.Item (fst item)                    
             let refineValue = GetRefineValue (GetYield (OreType oreType)) mineralPrices
@@ -191,7 +165,7 @@ module Market =
                 | Uncommon -> refineValue.Value * 1.05f
                 | Rare -> refineValue.Value * 1.1f
             |> fun x -> double x * (double (snd item))
-            
+                    
         let SumItems (items:(string * int) list) =
             let rec SumRec (items:(string * int) list) (total:double) = 
                 match items.Length with 
@@ -210,7 +184,7 @@ module Market =
         |> SumItems 
 
         
-    // this should be cleaned up later 3-30-2015
+    // this should be cleaned up later. 3-30-2015
     open EveOnline.DataDomain.Collections
     type MaterialNameId = {
         Name : string
@@ -225,7 +199,7 @@ module Market =
                 }
         ]
 
-    // this should be cleaned up later 3-30-2015
+    // this should be cleaned up later. 3-30-2015
     let internal loadPrice mat = (loadItem Jita mat).prices
     type MaterialData = {
         Name  : string
@@ -252,3 +226,21 @@ module Market =
                     Value = (loadPrice mat).lowSell
                 }
         ]
+
+    // this is code that I want to keep, but I'm not going to comment
+    // it to avoid commented code rot
+    module internal unusedCode = 
+        // If I have the volume of 100 units and the value of 100 units, I can work out
+        // the value per m^3 by dividing the value by the volume
+        let GetVolumePrice (vol:Volume) price com mat :Price =         
+            GetYield mat
+            |> fun _yield -> GetRefineValue _yield price
+            |> fun refine -> refine, GetVolume com mat
+            |> fun (refine, unitVolume) -> refine.Value / unitVolume.Value * vol.Value
+            |> Price
+        
+        // main refined product price function
+        let GetPrice material order loc :RefinePrice = 
+            match material with
+            | RefinedProduct.Mineral     -> MineralPrices    <| loadMineralPrices order loc
+            | RefinedProduct.IceProduct  -> IceProductPrices <| loadIceProductPrices order loc
