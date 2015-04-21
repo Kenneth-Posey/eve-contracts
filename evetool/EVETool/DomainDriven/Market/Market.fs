@@ -187,33 +187,33 @@ module Market =
     // this should be cleaned up later. 3-30-2015
     open EveOnline.DataDomain.Collections
     type MaterialNameId = {
-        Name : string
-        Id : int    
+        Name : Name
+        Id : TypeId 
     }
     let MaterialNameIdList = 
         [
             for mat in Materials do
                 yield {
-                    Name = (Name mat).Value
-                    Id   = (TypeId mat).Value
+                    Name = Name mat
+                    Id   = TypeId mat
                 }
         ]
 
     // this should be cleaned up later. 3-30-2015
     let internal loadPrice mat = (loadItem Jita mat).prices
     type MaterialData = {
-        Name  : string
-        Id    : int
-        Value : single
+        Name  : Name
+        Id    : TypeId
+        Value : Price
     }
 
     let LoadRefinedMaterialPricesHighBuy () = 
         [
             for mat in IceProductList @ MineralList do
                 yield {
-                    Name = (Name mat).Value
-                    Id = (TypeId mat).Value
-                    Value = (loadPrice mat).highBuy
+                    Name = Name mat
+                    Id = TypeId mat
+                    Value = Price (loadPrice mat).highBuy
                 }
         ]        
 
@@ -221,9 +221,9 @@ module Market =
         [
             for mat in IceProductList @ MineralList do
                 yield {
-                    Name = (Name mat).Value
-                    Id = (TypeId mat).Value
-                    Value = (loadPrice mat).lowSell
+                    Name = Name mat
+                    Id = TypeId mat
+                    Value = Price (loadPrice mat).lowSell
                 }
         ]
 

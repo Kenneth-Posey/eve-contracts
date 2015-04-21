@@ -45,7 +45,7 @@ namespace Panhandler.MarketTab
 
             var allItems = await loadItems();
             foreach (var pair in priceLabels)
-                pair.Item1.Text = allItems.Find(x => x.Id == LoadIdByName(pair.Item2)).Value.ToString();
+                pair.Item1.Text = allItems.Find(x => x.Id.Value == LoadIdByName(pair.Item2)).Value.ToString();
 
             loadingLabel.Text = "";
         }
@@ -53,7 +53,7 @@ namespace Panhandler.MarketTab
         private static int LoadIdByName(string name)
         {
             var allItems = Market.MaterialNameIdList.ToList();
-            return allItems.Find(x => x.Name == name).Id;
+            return allItems.Find(x => x.Name.Value == name).Id.Value;
         }
 
         private async Task<List<Market.MaterialData>> loadItems()

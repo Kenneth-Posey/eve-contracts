@@ -70,6 +70,7 @@
     <Compile Include="Controls\CalculatorTab\CalculatorContainer.Designer.cs">
       <DependentUpon>CalculatorContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExampleClass.cs" />
     <Compile Include="Forms\MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>

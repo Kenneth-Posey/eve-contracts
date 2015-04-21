@@ -111,6 +111,7 @@
     <Content Include="packages.config" />
     <Content Include="app.config" />
     <None Include="README.md" />
+    <Compile Include="ExampleDU.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Data">
