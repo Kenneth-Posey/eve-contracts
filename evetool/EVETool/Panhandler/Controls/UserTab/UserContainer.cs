@@ -17,13 +17,13 @@ namespace Panhandler.UserTab
         {
             InitializeComponent();
 
-            userListbox.Text = "";
-            userListbox.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
+            userList.Text = "";
+            userList.SelectedIndexChanged += memberListbox_SelectedIndexChanged;
         }
 
         private void SortPlayers()
         {
-            var userItems = userListbox.Items.Cast<string>();
+            var userItems = userList.Items.Cast<string>();
             var sortedUsers = userItems
                                 .Select(x => new User(x).userName)
                                 .ToList();
@@ -35,10 +35,12 @@ namespace Panhandler.UserTab
                                                         .Where(y => y.Contains(x))
                                                         .FirstOrDefault().Trim()))
                                 .Select(x => x.ToString())
-                                .ToArray();
+                                .ToList();
 
-            userListbox.Items.Clear();
-            userListbox.Items.AddRange(sortedList);
+
+
+            userList.Items.Clear();
+            userList.Items.AddRange(sortedList);
         }
 
         private async void addPerson_Click(object sender, EventArgs e)
@@ -58,9 +60,9 @@ namespace Panhandler.UserTab
         
         protected void memberListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (userListbox.SelectedItem == null || userListbox.SelectedIndex < 0) return;
+            if (userList.SelectedItems == null || userList.SelectedIndices < 0) return;
 
-            var currentUser = new User(userListbox.SelectedItem.ToString());
+            var currentUser = new User(userList.SelectedItem.ToString());
 
             userNameBox.Text = currentUser.userName;
             playerMultiplierBox.Text = currentUser.multiplier.ToString();
@@ -69,7 +71,7 @@ namespace Panhandler.UserTab
 
         private void LoadUserStringIntoList(string userList)
         {
-            userListbox.Items.Clear();
+            userList.Items.Clear();
 
             foreach (var user in userList.Split(new char[] { '\n' }))
             {
@@ -77,7 +79,7 @@ namespace Panhandler.UserTab
                 var player = String.Format("{0,-35}|{1,-5}|{2}", new string[]{
                     currentUser.userName, currentUser.multiplier.ToString(), currentUser.userId
                 });
-                userListbox.Items.Add(player);
+                userList.Items.Add(player);
             }
 
             SortPlayers();

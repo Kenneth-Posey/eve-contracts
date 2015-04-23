@@ -32,7 +32,7 @@
             this.userCodeLabel = new System.Windows.Forms.Label();
             this.userCodeBox = new System.Windows.Forms.TextBox();
             this.updateUserButton = new System.Windows.Forms.Button();
-            this.userListbox = new System.Windows.Forms.ListBox();
+            this.userList = new System.Windows.Forms.ListView();
             this.removeUserButton = new System.Windows.Forms.Button();
             this.userMultiplierLabel = new System.Windows.Forms.Label();
             this.playerMultiplierBox = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             this.userPanel.Controls.Add(this.userCodeLabel);
             this.userPanel.Controls.Add(this.userCodeBox);
             this.userPanel.Controls.Add(this.updateUserButton);
-            this.userPanel.Controls.Add(this.userListbox);
+            this.userPanel.Controls.Add(this.userList);
             this.userPanel.Controls.Add(this.removeUserButton);
             this.userPanel.Controls.Add(this.userMultiplierLabel);
             this.userPanel.Controls.Add(this.playerMultiplierBox);
@@ -76,13 +76,13 @@
             this.userCodeBox.Size = new System.Drawing.Size(219, 20);
             this.userCodeBox.TabIndex = 9;
             // 
-            // userListbox
+            // userList
             // 
-            this.userListbox.FormattingEnabled = true;
-            this.userListbox.Location = new System.Drawing.Point(11, 102);
-            this.userListbox.Name = "userListbox";
-            this.userListbox.Size = new System.Drawing.Size(438, 238);
-            this.userListbox.TabIndex = 7;
+            this.userList.FormattingEnabled = true;
+            this.userList.Location = new System.Drawing.Point(11, 102);
+            this.userList.Name = "userList";
+            this.userList.Size = new System.Drawing.Size(438, 238);
+            this.userList.TabIndex = 7;
 
             // 
             // addUserButton
@@ -165,7 +165,7 @@
         private System.Windows.Forms.Label userCodeLabel;
         private System.Windows.Forms.TextBox userCodeBox;
         private System.Windows.Forms.Button updateUserButton;
-        private System.Windows.Forms.ListBox userListbox;
+        private System.Windows.Forms.ListView userList;
         private System.Windows.Forms.Button removeUserButton;
         private System.Windows.Forms.Label userMultiplierLabel;
         private System.Windows.Forms.TextBox playerMultiplierBox;
