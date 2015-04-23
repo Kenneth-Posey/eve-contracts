@@ -1,6 +1,0 @@
-C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\DomainDriven.dll
-C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\DomainDriven.pdb
-C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\FSharp.Core.dll
-C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\bin\Debug\FSharp.Core.xml
-C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\obj\Debug\DomainDriven.dll
-C:\Users\kposey\Documents\GitHub\LearningFsharp\FsharpTutorial\DomainDriven\obj\Debug\DomainDriven.pdb
