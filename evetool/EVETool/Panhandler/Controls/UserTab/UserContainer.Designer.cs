@@ -78,7 +78,6 @@
             // 
             // userList
             // 
-            this.userList.FormattingEnabled = true;
             this.userList.Location = new System.Drawing.Point(11, 102);
             this.userList.Name = "userList";
             this.userList.Size = new System.Drawing.Size(438, 238);
