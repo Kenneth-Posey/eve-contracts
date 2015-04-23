@@ -39,3 +39,11 @@ C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDrive
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDriven.dll
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDriven.pdb
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\obj\Debug\DomainDrivenDesign.fsprojResolveAssemblyReference.cache
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\EntityFramework.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\System.Data.SQLite.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\EntityFramework.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\kposey\Documents\GitHub\eve-contracts\evetool\EVETool\DomainDriven\bin\Debug\System.Data.SQLite.xml
