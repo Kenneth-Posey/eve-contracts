@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panhandler", "Panhandler\Panhandler.csproj", "{670431A0-2BE3-4C4E-803B-AE8C798A3E6B}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E6EECA
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fun-eve", "..\..\..\standalone-projects\fun-eve\fun-eve.fsproj", "{D0BAA48E-7842-457D-8CB4-B4F2069CBC63}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunEve", "..\..\..\standalone-projects\fun-eve\FunEve.fsproj", "{D0BAA48E-7842-457D-8CB4-B4F2069CBC63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

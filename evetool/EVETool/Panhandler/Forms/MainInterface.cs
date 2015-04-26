@@ -19,8 +19,11 @@ namespace Panhandler
         public MainInterface()
         {
             InitializeComponent();
-
             
+            // We sometimes want to share properties from one control to another
+            // so they can manipulate each other
+            this.calculator.MarketPriceControls = this.market.PriceControls;
+
         }
 
         // Tab control flicker nerf

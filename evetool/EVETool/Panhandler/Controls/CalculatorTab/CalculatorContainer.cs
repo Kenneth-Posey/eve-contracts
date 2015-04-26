@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.FSharp.Collections;
 using System.Globalization;
-using EveOnline.Interop;
+using FunEve.Interop;
+using FunEve.MarketDomain;
 
 namespace Panhandler.CalculatorTab
 {
@@ -20,6 +21,8 @@ namespace Panhandler.CalculatorTab
         List<string> RawIce { get; set; }
         List<string> Minerals { get; set; }
         List<string> IceProducts { get; set; }
+
+        public List<Tuple<Label, string>> MarketPriceControls { get; set; }
 
         public CalculatorContainer()
         {
@@ -67,8 +70,39 @@ namespace Panhandler.CalculatorTab
             calculateButton.Click += calculate_Click;
             removeItemButton.Click += removeItem_Click;
             addItemButton.Click += addItem_Click;
+            refreshPriceButton.Click += refresh_Click;
+
+            this.RawOre = FunEve.Interop.Data.Ore.Names.ToList();
+            this.RawIce = FunEve.Interop.Data.Ice.Names.ToList();
+            this.Minerals = FunEve.Interop.Data.Mineral.Names.ToList();
+            this.IceProducts = FunEve.Interop.Data.IceProduct.Names.ToList();
+
         }
-        
+
+        private async void refresh_Click(object sender, EventArgs e)
+        {
+            loadingLabel.Text = "Loading...";
+            loadingLabel.Refresh();
+
+            var priceLabels = this.MarketPriceControls;
+
+            var allItems = await loadItems();
+            foreach (var pair in priceLabels)
+                pair.Item1.Text = allItems.Find(x => x.Id.Value == LoadIdByName(pair.Item2)).Value.Value.ToString();
+
+            loadingLabel.Text = "";
+        }
+
+        private static int LoadIdByName(string name)
+        {
+            var allItems = Market.MaterialNameIdList.ToList();
+            return allItems.Find(x => x.Name.Value == name).Id.Value;
+        }
+
+        private async Task<List<Market.MaterialData>> loadItems()
+        {
+            return Market.LoadRefinedMaterialPricesLowSell().ToList();
+        }
         protected void materialCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (oreCombobox.SelectedIndex >= 1 || compOreCombobox.SelectedIndex >= 1)
@@ -125,7 +159,7 @@ namespace Panhandler.CalculatorTab
             string tName;
             if (isOre)
             {
-                var ores = EveOnline.Interop.Data.Ore.OreNames.ToList();
+                var ores = FunEve.Interop.Data.Ore.OreNames.ToList();
                 var ore = ores.Find(x => x.Item1 == name);
 
                 if (isCommonOre.Checked)
@@ -162,7 +196,7 @@ namespace Panhandler.CalculatorTab
         private static async Task<double> CalculateEstimate(List<string> pSplitLines)
         {
             var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
-            return EveOnline.MarketDomain.Market.CalculateEstimate(tSplitLines);
+            return FunEve.MarketDomain.Market.CalculateEstimate(tSplitLines);
         }
 
         private async void calculate_Click(object sender, EventArgs e)
