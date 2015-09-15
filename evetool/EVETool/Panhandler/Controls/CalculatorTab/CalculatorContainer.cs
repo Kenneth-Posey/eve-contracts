@@ -196,7 +196,7 @@ namespace Panhandler.CalculatorTab
         private static async Task<double> CalculateEstimate(List<string> pSplitLines)
         {
             var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
-            return FunEve.MarketDomain.Market.CalculateEstimate(tSplitLines);
+            return FunEve.MarketDomain.Market.CalculateEstimateOre(tSplitLines);
         }
 
         private async void calculate_Click(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using Panhandler.CalculatorTab;
 using Panhandler.MarketTab;
 using Panhandler.Objects;
 using Panhandler.UserTab;
+using Panhandler.RefineTab;
 
 namespace Panhandler
 {
@@ -37,17 +38,24 @@ namespace Panhandler
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainInterface));
+
+            this.tabContainer = new System.Windows.Forms.TabControl();
+
             this.calculator = new Panhandler.CalculatorTab.CalculatorContainer();
             this.market = new Panhandler.MarketTab.MarketContainer();
             this.users = new Panhandler.UserTab.UserContainer();
-            this.tabContainer = new System.Windows.Forms.TabControl();
+            this.refining = new Panhandler.RefineTab.RefineContainer();
+
             this.calculatorTabPage = new System.Windows.Forms.TabPage();
             this.userTabPage = new System.Windows.Forms.TabPage();
             this.marketTabPage = new System.Windows.Forms.TabPage();
+            this.refineTabPage = new System.Windows.Forms.TabPage();
+
             this.tabContainer.SuspendLayout();
             this.calculatorTabPage.SuspendLayout();
             this.userTabPage.SuspendLayout();
             this.marketTabPage.SuspendLayout();
+            this.refineTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // calculator
@@ -73,13 +81,14 @@ namespace Panhandler
             this.users.Size = new System.Drawing.Size(434, 337);
             this.users.TabIndex = 132;
             // 
-            // tabContainer
+            // tab container
             // 
             this.tabContainer.Controls.Add(this.calculatorTabPage);
             this.tabContainer.Controls.Add(this.userTabPage);
             this.tabContainer.Controls.Add(this.marketTabPage);
+            this.tabContainer.Controls.Add(this.refineTabPage);
             this.tabContainer.Location = new System.Drawing.Point(12, 12);
-            this.tabContainer.Name = "tabContainer";
+            this.tabContainer.Name = "Tab Container";
             this.tabContainer.SelectedIndex = 0;
             this.tabContainer.Size = new System.Drawing.Size(454, 407);
             this.tabContainer.TabIndex = 17;
@@ -90,7 +99,7 @@ namespace Panhandler
             this.calculatorTabPage.Location = new System.Drawing.Point(4, 22);
             this.calculatorTabPage.Name = "calculatorTabPage";
             this.calculatorTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.calculatorTabPage.Size = new System.Drawing.Size(491, 381);
+            this.calculatorTabPage.Size = new System.Drawing.Size(446, 381);
             this.calculatorTabPage.TabIndex = 0;
             this.calculatorTabPage.Text = "Calculator";
             this.calculatorTabPage.UseVisualStyleBackColor = true;
@@ -117,6 +126,17 @@ namespace Panhandler
             this.marketTabPage.Text = "Market";
             this.marketTabPage.UseVisualStyleBackColor = true;
             // 
+            // refineTabPage
+            // 
+            this.refineTabPage.Controls.Add(this.refining);
+            this.refineTabPage.Location = new System.Drawing.Point(4, 22);
+            this.refineTabPage.Name = "refineTabPage";
+            this.refineTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.refineTabPage.Size = new System.Drawing.Size(446, 381);
+            this.refineTabPage.TabIndex = 3;
+            this.refineTabPage.Text = "Refining";
+            this.refineTabPage.UseVisualStyleBackColor = true;
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,6 +146,7 @@ namespace Panhandler
             this.Name = "MainInterface";
             this.Text = "Custom Value Calculator";
             this.tabContainer.ResumeLayout(false);
+            this.refineTabPage.ResumeLayout(false);
             this.calculatorTabPage.ResumeLayout(false);
             this.userTabPage.ResumeLayout(false);
             this.marketTabPage.ResumeLayout(false);
@@ -136,6 +157,8 @@ namespace Panhandler
         #endregion
 
         private System.Windows.Forms.TabControl tabContainer;
+
+        private System.Windows.Forms.TabPage refineTabPage;
         private System.Windows.Forms.TabPage calculatorTabPage;
         private System.Windows.Forms.TabPage userTabPage;
         private System.Windows.Forms.TabPage marketTabPage;
@@ -143,6 +166,7 @@ namespace Panhandler
         private CalculatorContainer calculator;
         private MarketContainer market;
         private UserContainer users;
+        private RefineContainer refining;
     }
 }
 
