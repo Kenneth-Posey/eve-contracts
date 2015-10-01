@@ -32,6 +32,7 @@
             this.pricesTabControl = new System.Windows.Forms.TabControl();
             this.mineralPriceTab = new System.Windows.Forms.TabPage();
             this.mineralValuePanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.loadingLabel = new System.Windows.Forms.Label();
             this.morphiteValue = new System.Windows.Forms.Label();
             this.megacyteValue = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.hydrogenIsotopeValue = new System.Windows.Forms.Label();
             this.heavyWaterValue = new System.Windows.Forms.Label();
             this.ozoneValue = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.marketPricePanel.SuspendLayout();
             this.pricesTabControl.SuspendLayout();
             this.mineralPriceTab.SuspendLayout();
@@ -127,6 +127,16 @@
             this.mineralValuePanel.Name = "mineralValuePanel";
             this.mineralValuePanel.Size = new System.Drawing.Size(224, 292);
             this.mineralValuePanel.TabIndex = 16;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(17, 233);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 136;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // loadingLabel
             // 
@@ -438,15 +448,6 @@
             this.ozoneValue.Size = new System.Drawing.Size(55, 13);
             this.ozoneValue.TabIndex = 126;
             this.ozoneValue.Text = "10,000.00";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(17, 233);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 136;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // MarketContainer
             // 

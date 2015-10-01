@@ -56,7 +56,6 @@
             this.oreCombobox = new System.Windows.Forms.ComboBox();
             this.oreRadioButtonPanel.SuspendLayout();
             this.SuspendLayout();
-
             // 
             // oreRadioButtonPanel
             // 
@@ -67,7 +66,6 @@
             this.oreRadioButtonPanel.Name = "oreRadioButtonPanel";
             this.oreRadioButtonPanel.Size = new System.Drawing.Size(145, 26);
             this.oreRadioButtonPanel.TabIndex = 154;
-
             // 
             // isCommonOre
             // 
@@ -101,7 +99,6 @@
             this.isRareOre.TabStop = true;
             this.isRareOre.Text = "+10%";
             this.isRareOre.UseVisualStyleBackColor = true;
-
             // 
             // loadingLabel
             // 
@@ -111,7 +108,6 @@
             this.loadingLabel.Size = new System.Drawing.Size(54, 13);
             this.loadingLabel.TabIndex = 153;
             this.loadingLabel.Text = "Loading...";
-
             // 
             // refreshPriceButton
             // 
@@ -121,7 +117,7 @@
             this.refreshPriceButton.TabIndex = 152;
             this.refreshPriceButton.Text = "Refresh";
             this.refreshPriceButton.UseVisualStyleBackColor = true;
-
+            this.refreshPriceButton.Click += new System.EventHandler(this.refreshPriceButton_Click);
             // 
             // totalLabel
             // 
@@ -140,25 +136,24 @@
             this.totalBox.Name = "totalBox";
             this.totalBox.Size = new System.Drawing.Size(189, 20);
             this.totalBox.TabIndex = 150;
-
             // 
             // qtyLabel
             // 
             this.qtyLabel.AutoSize = true;
             this.qtyLabel.Location = new System.Drawing.Point(160, 106);
             this.qtyLabel.Name = "qtyLabel";
-            this.qtyLabel.Size = new System.Drawing.Size(43, 13);
+            this.qtyLabel.Size = new System.Drawing.Size(46, 13);
             this.qtyLabel.TabIndex = 149;
             this.qtyLabel.Text = "Quantity";
-
             // 
-            // qtyTextbox
+            // calculateButton
             // 
-            this.qtyTextbox.Location = new System.Drawing.Point(209, 103);
-            this.qtyTextbox.Name = "qtyTextbox";
-            this.qtyTextbox.Size = new System.Drawing.Size(101, 20);
-            this.qtyTextbox.TabIndex = 144;
-
+            this.calculateButton.Location = new System.Drawing.Point(170, 249);
+            this.calculateButton.Name = "calculateButton";
+            this.calculateButton.Size = new System.Drawing.Size(75, 23);
+            this.calculateButton.TabIndex = 148;
+            this.calculateButton.Text = "Calculate";
+            this.calculateButton.UseVisualStyleBackColor = true;
             // 
             // inventory
             // 
@@ -167,16 +162,6 @@
             this.inventory.Name = "inventory";
             this.inventory.Size = new System.Drawing.Size(297, 108);
             this.inventory.TabIndex = 147;
-
-            // 
-            // addItemButton
-            // 
-            this.addItemButton.Location = new System.Drawing.Point(332, 102);
-            this.addItemButton.Name = "addItemButton";
-            this.addItemButton.Size = new System.Drawing.Size(75, 23);
-            this.addItemButton.TabIndex = 145;
-            this.addItemButton.Text = "Add";
-            this.addItemButton.UseVisualStyleBackColor = true;
             // 
             // removeItemButton
             // 
@@ -187,15 +172,21 @@
             this.removeItemButton.Text = "Remove";
             this.removeItemButton.UseVisualStyleBackColor = true;
             // 
-            // calculateButton
+            // addItemButton
             // 
-            this.calculateButton.Location = new System.Drawing.Point(170, 249);
-            this.calculateButton.Name = "calculateButton";
-            this.calculateButton.Size = new System.Drawing.Size(75, 23);
-            this.calculateButton.TabIndex = 148;
-            this.calculateButton.Text = "Calculate";
-            this.calculateButton.UseVisualStyleBackColor = true;
-
+            this.addItemButton.Location = new System.Drawing.Point(332, 102);
+            this.addItemButton.Name = "addItemButton";
+            this.addItemButton.Size = new System.Drawing.Size(75, 23);
+            this.addItemButton.TabIndex = 145;
+            this.addItemButton.Text = "Add";
+            this.addItemButton.UseVisualStyleBackColor = true;
+            // 
+            // qtyTextbox
+            // 
+            this.qtyTextbox.Location = new System.Drawing.Point(209, 103);
+            this.qtyTextbox.Name = "qtyTextbox";
+            this.qtyTextbox.Size = new System.Drawing.Size(101, 20);
+            this.qtyTextbox.TabIndex = 144;
             // 
             // iceProductLabel
             // 
@@ -213,7 +204,6 @@
             this.iceProductCombobox.Name = "iceProductCombobox";
             this.iceProductCombobox.Size = new System.Drawing.Size(121, 21);
             this.iceProductCombobox.TabIndex = 142;
-
             // 
             // mineralLabel
             // 
@@ -231,7 +221,6 @@
             this.mineralsCombobox.Name = "mineralsCombobox";
             this.mineralsCombobox.Size = new System.Drawing.Size(121, 21);
             this.mineralsCombobox.TabIndex = 140;
-
             // 
             // compIceLabel
             // 
@@ -249,7 +238,6 @@
             this.compIceCombobox.Name = "compIceCombobox";
             this.compIceCombobox.Size = new System.Drawing.Size(121, 21);
             this.compIceCombobox.TabIndex = 138;
-
             // 
             // iceLabel
             // 
@@ -267,7 +255,6 @@
             this.iceCombobox.Name = "iceCombobox";
             this.iceCombobox.Size = new System.Drawing.Size(121, 21);
             this.iceCombobox.TabIndex = 136;
-
             // 
             // compOreLabel
             // 
@@ -285,7 +272,6 @@
             this.compOreCombobox.Name = "compOreCombobox";
             this.compOreCombobox.Size = new System.Drawing.Size(121, 21);
             this.compOreCombobox.TabIndex = 134;
-
             // 
             // oreLabel
             // 
@@ -305,9 +291,8 @@
             this.oreCombobox.Name = "oreCombobox";
             this.oreCombobox.Size = new System.Drawing.Size(121, 21);
             this.oreCombobox.TabIndex = 132;
-
             // 
-            // ContainerControl
+            // CalculatorContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -334,7 +319,7 @@
             this.Controls.Add(this.compOreCombobox);
             this.Controls.Add(this.oreLabel);
             this.Controls.Add(this.oreCombobox);
-            this.Name = "ContainerControl";
+            this.Name = "CalculatorContainer";
             this.Size = new System.Drawing.Size(435, 340);
             this.oreRadioButtonPanel.ResumeLayout(false);
             this.oreRadioButtonPanel.PerformLayout();

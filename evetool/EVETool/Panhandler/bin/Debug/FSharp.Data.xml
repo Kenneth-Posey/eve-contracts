@@ -943,7 +943,7 @@
 </member>
 <member name="F:FSharp.Data.TextConversions.DefaultMissingValues@">
 <summary>
- `NaN` `NA` `#N/A` `:` `-` `TBA` `TBD`
+ `NaN` `NA` `N/A` `#N/A` `:` `-` `TBA` `TBD`
 </summary>
 </member>
 <member name="P:FSharp.Data.TextConversions.DefaultNonCurrencyAdorners">
@@ -953,7 +953,7 @@
 </member>
 <member name="P:FSharp.Data.TextConversions.DefaultMissingValues">
 <summary>
- `NaN` `NA` `#N/A` `:` `-` `TBA` `TBD`
+ `NaN` `NA` `N/A` `#N/A` `:` `-` `TBA` `TBD`
 </summary>
 </member>
 <member name="P:FSharp.Data.TextConversions.DefaultCurrencyAdorners">
@@ -1634,6 +1634,11 @@
  Used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain 
 </summary>
 </member>
+<member name="M:FSharp.Data.HttpRequestHeaders.BasicAuth(System.String,System.String)">
+<summary>
+ Authentication header using Basic Auth encoding
+</summary>
+</member>
 <member name="M:FSharp.Data.HttpRequestHeaders.Authorization(System.String)">
 <summary>
  Authentication credentials for HTTP authentication
@@ -2172,7 +2177,17 @@
  Static helper methods called from the generated code for working with XML
 </summary>
 </member>
-<member name="M:FSharp.Data.Runtime.BaseTypes.HtmlDocument.GetObject(System.String)">
+<member name="M:FSharp.Data.Runtime.BaseTypes.HtmlDocument.GetTable(System.String)">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="M:FSharp.Data.Runtime.BaseTypes.HtmlDocument.GetList(System.String)">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="M:FSharp.Data.Runtime.BaseTypes.HtmlDocument.GetDefinitionList(System.String)">
 <summary>
  [omit]
 </summary>

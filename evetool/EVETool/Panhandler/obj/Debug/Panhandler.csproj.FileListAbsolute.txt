@@ -25,7 +25,6 @@ C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe.config
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.exe
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\Panhandler.pdb
-C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FunEve.dll
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.dll
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FunEve.pdb
 C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Data.pdb
@@ -36,3 +35,4 @@ C:\Users\KennethPosey\Documents\GitHub\eve-contracts\evetool\EVETool\Panhandler\
 C:\Users\kennethposey\Documents\Github\eve-contracts\evetool\EVETool\Panhandler\obj\Debug\Panhandler.RefineTab.RefineContainer.resources
 C:\Users\kennethposey\Documents\Github\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Core.dll
 C:\Users\kennethposey\Documents\Github\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FSharp.Core.xml
+C:\Users\kennethposey\Documents\Github\eve-contracts\evetool\EVETool\Panhandler\bin\Debug\FunEve.dll

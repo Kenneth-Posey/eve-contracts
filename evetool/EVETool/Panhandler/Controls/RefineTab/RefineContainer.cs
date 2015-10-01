@@ -19,7 +19,6 @@ namespace Panhandler.RefineTab
         public RefineContainer()
         {
             InitializeComponent();
-
         }
 
         private void cIceValueRefreshButton_Click(object sender, EventArgs e)
