@@ -79,7 +79,7 @@ namespace Panhandler.CalculatorTab
 
         }
 
-        private async void refresh_Click(object sender, EventArgs e)
+        protected async void refresh_Click(object sender, EventArgs e)
         {
             loadingLabel.Text = "Loading...";
             loadingLabel.Refresh();
@@ -212,5 +212,10 @@ namespace Panhandler.CalculatorTab
         }
 
         public TextBox defaultOreBox { get; set; }
+
+        private void refreshPriceButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
