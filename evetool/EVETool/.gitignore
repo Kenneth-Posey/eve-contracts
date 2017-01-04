@@ -82,6 +82,8 @@ tools/
 *.nupkg
 .fake/
 
+**.cache
+
 # misc junk files
 
 bin
@@ -90,6 +92,8 @@ obj
 bin/
 lib/
 obj/
+Debug
+Debug/
 
 # NuGet Packages
 *.nupkg
