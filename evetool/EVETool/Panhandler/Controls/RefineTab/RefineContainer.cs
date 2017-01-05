@@ -24,7 +24,7 @@ namespace Panhandler.RefineTab
         private void cIceValueRefreshButton_Click(object sender, EventArgs e)
         {
             var tList = ListModule.OfArray(new[] { "White Glaze\t1" });
-            cWhiteGlazeValue.Text = (Market.CalculateEstimateIce(tList) * 0.696).ToString();
+            cWhiteGlazeValue.Text = (FunEve.MarketDomain.Market.CalculateEstimateIce(tList) * 0.696).ToString();
         }
     }
 }

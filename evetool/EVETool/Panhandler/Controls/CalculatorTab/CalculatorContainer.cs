@@ -193,17 +193,39 @@ namespace Panhandler.CalculatorTab
                 inventory.Items.Add(item);
         }
 
-        private static async Task<double> CalculateEstimate(List<string> pSplitLines)
+        private async Task CalculateEstimate(List<string> pSplitLines)
         {
             var tSplitLines = ListModule.OfArray(pSplitLines.ToArray());
-            return FunEve.MarketDomain.Market.CalculateEstimateOre(tSplitLines);
+            var ices = new List<string>();
+            var ores = new List<string>();
+            var other = new List<string>();
+            var total = 0.0;
+
+            foreach(var name in tSplitLines)
+            {
+                var isOre = RawOre.Contains(name);
+                var isIce = RawIce.Contains(name);
+                var isIceProduct = IceProducts.Contains(name);
+                var isMineral = Minerals.Contains(name);
+
+                if (isOre)
+                    ores.Add(name);
+                else if (isIce)
+                    ices.Add(name);
+                else
+                    other.Add(name);
+            }
+
+            total += Market.CalculateEstimateIce(ListModule.OfArray(ices.ToArray()));
+            total += Market.CalculateEstimateOre(ListModule.OfArray(ores.ToArray()));
+
+            totalBox.Text = total.ToString("N2", CultureInfo.InvariantCulture);
         }
 
         private async void calculate_Click(object sender, EventArgs e)
         {
             var tItems = inventory.Items.OfType<string>().ToList();
-            var estimate = await CalculateEstimate(tItems);
-            totalBox.Text = estimate.ToString("N2", CultureInfo.InvariantCulture);
+            await CalculateEstimate(tItems);
         }
 
         private void totalLabel_Click(object sender, EventArgs e)
