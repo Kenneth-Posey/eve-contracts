@@ -1,0 +1,5 @@
+namespace WPFApp
+
+module controllers = 
+
+    ()

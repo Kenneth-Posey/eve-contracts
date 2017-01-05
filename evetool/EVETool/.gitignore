@@ -1,0 +1,105 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# VS2013 Files
+*.pdb
+*.exe
+*.dll
+*.exe.config
+*.exe.manifest
+*.dll.config
+*.suo
+*.cache
+*.Cache
+*.nupkg
+*.sigdata
+*.optdata
+*.cache
+
+# ===================================================
+# Exclude F# project specific directories and files
+# ===================================================
+
+# NuGet Packages Directory
+packages/
+
+# Generated documentation folder
+docs/output/
+
+# Temp folder used for publishing docs
+temp/
+
+# Test results produced by build
+TestResults.xml
+TestResult.xml
+
+# Nuget outputs
+nuget/*.nupkg
+
+tools/
+!docs/tools
+*.nupkg
+.fake/
+
+# misc junk files
+
+bin
+lib
+obj
+bin/
+lib/
+obj/
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/**
+**/packages/*
+*/packages/*
+/packages/*
+/packages/
+packages/
+/packages
+packages
+
