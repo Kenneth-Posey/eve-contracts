@@ -41,7 +41,9 @@ namespace Panhandler.MarketTab
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Market.LoadRefinedMaterialPricesLowSell();
+            var prices = Market.LoadRefinedMaterialPricesLowSell().ToList();
+
+            int t = 5;
         }
     }
 }
