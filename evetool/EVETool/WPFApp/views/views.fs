@@ -2,9 +2,9 @@ namespace WPFApp
 
 module internal Constants = 
     [<Literal>]
-    let MainWindowLocation = "views/main.xaml"
+    let MainWindowLocation = "views\mainview.xaml"
     [<Literal>]
-    let WelcomeWindowLocation = "views/welcome.xaml"
+    let WelcomeWindowLocation = "views\welcome.xaml"
 
 
 module Views = 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panhandler", "Panhandler\Panhandler.csproj", "{670431A0-2BE3-4C4E-803B-AE8C798A3E6B}"
 EndProject
@@ -15,6 +15,9 @@ EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunEve", "..\..\..\standalone-projects\fun-eve\FunEve.fsproj", "{D0BAA48E-7842-457D-8CB4-B4F2069CBC63}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WPFApp", "WPFApp\WPFApp.fsproj", "{59081D4A-AF4D-4780-81F1-06643AF4AEA3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D0BAA48E-7842-457D-8CB4-B4F2069CBC63} = {D0BAA48E-7842-457D-8CB4-B4F2069CBC63}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
