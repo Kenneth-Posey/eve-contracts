@@ -16,9 +16,7 @@ type SSOWebServerModule() as this =
     
     do this.Get.["/eveauth"] <- 
         fun paramaters -> 
-            this.SSOKey <- paramaters.ToString()
-            this.IsSSOSet <- true
-            
+            this.SSOKey <- paramaters.ToString()            
             new Nancy.Responses.TextResponse(
                 "Authenticated"
             ) :> obj
@@ -36,14 +34,18 @@ type SSOWebServerModule() as this =
 
 
     let mutable _ssoKey = ""
-    let mutable _isSSOSet = false
 
-    member this.SSOKey 
+    member this.SSOKey
         with public get() = _ssoKey
         and public set(value) = _ssoKey <- value
     member this.IsSSOSet
-        with public get() = _isSSOSet
-        and public set(value) = _isSSOSet <- value
+        with public get() = 
+            match _ssoKey with
+            | null -> false
+            | _ssoKey -> 
+                match _ssoKey.Length with
+                | _ when _ssoKey.Length > 0 -> true
+                | _ -> false
 
  
 let startAt host =
@@ -52,7 +54,7 @@ let startAt host =
     nancyHost
 
 let start () = 
-    startAt "http://localhost:19860/"
+    startAt "http://localhost:21000/"
 // printfn "Press [Enter] to exit."
 // Console.ReadKey() |> ignore
 

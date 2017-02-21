@@ -1,0 +1,17 @@
+// Warning: generated file; your changes could be lost when a new file is generated.
+#I __SOURCE_DIRECTORY__
+#r "../packages/FSharp.Data.2.2.0/lib/net40/FSharp.Data.dll"
+#r "../packages/FSharp.Data.TypeProviders.0.0.1/lib/net40/FSharp.Data.TypeProviders.dll"
+#r "../../../eve-contracts/evetool/EVETool/packages/Microsoft.Web.Xdt.2.1.1/lib/net40/Microsoft.Web.XmlTransform.dll"
+#r "../packages/FSharp.Core.3.0.0.2/lib/net40/policy.2.3.FSharp.Core.dll"
+#r "System.ComponentModel.DataAnnotations.dll"
+#r "System.Core.dll"
+#r "System.Data.dll"
+#r "System.Data.Linq.dll"
+#r "../packages/System.Data.SQLite.Core.1.0.96.0/lib/net451/System.Data.SQLite.dll"
+#r "../packages/System.Data.SQLite.EF6.1.0.96.0/lib/net451/System.Data.SQLite.EF6.dll"
+#r "../packages/System.Data.SQLite.Linq.1.0.96.0/lib/net451/System.Data.SQLite.Linq.dll"
+#r "System.dll"
+#r "System.Numerics.dll"
+#r "System.Xml.dll"
+#r "System.Xml.Linq.dll"
