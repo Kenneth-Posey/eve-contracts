@@ -354,13 +354,6 @@ namespace Gma.UserActivityMonitor
                         s_KeyPress.Invoke(null, e);
                         handled = handled || e.Handled;
                     }
-                    else
-                    {
-                        Keys keyData = (Keys)MyKeyboardHookStruct.VirtualKeyCode;
-                        KeyEventArgs e = new KeyEventArgs(keyData);
-                        s_KeyDown.Invoke(null, e);
-                        handled = handled || e.Handled;
-                    }
                 }
 
                 // raise KeyUp
