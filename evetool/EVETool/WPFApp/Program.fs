@@ -18,20 +18,12 @@ module FSI =
         ShowWindow(proc.MainWindowHandle, 0)
 
 module MainFunctions = 
-    type CustomKeys = 
-    | G1
-    | G2
-    | G3
-    | G4
-    | G5
-    | G6
-    | G7
-    | G8
-    | G9
-    | G10
-    | G11
-    | G12
+    open System.Windows.Forms
+    open FunEve.Utility.DllImports
+    // how to get an enum value
+    // let getEnum<'T> (x:char) = enum<'T>(int32 x)
 
+    // handle random contract generation
     let loadInProgressCorpContracts keyId vCode =
         Contracts.LoadCorpContracts keyId vCode
         |> List.filter 
@@ -62,80 +54,64 @@ module MainFunctions =
     let handleTextClick (paras:RoutedEventArgs) =         
         setClipboard (paras.OriginalSource :?> System.Windows.Controls.TextBox).Text
         
-    open System.Windows.Forms
     let HookManager_Click (args:Forms.MouseEventArgs) = 
         let var = args.Button
            
         printfn "%A" <| args.Button.ToString()
         ()
 
-    let (|V|_|) key =
-        if String.Equals(key, "v", StringComparison.InvariantCultureIgnoreCase) then
-            Some V
-        else
-            None
+    let (|V|_|) key = if key = 'v' then Some V else None
+    let (|Hash|_|) key = if key = '#' then Some Hash else None
+        
+
+    let step inFunction data =
+        Thread.Sleep 50 
+        inFunction data
+        
+    let repeat times inFunction data = 
+        for iter in [1 .. times] do
+            inFunction data
             
-    open FunEve.Utility.DllImports
-    let pressKey key = 
-        // for iter in [0..count] do
+    let repeatStep times inFunction data = 
+        for iter in [1 .. times] do
+            step inFunction data
+
+    let pressKey key =         
         KeyboardControl.KeyboardEvent (byte key) 0uy 0 0 
         Thread.Sleep 30
-        KeyboardControl.KeyboardEvent (byte key) (byte 0x2) 0 0             
+        KeyboardControl.KeyboardEvent (byte key) (byte 0x2) 0 0
 
     let sendKey keys = 
         SendKeys.SendWait keys
-        SendKeys.Flush()
+        SendKeys.Flush ()
 
     let HookManager_KeyPress (args:Forms.KeyPressEventArgs) =
-        let getEnum (x:char) = enum<Keys>(int32 (byte x))
-        let keyEnum = getEnum args.KeyChar        
-        let shiftstate = KeyboardControl.GetKeyState(GlobalHook.VK_SHIFT) = int16 0
-        let altstate = KeyboardControl.GetKeyState(GlobalHook.VK_LCONTROL) = int16 0
-        let ctrlstate = KeyboardControl.GetKeyState(GlobalHook.VK_LALT) = int16 0
-        printfn "%A" <| args.KeyChar.ToString()
-
-        // let matched = function
-        // | V -> 
-        //     if ctrlstate then
-        //         sendKey "Perimeter - Max Ice Refine @ Jita - Public"
-        //         pressKey Keys.Tab 2
-        //         sendKey "4000000"
-        //         pressKey Keys.Tab 1
-        //         sendKey "400000000"
-        // 
-        //     args.Handled <- ctrlstate
-        // | _ -> 
-        //     args.Handled <- false
-
-        let matched = 
+        // let keyEnum = getEnum args.KeyChar        
+        // let shiftstate = KeyboardControl.GetKeyState(GlobalHook.VK_SHIFT) = int16 0
+        // let altstate = KeyboardControl.GetKeyState(GlobalHook.VK_LCONTROL) = int16 0
+        // let ctrlstate = KeyboardControl.GetKeyState(GlobalHook.VK_LALT) = int16 0
+        
+        printfn "Pressed key %A time %A" <|| (args.KeyChar, DateTime.Now)
+        let handled = 
             match args.KeyChar with
-            | x when x = char "s" -> 
-                // if ctrlstate then
-                sendKey "Perimeter - Max Ice Refine @ Jita - Public"
-                Thread.Sleep 200
-                pressKey Keys.Tab
-                Thread.Sleep 2000
-                pressKey Keys.Tab 
-                Thread.Sleep 2000             
-                pressKey Keys.Tab       
-                Thread.Sleep 200            
-                sendKey "4000000"
-                Thread.Sleep 200
-                pressKey Keys.Tab 
-                Thread.Sleep 200
-                sendKey "400000000"
-                Thread.Sleep 200
+            | x when x = '`' -> 
+                // step sendKey "Perimeter - Max Ice Refine @ Jita - Public"
+                step sendKey "Jita IV - Moon 4 - Caldari Navy"
+                step sendKey "{TAB}"
+                Thread.Sleep 1000
+                step sendKey "{TAB}"
+                step sendKey "24000000"
+                step sendKey "{TAB}"
+                step sendKey "1750000000"
+                repeatStep 4 sendKey "{TAB}"
+                step sendKey "We pay for fast service! Join the Haulers Channel."
                 true
-                // ctrlstate
             | _ -> 
                 false
-
-        args.Handled <- matched
-        
-        printfn "%A" matched
+                        
+        printfn "Handled? %A" handled
+        args.Handled <- handled
         ()
-
-    // let activate_hookmanager (target:MainView) (paras:RoutedEventArgs) = 
     
     let mainThread () = 
         let win = new MainView ()        
@@ -143,10 +119,8 @@ module MainFunctions =
         let apikeys = BadNewbies.ApiKeys
 
         HookManager.KeyPress.Add HookManager_KeyPress
-        // HookManager.MouseClick.Add HookManager_Click
         
         win.generateButton.Click.Add <| generate_click win
-        // win.generateButton.Click.Add <| activate_hookmanager win
         win.rewardText.GotFocus.Add <| handleTextClick
         win.collateralText.GotFocus.Add <| handleTextClick
 
