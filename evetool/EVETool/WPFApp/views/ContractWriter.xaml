@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="WPFApp.ContractWriterBase"             
+            xmlns:local="clr-namespace:WPFApp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             >
+    <Grid Width="536" Height="216" Background="White">
+        <Label x:Name="statusMessageLabel" HorizontalAlignment="Left" Height="23" Margin="103,55,0,0" 
+                 Content="{Binding this.statusMessage}" VerticalAlignment="Top" Width="393"/>
+        <Button x:Name="button" Content="Begin Monitor" HorizontalAlignment="Left" Margin="76,69,0,0" VerticalAlignment="Top" Width="118" Grid.Row="1"/>
+        <Label x:Name="statusLabel" Content="Status:" HorizontalAlignment="Left" Margin="76,29,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button x:Name="ssoButton" Content="Login SSO" HorizontalAlignment="Left" 
+                Margin="230,69,0,0" VerticalAlignment="Top" Width="118" Grid.Row="1"/>
+        <Button x:Name="generateButton" Content="Generate" HorizontalAlignment="Left" Margin="76,103,0,0" VerticalAlignment="Top" Width="118" Grid.Row="1"/>
+        <TextBox x:Name="rewardText" HorizontalAlignment="Left" Height="23" Margin="232,156,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="collateralText" HorizontalAlignment="Left" Height="23" Margin="399,156,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="sourceDropdown" HorizontalAlignment="Left" 
+                  Margin="228,103,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1">
+            <ComboBoxItem Name="Jita">Jita</ComboBoxItem>
+            <ComboBoxItem Name="Dodixie">Dodixie</ComboBoxItem>
+            <ComboBoxItem Name="Amarr">Amarr</ComboBoxItem>
+            <ComboBoxItem Name="HekSource">Hek</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="destinationDropdown" HorizontalAlignment="Left" 
+                  Margin="376,103,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1">
+            <ComboBoxItem Name="HekDestination">Hek</ComboBoxItem>
+            <ComboBoxItem Name="Wirashoda">Wirashoda</ComboBoxItem>
+            <ComboBoxItem Name="Ordion">Ordion</ComboBoxItem>
+            <ComboBoxItem Name="Akeva">Akeva</ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</UserControl>

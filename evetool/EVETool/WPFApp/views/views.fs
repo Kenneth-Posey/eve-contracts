@@ -1,13 +1,7 @@
 namespace WPFApp
 
-module internal Constants = 
-    [<Literal>]
-    let MainWindowLocation = "views\mainview.xaml"
-    [<Literal>]
-    let WelcomeWindowLocation = "views\welcome.xaml"
-
-
 module Views = 
-    open FsXaml
-    type MainView = XAML<Constants.MainWindowLocation>
-    type WelcomeView = XAML<Constants.WelcomeWindowLocation>
+    open FsXaml 
+    type MainViewBase = XAML<"views/MainView.xaml">
+    type WelcomeViewBase = XAML<"views/Welcome.xaml">
+    type ContractWriterBase = XAML<"views/ContractWriter.xaml">

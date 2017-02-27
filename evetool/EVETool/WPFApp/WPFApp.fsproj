@@ -6,14 +6,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>59081d4a-af4d-4780-81f1-06643af4aea3</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>WPFApp</RootNamespace>
     <AssemblyName>WPFApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <Name>WPFApp</Name>
     <TargetFrameworkProfile />
+    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -25,9 +24,12 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DocumentationFile>bin\Debug\WPFApp.XML</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+    <EnableSQLServerDebugging>true</EnableSQLServerDebugging>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -60,39 +62,51 @@
     <Compile Include="website\website.fs" />
     <Compile Include="models\models.fs" />
     <Compile Include="models\MainViewModel.fs" />
-    <Resource Include="views\welcome.xaml" />
+    <None Include="views\ContractWriter.xaml" />
     <Resource Include="views\MainView.xaml" />
     <Compile Include="views\views.fs" />
     <Compile Include="views\MainView.xaml.fs" />
+    <Compile Include="views\ContractWriter.xaml.fs" />
     <Compile Include="controllers\controllers.fs" />
-    <Compile Include="WebServer.fs" />
+    <None Include="ApplicationResources.xaml" />
     <Resource Include="App.xaml" />
-    <Compile Include="AssemblyInfo.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="WebServer.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\FSharp.Core.4.1.0\lib\net40\FSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FSharp.Data.TypeProviders" />
+    <Reference Include="FSharp.Data.TypeProviders">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="FSharp.ViewModule">
-      <HintPath>..\packages\FSharp.ViewModule.Core.1.0.4.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\FSharp.ViewModule.dll</HintPath>
+      <HintPath>..\packages\FSharp.ViewModule.Core.1.0.6.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\FSharp.ViewModule.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FsXaml.Wpf">
-      <HintPath>..\packages\FsXaml.Wpf.2.2.0\lib\net45\FsXaml.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="FsXaml.Wpf, Version=3.1.5.0, Culture=neutral, PublicKeyToken=611da0f4fbd84e16">
+      <HintPath>..\packages\FsXaml.Wpf.3.1.5\lib\net45\FsXaml.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="FsXaml.Wpf.TypeProvider">
-      <HintPath>..\packages\FsXaml.Wpf.2.2.0\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="FsXaml.Wpf.TypeProvider, Version=3.1.5.0, Culture=neutral, PublicKeyToken=611da0f4fbd84e16">
+      <HintPath>..\packages\FsXaml.Wpf.3.1.5\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
     </Reference>
     <Reference Include="Gma.UserActivityMonitor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\Gma.UserActivityMonitor\Gma.UserActivityMonitor\bin\Debug\Gma.UserActivityMonitor.dll</HintPath>
-      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Nancy">
@@ -116,7 +130,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NetJSON">
-      <HintPath>..\packages\NetJSON.1.2.1.8\lib\net40\NetJSON.dll</HintPath>
+      <HintPath>..\packages\NetJSON.1.2.1.9\lib\net40\NetJSON.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -125,22 +139,31 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Web.Razor">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xaml">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
+    <Reference Include="XamlBuildTask" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\standalone-projects\fun-eve\FunEve.fsproj">
       <Name>FunEve</Name>
       <Project>{d0baa48e-7842-457d-8cb4-b4f2069cbc63}</Project>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets" Condition="Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" />
@@ -149,7 +172,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
