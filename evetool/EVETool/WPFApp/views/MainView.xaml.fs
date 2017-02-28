@@ -6,7 +6,7 @@ open System.Windows.Forms
 open FunEve
 
 type MainView () as this =     
-    inherit MainViewBase ()
+    // inherit MainViewBase ()
     let generate_click (target:MainViewBase) (paras:RoutedEventArgs) = 
         let ran = new Random (DateTime.Now.Millisecond)
 

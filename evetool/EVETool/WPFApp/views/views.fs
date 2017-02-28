@@ -1,7 +1,6 @@
 namespace WPFApp
 
 module Views = 
-    open FsXaml 
-    type MainViewBase = XAML<"views/MainView.xaml">
-    type WelcomeViewBase = XAML<"views/Welcome.xaml">
-    type ContractWriterBase = XAML<"views/ContractWriter.xaml">
+    type MainViewBase = FsXaml.XAML<"views/MainView.xaml">
+    // type WelcomeViewBase = XAML<"views/Welcome.xaml">
+    type ContractWriterBase = FsXaml.XAML<"views/ContractWriter.xaml">

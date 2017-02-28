@@ -9,6 +9,7 @@ open FunEve.Utility.ConsoleControl
 open FunEve.GlobalHook
 open FunEve.Contracts
 open Gma.UserActivityMonitor
+open WPFApp.Views
 
 module MainFunctions = 
     // how to get an enum value
@@ -62,7 +63,7 @@ module MainFunctions =
                 step sendKey "{TAB}"
                 Thread.Sleep 1000
                 step sendKey "{TAB}"
-                step sendKey "24000000"
+                step sendKey "28000000"
                 step sendKey "{TAB}"
                 step sendKey "1750000000"
                 repeatStep 4 sendKey "{TAB}"
@@ -83,7 +84,7 @@ module MainFunctions =
         HookManager.KeyPress.Add HookManager_KeyPress
 
         // let n = WebServers.start ()
-        win.Window.Show()
+        //win.Window.Show()
         ()
 
         // let mutable BREAK = false        
