@@ -3,66 +3,17 @@
 open System
 open System.Threading
 open System.Windows
-open FunEve.GlobalHook
-open FunEve
-open FunEve.Contracts
 open Gma.UserActivityMonitor
-
-// hack to hide console
-// http://stackoverflow.com/questions/10101196/is-it-possible-to-run-f-scripts-without-showing-console-window
-module FSI =
-    [<System.Runtime.InteropServices.DllImport("user32.dll")>]
-    extern bool ShowWindow(nativeint hWnd, int flags)
-    let HideConsole() = 
-        let proc = System.Diagnostics.Process.GetCurrentProcess()
-        ShowWindow(proc.MainWindowHandle, 0)
+open FunEve
+open FunEve.Utility
+open FunEve.Utility.DllImports
 
 module MainFunctions = 
+    // open this inside the module
+    // top prevent namespace issues
     open System.Windows.Forms
-    open FunEve.Utility.DllImports
     // how to get an enum value
     // let getEnum<'T> (x:char) = enum<'T>(int32 x)
-
-    // handle random contract generation
-    let loadInProgressCorpContracts keyId vCode =
-        Contracts.LoadCorpContracts keyId vCode
-        |> List.filter 
-            ( fun x -> 
-                match x.Status with
-                | Contracts.ApiContractStatus.InProgress -> true
-                | _ -> false )
-    
-    let generate_click (target:MainView) (paras:RoutedEventArgs) = 
-        let ran = new Random (DateTime.Now.Millisecond)
-
-        let source = string target.sourceDropdown.Text
-        let destination = string target.destinationDropdown.Text
-        let length = Geography.Route.getRouteLength source destination
-
-        // 750k - 1250k per jump 
-        let reward = ran.Next(750, 1250) * 1000 * length
-        // 850m - 999m collateral
-        let collateral = ran.Next(850, 999) * 1000000
-
-        target.rewardText.Text <- string reward
-        target.collateralText.Text <- string collateral
-        ()
-
-    let setClipboard text = 
-        Clipboard.SetText text
-        
-    let handleTextClick (paras:RoutedEventArgs) =         
-        setClipboard (paras.OriginalSource :?> System.Windows.Controls.TextBox).Text
-        
-    let HookManager_Click (args:Forms.MouseEventArgs) = 
-        let var = args.Button
-           
-        printfn "%A" <| args.Button.ToString()
-        ()
-
-    let (|V|_|) key = if key = 'v' then Some V else None
-    let (|Hash|_|) key = if key = '#' then Some Hash else None
-        
 
     let step inFunction data =
         Thread.Sleep 50 
@@ -119,10 +70,6 @@ module MainFunctions =
         let apikeys = BadNewbies.ApiKeys
 
         HookManager.KeyPress.Add HookManager_KeyPress
-        
-        win.generateButton.Click.Add <| generate_click win
-        win.rewardText.GotFocus.Add <| handleTextClick
-        win.collateralText.GotFocus.Add <| handleTextClick
 
         // let n = WebServers.start ()
         win.Show()
@@ -145,20 +92,15 @@ module MainFunctions =
     
 module Program = 
     open MainFunctions
-
     [<STAThread>]
     [<EntryPoint>]
     let entrypoint argv = 
         // hide console
-        // FSI.HideConsole() |> ignore
+        // ConsoleControl.HideConsole() |> ignore
         // pulled the main thread out into its own function for tidiness
         mainThread()
 
-        // let hookid = InterceptKeys.SetHook()
-
         // required to be the last line of the application
         (new Application()).Run()
-
-        // ignore <| InterceptKeys.UnhookWindowsHookEx(hookid)
 
         
