@@ -51,9 +51,12 @@ module MainFunctions =
                 step sendKey "{TAB}"
                 Thread.Sleep 1000
                 step sendKey "{TAB}"
-                step sendKey "24000000"
+                step sendKey "5000000"
                 step sendKey "{TAB}"
-                step sendKey "1750000000"
+                // step sendKey "1750000000" // nitrogen isotopes
+                // step sendKey "175000000" // liquid ozone
+                step sendKey "1125000000" // stront
+                // step sendKey "950000000" // heavy water
                 repeatStep 4 sendKey "{TAB}"
                 step sendKey "We pay for fast service! Join the Haulers Channel."
                 true
