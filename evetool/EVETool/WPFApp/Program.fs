@@ -2,15 +2,12 @@
 
 open System
 open System.Threading
-open System.Windows
 open Gma.UserActivityMonitor
 open FunEve
 open FunEve.Utility
 open FunEve.Utility.DllImports
 
 module MainFunctions = 
-    // open this inside the module
-    // top prevent namespace issues
     open System.Windows.Forms
     // how to get an enum value
     // let getEnum<'T> (x:char) = enum<'T>(int32 x)
@@ -36,7 +33,39 @@ module MainFunctions =
         SendKeys.SendWait keys
         SendKeys.Flush ()
 
-    let HookManager_KeyPress (args:Forms.KeyPressEventArgs) =
+    type CourierContractInfo = {
+        Destination: string
+        Collateral: int
+        Reward: int
+        Message: string
+        }
+
+    let WriteContract (contract:CourierContractInfo) = 
+        step sendKey contract.Destination
+        step sendKey "{TAB}"
+        Thread.Sleep 1000
+        step sendKey "{TAB}"
+        step sendKey (string contract.Reward)
+        step sendKey "{TAB}"
+        step sendKey (string contract.Collateral)
+        repeatStep 4 sendKey "{TAB}"
+        step sendKey contract.Message
+
+    let WriteCourierContract () = 
+        WriteContract {
+            Message = "We pay for fast service! Join the Haulers Channel."
+            // Destination = "Perimeter - Max Refine at Jita - Freeport"
+            Destination = "Jita IV - Moon 4 - Caldari Navy"
+            Collateral = 3000000
+            Reward = 275000000   // white glaze
+            // Reward = 1750000000 // nitrogen isotopes
+            // Reward = 175000000  // liquid ozone
+            // Reward = 1125000000 // stront
+            // Reward = 950000000  // heavy water
+            // Reward = 1550000000 // compressed white glaze
+        }
+        
+    let HookManager_KeyPress (args:KeyPressEventArgs) =
         // let keyEnum = getEnum args.KeyChar        
         // let shiftstate = KeyboardControl.GetKeyState(GlobalHook.VK_SHIFT) = int16 0
         // let altstate = KeyboardControl.GetKeyState(GlobalHook.VK_LCONTROL) = int16 0
@@ -46,19 +75,7 @@ module MainFunctions =
         let handled = 
             match args.KeyChar with
             | x when x = '`' -> 
-                // step sendKey "Perimeter - Max Ice Refine @ Jita - Public"
-                step sendKey "Jita IV - Moon 4 - Caldari Navy"
-                step sendKey "{TAB}"
-                Thread.Sleep 1000
-                step sendKey "{TAB}"
-                step sendKey "5000000"
-                step sendKey "{TAB}"
-                // step sendKey "1750000000" // nitrogen isotopes
-                // step sendKey "175000000" // liquid ozone
-                step sendKey "1125000000" // stront
-                // step sendKey "950000000" // heavy water
-                repeatStep 4 sendKey "{TAB}"
-                step sendKey "We pay for fast service! Join the Haulers Channel."
+                WriteCourierContract()
                 true
             | _ -> 
                 false
@@ -67,17 +84,7 @@ module MainFunctions =
         args.Handled <- handled
         ()
     
-    let mainThread () = 
-        let win = new MainView ()        
-        let ran = new Random (DateTime.Now.Millisecond)
-        let apikeys = BadNewbies.ApiKeys
-
-        HookManager.KeyPress.Add HookManager_KeyPress
-
-        // let n = WebServers.start ()
-        win.Show()
-        ()
-
+        // let apikeys = BadNewbies.ApiKeys
         // let mutable BREAK = false        
         // while not BREAK do
         //     let apikey = apikeys.[ran.Next(0, apikeys.Length - 1)]
@@ -94,6 +101,7 @@ module MainFunctions =
     
     
 module Program = 
+    open System.Windows
     open MainFunctions
     [<STAThread>]
     [<EntryPoint>]
@@ -101,7 +109,9 @@ module Program =
         // hide console
         // ConsoleControl.HideConsole() |> ignore
         // pulled the main thread out into its own function for tidiness
-        mainThread()
+        HookManager.KeyPress.Add HookManager_KeyPress
+
+        (new MainView ()).Show()
 
         // required to be the last line of the application
         (new Application()).Run()
