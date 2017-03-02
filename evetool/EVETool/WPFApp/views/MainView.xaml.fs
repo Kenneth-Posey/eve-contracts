@@ -1,4 +1,4 @@
-﻿namespace WPFApp
+﻿namespace WPFApp.Views
 
 open FunEve
 open FunEve.Geography

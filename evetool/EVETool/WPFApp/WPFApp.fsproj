@@ -66,12 +66,13 @@
     <Compile Include="views\views.fs" />
     <Compile Include="views\MainView.xaml.fs" />
     <Compile Include="controllers\controllers.fs" />
-    <Compile Include="WebServer.fs" />
-    <Resource Include="App.xaml" />
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="WebServer.fs" />
+    <Compile Include="MainFunctions.fs" />
+    <Compile Include="Program.fs" />
+    <Resource Include="App.xaml" />
     <None Include="App.config" />
     <Content Include="packages.config" />
-    <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
