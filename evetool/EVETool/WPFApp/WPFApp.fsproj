@@ -61,9 +61,14 @@
     <Compile Include="website\website.fs" />
     <Compile Include="models\models.fs" />
     <Compile Include="models\MainViewModel.fs" />
-    <Resource Include="views\welcome.xaml" />
-    <Resource Include="views\MainView.xaml" />
-    <Compile Include="views\views.fs" />
+    <Resource Include="views\Welcome.xaml" />
+    <Resource Include="views\CourierContract.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Compile Include="views\CourierContract.xaml.fs" />
+    <Resource Include="views\MainView.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Compile Include="views\MainView.xaml.fs" />
     <Compile Include="controllers\controllers.fs" />
     <Compile Include="AssemblyInfo.fs" />

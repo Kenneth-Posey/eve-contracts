@@ -5,13 +5,12 @@ open FunEve.Geography
 open FunEve.Contracts
 open System
 open System.Windows
-open System.Windows.Forms
 
-type MainViewBase = FsXaml.XAML<"views/MainView.xaml">
+type MainView = FsXaml.XAML<"views/MainView.xaml">
 
-type MainView () as this = 
-    inherit MainViewBase()
-    
+module Functions =             
+    open System.Windows.Forms
+    open System.Windows.Controls
     // handle random contract generation
     let loadInProgressCorpContracts keyId vCode =
         Contracts.LoadCorpContracts keyId vCode
@@ -21,11 +20,11 @@ type MainView () as this =
                 | Contracts.ApiContractStatus.InProgress -> true
                 | _ -> false )
     
-    let generate_click (target:MainView) (paras:RoutedEventArgs) = 
+    let generate_click (sourceDropdown:ComboBox) (destinationDropdown:ComboBox) (rewardText:TextBox) (collateralText:TextBox) (paras:RoutedEventArgs) = 
         let ran = new Random (DateTime.Now.Millisecond)
 
-        let source = string target.sourceDropdown.Text
-        let destination = string target.destinationDropdown.Text
+        let source = string sourceDropdown.Text
+        let destination = string destinationDropdown.Text
         let length = Route.getRouteLength source destination
 
         // 750k - 1250k per jump 
@@ -33,15 +32,15 @@ type MainView () as this =
         // 850m - 999m collateral
         let collateral = ran.Next(850, 999) * 1000000
 
-        target.rewardText.Text <- string reward
-        target.collateralText.Text <- string collateral
+        rewardText.Text <- string reward
+        collateralText.Text <- string collateral
         ()
 
     let setClipboard text = 
         Clipboard.SetText text
         
     let handleTextClick (paras:RoutedEventArgs) =         
-        setClipboard (paras.OriginalSource :?> System.Windows.Controls.TextBox).Text
+        setClipboard (paras.OriginalSource :?> TextBox).Text
         
     let HookManager_Click (args:Forms.MouseEventArgs) = 
         let var = args.Button
@@ -49,11 +48,15 @@ type MainView () as this =
         printfn "%A" <| args.Button.ToString()
         ()
 
+open Functions
+type Main () as this = 
+    inherit MainView()
 
-    do 
-        base.generateButton.Click.Add <| generate_click this
+    // let mutable view = new MainView()
+    do
+        base.generateButton.Click.Add <| generate_click base.sourceDropdown base.destinationDropdown base.rewardText base.collateralText
         base.rewardText.GotFocus.Add <| handleTextClick
         base.collateralText.GotFocus.Add <| handleTextClick
         
-    member this.Show() = base.Show()
-    
+    member this.Show() = base.Show()    
+        
