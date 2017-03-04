@@ -56,13 +56,13 @@ module MainFunctions =
             Message = "We pay for fast service! Join the Haulers Channel."
             // Destination = "Perimeter - Max Refine at Jita - Freeport"
             Destination = "Jita IV - Moon 4 - Caldari Navy"
-            Collateral = 3000000
-            Reward = 275000000   // white glaze
-            // Reward = 1750000000 // nitrogen isotopes
-            // Reward = 175000000  // liquid ozone
-            // Reward = 1125000000 // stront
-            // Reward = 950000000  // heavy water
-            // Reward = 1550000000 // compressed white glaze
+            Reward = 6000000
+            // Collateral = 275000000   // white glaze
+            // Collateral = 1750000000 // nitrogen isotopes
+            // Collateral = 175000000  // liquid ozone
+            // Collateral = 1125000000 // stront
+            Collateral = 950000000  // heavy water
+            // Collateral = 1550000000 // compressed white glaze
         }
         
     let HookManager_KeyPress (args:KeyPressEventArgs) =

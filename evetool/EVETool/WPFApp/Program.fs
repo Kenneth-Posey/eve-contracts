@@ -2,7 +2,7 @@
 
 open System
 open System.Windows
-open WPFApp.Views
+open WPFApp
 open Gma.UserActivityMonitor
 open MainFunctions    
 
@@ -14,7 +14,7 @@ module Program =
 
         HookManager.KeyPress.Add HookManager_KeyPress
 
-        (new Main()).Show()
+        (new MainView()).Show()
 
         // required to be the last line of the application
         (new Application()).Run()

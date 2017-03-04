@@ -1,4 +1,4 @@
-﻿namespace WPFApp.Views
+﻿namespace WPFApp
 
 open FunEve
 open FunEve.Geography
@@ -6,7 +6,7 @@ open FunEve.Contracts
 open System
 open System.Windows
 
-type MainView = FsXaml.XAML<"views/MainView.xaml">
+type MainViewBase = FsXaml.XAML<"views/MainView.xaml">
 
 module Functions =             
     open System.Windows.Forms
@@ -49,8 +49,8 @@ module Functions =
         ()
 
 open Functions
-type Main () as this = 
-    inherit MainView()
+type MainView () as this = 
+    inherit MainViewBase()
 
     // let mutable view = new MainView()
     do
