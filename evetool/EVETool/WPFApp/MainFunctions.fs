@@ -56,12 +56,12 @@ module MainFunctions =
             Message = "We pay for fast service! Join the Haulers Channel."
             // Destination = "Perimeter - Max Refine at Jita - Freeport"
             Destination = "Jita IV - Moon 4 - Caldari Navy"
-            Reward = 6000000
+            Reward = 14000000
             // Collateral = 275000000   // white glaze
             // Collateral = 1750000000 // nitrogen isotopes
             // Collateral = 175000000  // liquid ozone
             // Collateral = 1125000000 // stront
-            Collateral = 950000000  // heavy water
+            Collateral = 750000000  // heavy water
             // Collateral = 1550000000 // compressed white glaze
         }
         

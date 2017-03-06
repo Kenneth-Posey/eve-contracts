@@ -51,7 +51,7 @@ module Functions =
 open Functions
 type MainView () as this = 
     inherit MainViewBase()
-
+    
     // let mutable view = new MainView()
     do
         base.generateButton.Click.Add <| generate_click base.sourceDropdown base.destinationDropdown base.rewardText base.collateralText
