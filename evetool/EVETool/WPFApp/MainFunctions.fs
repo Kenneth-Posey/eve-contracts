@@ -26,17 +26,33 @@ module MainFunctions =
 
     let pressKey key =         
         KeyboardControl.KeyboardEvent (byte key) 0uy 0 0 // keydown
-        Thread.Sleep 20
+        Thread.Sleep 10
         KeyboardControl.KeyboardEvent (byte key) (byte 0x2) 0 0 // keyup
 
     let sendKeys keys = 
         SendKeys.SendWait keys
         SendKeys.Flush ()
 
+    let floatParse (x:string) multiplier = 
+        let result = ref 0.
+        match Double.TryParse(x, result) with
+        | true -> int (!result * (float multiplier))
+        | false -> 0
+
+    type IskString = IskString of string with
+        member this.Value = this |> (fun (IskString x) -> 
+            match x.Trim() with
+            | x when x.EndsWith("b") -> floatParse (x.TrimEnd('b')) 1000000000
+            | x when x.EndsWith("m") -> floatParse (x.TrimEnd('m')) 1000000
+            | x when x.EndsWith("k") -> floatParse (x.TrimEnd('k')) 1000
+            | x when x.Length > 0 -> floatParse x 1
+            | _ -> 0)
+        member this.DisplayValue = this |> (fun (IskString x) -> x)
+            
     type CourierContractInfo = {
         Destination: string
-        Collateral: int
-        Reward: int
+        Collateral: IskString
+        Reward: IskString
         Message: string
         }
 
@@ -45,24 +61,24 @@ module MainFunctions =
         step sendKeys "{TAB}"
         Thread.Sleep 1000
         step sendKeys "{TAB}"
-        step sendKeys (string contract.Reward)
+        step sendKeys (string contract.Reward.Value)
         step sendKeys "{TAB}"
-        step sendKeys (string contract.Collateral)
+        step sendKeys (string contract.Collateral.Value)
         repeatStep 4 sendKeys "{TAB}"
         step sendKeys contract.Message
 
     let WriteCourierContract () = 
         WriteContract {
             Message = "We pay for fast service! Join the Haulers Channel."
-            // Destination = "Perimeter - Max Refine at Jita - Freeport"
-            Destination = "Jita IV - Moon 4 - Caldari Navy"
-            Reward = 14000000
-            // Collateral = 275000000   // white glaze
-            // Collateral = 1750000000 // nitrogen isotopes
-            // Collateral = 175000000  // liquid ozone
-            // Collateral = 1125000000 // stront
-            Collateral = 750000000  // heavy water
-            // Collateral = 1550000000 // compressed white glaze
+            Destination = "Perimeter - Max Refine at Jita - Freeport"
+            // Destination = "Jita IV - Moon 4 - Caldari Navy"
+            Reward = IskString "3m"
+            Collateral = IskString "275m"   // white glaze
+            // Collateral = IskString "1.75b" // nitrogen isotopes
+            // Collateral = IskString "175m"  // liquid ozone
+            // Collateral = IskString "1125m" // stront
+            // Collateral = IskString "750m"  // heavy water
+            // Collateral = IskString "1550m" // compressed white glaze
         }
         
     let HookManager_KeyPress (args:KeyPressEventArgs) =

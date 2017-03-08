@@ -14,7 +14,7 @@ module Program =
 
         HookManager.KeyPress.Add HookManager_KeyPress
 
-        (new MainView()).Show()
+        // (new MainView()).Show()
 
         // required to be the last line of the application
         (new Application()).Run()
