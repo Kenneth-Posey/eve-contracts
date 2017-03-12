@@ -113,9 +113,9 @@ module CourierContractFunctions =
             Collateral = 
                 match cont with 
                 | WhiteGlaze -> IskString "350m" // white glaze
-                | NitroIsotopes -> IskString "1.75b" // nitrogen isotopes
+                | NitroIsotopes -> IskString "1.9b" // nitrogen isotopes
                 | LiquidOzone -> IskString "175m"  // liquid ozone
-                | HeavyWater -> IskString "750m"  // heavy water
+                | HeavyWater -> IskString "687.5m"  // heavy water
                 | CompGlaze -> IskString "1550m" // compressed white glaze
                 | StrontClathrates -> IskString "1125m" // stront
         }
