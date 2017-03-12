@@ -8,7 +8,31 @@ open FunEve.Geography
 type ContractMonitorBase = FsXaml.XAML<"views/ContractMonitor.xaml">
 type ContractMonitor() as this = 
     inherit ContractMonitorBase()
-    
+
+    // let apikeys = BadNewbies.ApiKeys
+    // let mutable BREAK = false        
+    // while not BREAK do
+    //     let apikey = apikeys.[ran.Next(0, apikeys.Length - 1)]
+    //     let contracts = loadInProgressCorpContracts apikey.keyId apikey.vCode
+    // 
+    //     match contracts.Length with
+    //     | x when x > 0 -> 
+    //         win.statusLabel.Content <- x.ToString() + "x CONTRACTS"
+    //         // win.Activate () |> ignore
+    //         win.Show ()
+    //     | _ -> 
+    //         win.Hide ()
+    //         Thread.Sleep (ran.Next(30, 180) * 1000)
+
+    // handle random contract generation
+    // let loadInProgressCorpContracts keyId vCode =
+    //     Contracts.LoadCorpContracts keyId vCode
+    //     |> List.filter 
+    //         ( fun x -> 
+    //             match x.Status with
+    //             | Contracts.ApiContractStatus.InProgress -> true
+    //             | _ -> false )
+        
     let setClipboard text = 
         Clipboard.SetText text
         

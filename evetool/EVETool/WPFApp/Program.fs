@@ -3,7 +3,6 @@
 open System
 open System.Windows
 open WPFApp
-open MainFunctions    
 
 module Program = 
     [<STAThread>]

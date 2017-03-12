@@ -1,0 +1,10 @@
+﻿
+// let keyEnum = getEnum args.KeyChar        
+// let shiftstate = KeyboardControl.GetKeyState(GlobalHook.VK_SHIFT) = int16 0
+// let altstate = KeyboardControl.GetKeyState(GlobalHook.VK_LCONTROL) = int16 0
+// let ctrlstate = KeyboardControl.GetKeyState(GlobalHook.VK_LALT) = int16 0
+
+        
+// how to get an enum value
+// let getEnum<'T> (x:char) = enum<'T>(int32 x)
+

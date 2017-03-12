@@ -11,14 +11,6 @@ open ViewModule.Validation.FSharp
 module MainViewModelFunctions =             
     open System.Windows.Forms
     open System.Windows.Controls
-    // handle random contract generation
-    // let loadInProgressCorpContracts keyId vCode =
-    //     Contracts.LoadCorpContracts keyId vCode
-    //     |> List.filter 
-    //         ( fun x -> 
-    //             match x.Status with
-    //             | Contracts.ApiContractStatus.InProgress -> true
-    //             | _ -> false )
     
     let setClipboard text = 
         Clipboard.SetText text

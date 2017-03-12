@@ -14,35 +14,46 @@ module CourierContractFunctions =
     open WPFApp.MainFunctions
         
     type SourceLocations = 
-    | Osmon
-    | Gekutami
-    | Perimeter
-    | Jita
+        | Osmon
+        | Gekutami
+        | Perimeter
+        | Jita
+
+    let sourceString = function 
+        | Gekutami -> "Gekutami"
+        | Osmon -> "Osmon"
+        | Perimeter -> "Perimeter"
+        | Jita -> "Jita"
+    
+    let matchSource input =
+        if input = "Osmon" then Osmon
+        else if input = "Gekutami" then Gekutami
+        else if input = "Perimeter" then Perimeter
+        else Jita
 
     type DestinationLocations = 
-    | Osmon
-    | Perimeter
-    | Jita
-
-    type Contents = 
-    | CompGlaze
-    | WhiteGlaze
-    | NitroIsotopes
-    | HeavyWater
-    | LiquidOzone
-    | StrontClathrates
+        | Osmon
+        | Perimeter
+        | Jita
     
-    let sourceString = function 
-        | SourceLocations.Gekutami -> "Gekutami"
-        | SourceLocations.Osmon -> "Osmon"
-        | SourceLocations.Perimeter -> "Perimeter"
-        | SourceLocations.Jita -> "Jita"
-
     let destinationString = function
         | Osmon -> "Osmon"
         | Perimeter -> "Perimeter"
         | Jita -> "Jita"
+        
+    let matchDestination input = 
+        if input = "Osmon" then Osmon
+        else if input ="Perimeter" then Perimeter
+        else Jita
 
+    type Contents = 
+        | CompGlaze
+        | WhiteGlaze
+        | NitroIsotopes
+        | HeavyWater
+        | LiquidOzone
+        | StrontClathrates
+    
     let contentsString = function
         | CompGlaze -> "Comp Glaze"
         | WhiteGlaze -> "White Glaze"
@@ -50,25 +61,7 @@ module CourierContractFunctions =
         | HeavyWater -> "Heavy Water"
         | LiquidOzone -> "Liquid Ozone"
         | StrontClathrates -> "Stront Clathrates"
-
-    let matchSource input =
-        if input = "Osmon" then
-            SourceLocations.Osmon
-        else if input = "Gekutami" then
-            SourceLocations.Gekutami
-        else if input = "Perimeter" then
-            SourceLocations.Perimeter
-        else
-            SourceLocations.Jita
-
-    let matchDestination input = 
-        if input = "Osmon" then
-            Osmon
-        else if input ="Perimeter" then
-            Perimeter
-        else
-            Jita
-
+        
     let matchContents input =     
         if input = "Comp Glaze" then CompGlaze
         else if input = "White Glaze" then WhiteGlaze
@@ -99,7 +92,7 @@ module CourierContractFunctions =
                     | WhiteGlaze -> IskString "3.5m" // white glaze
                     | NitroIsotopes -> IskString "15m" // nitrogen isotopes
                     | LiquidOzone -> IskString "1.5m"  // liquid ozone
-                    | HeavyWater -> IskString "2m"  // heavy water
+                    | HeavyWater -> IskString "3m"  // heavy water
                     | CompGlaze -> IskString "12m" // compressed white glaze
                     | StrontClathrates -> IskString "8m" // stront
                 | x -> 
@@ -120,17 +113,6 @@ module CourierContractFunctions =
                 | StrontClathrates -> IskString "1125m" // stront
         }
     
-    let setClipboard text = 
-        Clipboard.SetText text
-        
-    let handleTextClick (paras:RoutedEventArgs) =         
-        setClipboard (paras.OriginalSource :?> TextBox).Text
-        
-    let HookManager_Click (args:Forms.MouseEventArgs) = 
-        let var = args.Button
-           
-        printfn "%A" <| args.Button.ToString()
-        ()
 
 open CourierContractFunctions
 open MainFunctions
@@ -180,13 +162,14 @@ type CourierContractViewModel () as this =
 
     let updateContract = 
         this.Factory.CommandSync (fun x ->                         
-            let info = CourierContractFunctions.loadContractInfo selectedSource selectedDestination selectedContents isPrivate
-            this.ContractInfo <- info                
+            (selectedSource, selectedDestination, selectedContents, isPrivate)
+            |> fun (a,b,c,d) -> 
+                this.ContractInfo <- CourierContractFunctions.loadContractInfo a b c d
             
-            System.Console.WriteLine(sprintf "Message: %A" this.ContractInfo.Message)
-            System.Console.WriteLine(sprintf "Reward: %A" this.ContractInfo.Reward.DisplayValue)
-            System.Console.WriteLine(sprintf "Collateral: %A" this.ContractInfo.Collateral.DisplayValue)
-            System.Console.WriteLine(sprintf "Destination: %A" this.ContractInfo.Destination)
+            printf "Message: %A" this.ContractInfo.Message
+            printf "Reward: %A" this.ContractInfo.Reward.DisplayValue
+            printf "Collateral: %A" this.ContractInfo.Collateral.DisplayValue
+            printf "Destination: %A" this.ContractInfo.Destination
         )        
 
     // this way the mutable value update when the function runs

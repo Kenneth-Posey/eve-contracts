@@ -1,33 +1,31 @@
 <Window 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:WPFApp;assembly=WPFApp"
-     xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
-     Height="350" Width="525" Background="White">
+    Height="310" Width="465" Background="White">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="statusMessageLabel" HorizontalAlignment="Left" Height="23" Margin="103,55,0,0" 
-                 Content="{Binding TestValue}" VerticalAlignment="Top" Width="393"/>
-        <TabControl x:Name="MainTabControl">
-            
+        <TabControl x:Name="MainTabControl" Margin="10,10,0,0">
+            <TabItem Name="MainTabWriter">
+                <TabItem.Header>
+                    <TextBlock>Contract Writer</TextBlock>
+                </TabItem.Header>
+                <local:CourierContract Margin="10,10,10,10" Name="CourierContractControl" />
+            </TabItem>
+            <TabItem Name="MainTabMonitor">
+                <TabItem.Header>
+                    <TextBlock>Contract Monitor</TextBlock>
+                </TabItem.Header>
+            </TabItem>
         </TabControl>
-        <UserControl>
-            <local:CourierContract Margin="45,39,30,29" Grid.Row="1" Name="CourierContractControl">
-
-            </local:CourierContract>
-        </UserControl>
     </Grid>
 </Window>
     

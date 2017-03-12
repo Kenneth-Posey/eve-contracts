@@ -98,24 +98,6 @@
     <Compile Include="MainFunctions.fs" />
     <Compile Include="models\models.fs" />
     <Compile Include="models\MainViewModel.fs" />
-    <None Include="views\ContractWriter.xaml" />
-    <Compile Include="views\MainView.xaml.fs" />
-    <Resource Include="views\MainView.xaml" />
-    <Compile Include="views\views.fs" />
-    <Compile Include="views\ContractWriter.xaml.fs" />
-    <Compile Include="controllers\controllers.fs" />
-    <None Include="ApplicationResources.xaml" />
-    <Resource Include="App.xaml" />
-    <None Include="App.config" />
-    <Content Include="packages.config" />
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="WebServer.fs" />
-    <Compile Include="Program.fs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="FSharp.Core">
-        <HintPath>..\packages\FSharp.Core.4.1.0\lib\net40\FSharp.Core.dll</HintPath>
-    </Reference>
     <Compile Include="models\CourierContractViewModel.fs" />
     <Resource Include="views\ContractMonitor.xaml" />
     <Compile Include="views\ContractMonitor.xaml.fs" />
@@ -124,13 +106,17 @@
     <Resource Include="views\MainView.xaml" />
     <Compile Include="views\MainView.xaml.fs" />
     <Compile Include="controllers\controllers.fs" />
+    <None Include="ApplicationResources.xaml" />
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="WebServer.fs" />
-    <Compile Include="Program.fs" />
     <Resource Include="App.xaml" />
-    <None Include="App.config" />
+    <Compile Include="WebServer.fs" />
+    <Compile Include="WebServer.fs" />
     <Content Include="packages.config" />
+    <Compile Include="Program.fs" />
     <EmbeddedResource Include="Resources.resx" />
+    <Content Include="packages.config" />
+    <None Include="App.config" />
+    <Content Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">

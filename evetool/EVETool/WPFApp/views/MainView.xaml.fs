@@ -1,4 +1,4 @@
-﻿namespace WPFApp.Views
+﻿namespace WPFApp
 
 open FunEve
 open FunEve.Geography
@@ -14,11 +14,3 @@ type MainView () as this =
 
     member this.Show() = base.Show()    
         
-
-    member this.setup () =
-        window.generateButton.Click.Add <| generate_click window
-        window.rewardText.GotFocus.Add <| handleTextClick
-        window.collateralText.GotFocus.Add <| handleTextClick
-
-        ()    
-    
