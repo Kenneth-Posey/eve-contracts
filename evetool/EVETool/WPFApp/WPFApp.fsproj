@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>WPFApp</RootNamespace>
     <AssemblyName>WPFApp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
     <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
@@ -37,7 +37,7 @@
     <Tailcalls>true</Tailcalls>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <WarningLevel>3</WarningLevel>
+    <WarningLevel>5</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Release\WPFApp.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
@@ -84,8 +84,18 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
+  <Import Project="..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets" Condition="Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
     <Compile Include="website\website.fs" />
+    <Compile Include="MainFunctions.fs" />
     <Compile Include="models\models.fs" />
     <Compile Include="models\MainViewModel.fs" />
     <None Include="views\ContractWriter.xaml" />
@@ -104,7 +114,28 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.1.0\lib\net40\FSharp.Core.dll</HintPath>
+        <HintPath>..\packages\FSharp.Core.4.1.0\lib\net40\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Compile Include="models\CourierContractViewModel.fs" />
+    <Resource Include="views\ContractMonitor.xaml" />
+    <Compile Include="views\ContractMonitor.xaml.fs" />
+    <Resource Include="views\CourierContract.xaml" />
+    <Compile Include="views\CourierContract.xaml.fs" />
+    <Resource Include="views\MainView.xaml" />
+    <Compile Include="views\MainView.xaml.fs" />
+    <Compile Include="controllers\controllers.fs" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="WebServer.fs" />
+    <Compile Include="Program.fs" />
+    <Resource Include="App.xaml" />
+    <None Include="App.config" />
+    <Content Include="packages.config" />
+    <EmbeddedResource Include="Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.1.0.2\lib\net45\FSharp.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Data">
       <HintPath>..\packages\FSharp.Data.2.3.2\lib\net40\FSharp.Data.dll</HintPath>
@@ -124,6 +155,15 @@
     </Reference>
     <Reference Include="FsXaml.Wpf.TypeProvider">
       <HintPath>..\packages\FsXaml.Wpf.3.1.5\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
+      <HintPath>..\packages\FSharp.ViewModule.Core.1.0.7.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\FSharp.ViewModule.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FsXaml.Wpf">
+      <HintPath>..\packages\FsXaml.Wpf.3.1.6\lib\net45\FsXaml.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FsXaml.Wpf.TypeProvider">
+      <HintPath>..\packages\FsXaml.Wpf.3.1.6\lib\net45\FsXaml.Wpf.TypeProvider.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Gma.UserActivityMonitor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -163,6 +203,10 @@
       <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml">
@@ -174,18 +218,13 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
     <ProjectReference Include="..\..\..\..\standalone-projects\fun-eve\FunEve.fsproj">
       <Name>FunEve</Name>
       <Project>{d0baa48e-7842-457d-8cb4-b4f2069cbc63}</Project>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets" Condition="Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
