@@ -67,21 +67,15 @@ module MainFunctions =
         repeatStep 4 sendKeys "{TAB}"
         step sendKeys contract.Message
 
-    let WriteCourierContract () = 
+    let WriteCourierContract (x:CourierContractInfo) = 
         WriteContract {
-            Message = "We pay for fast service! Join the Haulers Channel."
-            Destination = "Perimeter - Max Refine at Jita - Freeport"
-            // Destination = "Jita IV - Moon 4 - Caldari Navy"
-            Reward = IskString "3m"
-            Collateral = IskString "275m"   // white glaze
-            // Collateral = IskString "1.75b" // nitrogen isotopes
-            // Collateral = IskString "175m"  // liquid ozone
-            // Collateral = IskString "1125m" // stront
-            // Collateral = IskString "750m"  // heavy water
-            // Collateral = IskString "1550m" // compressed white glaze
+            Message = x.Message
+            Destination = x.Destination
+            Reward = x.Reward
+            Collateral = x.Collateral
         }
         
-    let HookManager_KeyPress (args:KeyPressEventArgs) =
+    let HookManager_KeyPress (input:CourierContractInfo) (args:KeyPressEventArgs)  =
         // let keyEnum = getEnum args.KeyChar        
         // let shiftstate = KeyboardControl.GetKeyState(GlobalHook.VK_SHIFT) = int16 0
         // let altstate = KeyboardControl.GetKeyState(GlobalHook.VK_LCONTROL) = int16 0
@@ -91,7 +85,7 @@ module MainFunctions =
         let handled = 
             match args.KeyChar with
             | x when x = '`' -> 
-                WriteCourierContract()
+                WriteCourierContract(input)
                 true
             | _ -> 
                 false

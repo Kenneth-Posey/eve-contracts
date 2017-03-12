@@ -6,6 +6,9 @@
     xmlns:local="clr-namespace:WPFApp;assembly=WPFApp"
      xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
      Height="350" Width="525" Background="White">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -16,30 +19,12 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Label x:Name="statusMessageLabel" HorizontalAlignment="Left" Height="23" Margin="103,55,0,0" 
-                 Content="xxx" VerticalAlignment="Top" Width="393"/>
-        <Button x:Name="button" Content="Begin Monitor" HorizontalAlignment="Left" Margin="28,111,0,0" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="statusLabel" Content="Status:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="ssoButton" Content="Login SSO" HorizontalAlignment="Left" 
-                Margin="174,111,0,0" VerticalAlignment="Top" Width="118"/>
-        <Button x:Name="generateButton" Content="Generate" HorizontalAlignment="Left" Margin="28,145,0,0" VerticalAlignment="Top" Width="118" Grid.RowSpan="2"/>
-        <TextBox x:Name="rewardText" HorizontalAlignment="Left" Height="23" Margin="28,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="collateralText" HorizontalAlignment="Left" Height="23" Margin="195,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="sourceDropdown" HorizontalAlignment="Left" 
-                  Margin="172,145,0,0" VerticalAlignment="Top" Width="120" Grid.RowSpan="2">
-            <ComboBoxItem Name="Jita">Jita</ComboBoxItem>
-            <ComboBoxItem Name="Dodixie">Dodixie</ComboBoxItem>
-            <ComboBoxItem Name="Amarr">Amarr</ComboBoxItem>
-            <ComboBoxItem Name="HekSource">Hek</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="destinationDropdown" HorizontalAlignment="Left" 
-                  Margin="320,145,0,0" VerticalAlignment="Top" Width="120" Grid.RowSpan="2">
-            <ComboBoxItem Name="HekDestination">Hek</ComboBoxItem>
-            <ComboBoxItem Name="Wirashoda">Wirashoda</ComboBoxItem>
-            <ComboBoxItem Name="Ordion">Ordion</ComboBoxItem>
-            <ComboBoxItem Name="Akeva">Akeva</ComboBoxItem>
-        </ComboBox>
+                 Content="{Binding TestValue}" VerticalAlignment="Top" Width="393"/>
+        <TabControl x:Name="MainTabControl">
+            
+        </TabControl>
         <UserControl>
-            <local:CourierContract Margin="345,39,30,29" Grid.Row="1">
+            <local:CourierContract Margin="45,39,30,29" Grid.Row="1" Name="CourierContractControl">
 
             </local:CourierContract>
         </UserControl>
