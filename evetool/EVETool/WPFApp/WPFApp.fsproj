@@ -97,8 +97,8 @@
     <Compile Include="website\website.fs" />
     <Compile Include="MainFunctions.fs" />
     <Compile Include="models\models.fs" />
-    <Compile Include="models\MainViewModel.fs" />
-    <Compile Include="models\CourierContractViewModel.fs" />
+    <Compile Include="models\Main.fs" />
+    <Compile Include="models\CourierContract.fs" />
     <Resource Include="views\ContractMonitor.xaml" />
     <Compile Include="views\ContractMonitor.xaml.fs" />
     <Resource Include="views\CourierContract.xaml" />
