@@ -18,7 +18,7 @@
                 <TabItem.Header>
                     <TextBlock>Contract Writer</TextBlock>
                 </TabItem.Header>
-                <local:CourierContract Margin="10,10,10,10" Name="CourierContractControl" />
+                <local:CourierContract Margin="10,10,10,10" Name="CourierContractControl" Width="400" Height="200"/>
             </TabItem>
             <TabItem Name="MainTabMonitor">
                 <TabItem.Header>

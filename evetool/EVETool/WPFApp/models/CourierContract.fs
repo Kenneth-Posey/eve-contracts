@@ -107,10 +107,10 @@ module CourierContractFunctions =
                 match cont with 
                 | WhiteGlaze -> IskString "325m" // white glaze
                 | NitroIsotopes -> IskString "1.9b" // nitrogen isotopes
-                | LiquidOzone -> IskString "175m"  // liquid ozone
-                | HeavyWater -> IskString "687.5m"  // heavy water
-                | CompGlaze -> IskString "1550m" // compressed white glaze
-                | StrontClathrates -> IskString "1125m" // stront
+                | LiquidOzone -> IskString "150m"  // liquid ozone
+                | HeavyWater -> IskString "625m"  // heavy water
+                | CompGlaze -> IskString "1650m" // compressed white glaze
+                | StrontClathrates -> IskString "1050m" // stront
         }
     
 
@@ -207,3 +207,4 @@ type CourierContractViewModel () as this =
 
     member this.UpdateContractEvent = updateContract
         
+    

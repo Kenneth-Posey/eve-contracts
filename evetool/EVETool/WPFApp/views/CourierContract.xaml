@@ -2,7 +2,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WPFApp.CourierContract" xmlns:local="clr-namespace:WPFApp;assembly=WPFApp"
-    Height="auto" Width="auto" Name="CourierContract"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"      
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+    Height="200" Width="400" Name="CourierContract"
     >
     <UserControl.DataContext>
         <local:CourierContractViewModel />
@@ -12,13 +14,20 @@
           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
 
         <ComboBox Name="SourceDropdown" Width="100" Height="25" FontSize="14" 
-                  ItemsSource="{Binding Sources}"  SelectedValue="{Binding SelectedSource}"
-                  Margin="10,41,290,134"></ComboBox>
+                  ItemsSource="{Binding Sources}"  SelectedValue="{Binding SelectedSource}" 
+                  Margin="10,41,290,134">
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <EventToCommand Command="{Binding UpdateContractEvent}" PassEventArgsToCommand="True" />
+                    </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+        </ComboBox>
+        <!--SelectionChanged="{Binding UpdateContractEvent}" DropDownClosed="{Binding UpdateContractEvent}"-->
         <ComboBox Name="DestinationDropdown" Width="100" Height="25" FontSize="14" 
-                  ItemsSource="{Binding Destinations}"  SelectedValue="{Binding SelectedDestination}"
+                  ItemsSource="{Binding Destinations}"  SelectedValue="{Binding SelectedDestination}" 
                   Margin="130,41,170,134"></ComboBox>
         <ComboBox Name="ItemType" Height="25" FontSize="14" 
-                  ItemsSource="{Binding Contents}" SelectedValue="{Binding SelectedContents}"
+                  ItemsSource="{Binding Contents}" SelectedValue="{Binding SelectedContents}" 
                   Margin="250,41,10,134"/>
         <CheckBox Name="DisplayMessage" Content="" Height="20" Width="20" Margin="10,80,370,100"
                   IsChecked="{Binding IsPrivate}"></CheckBox>

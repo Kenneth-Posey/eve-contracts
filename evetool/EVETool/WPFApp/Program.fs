@@ -10,6 +10,8 @@ module Program =
     let entrypoint argv = 
         // ConsoleControl.HideConsole() |> ignore
 
+        let testval = FunEve.MarketDomain.MarketXmlApi.formApiUrl ()
+
         (new MainView()).Show()
 
         // required to be the last line of the application

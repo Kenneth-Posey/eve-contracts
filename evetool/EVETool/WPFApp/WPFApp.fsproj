@@ -119,6 +119,50 @@
     <Content Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="EveLib">
+      <HintPath>..\packages\eZet.EveLib.3.0.0.0\lib\net45\EveLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.Core">
+      <HintPath>..\packages\eZet.EveLib.Core.3.0.9\lib\net45\EveLib.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.Element43">
+      <HintPath>..\packages\eZet.EveLib.Element43.3.0.0\lib\net45\EveLib.Element43.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.EveAuth">
+      <HintPath>..\packages\eZet.EveLib.EveAuth.3.0.1.0\lib\net45\EveLib.EveAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.EveCentral">
+      <HintPath>..\packages\eZet.EveLib.EveCentral.3.0.0\lib\net45\EveLib.EveCentral.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.EveCrest">
+      <HintPath>..\packages\eZet.EveLib.EveCrest.3.4.4\lib\net45\EveLib.EveCrest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.EveMarketData">
+      <HintPath>..\packages\eZet.EveLib.EveMarketData.3.0.0\lib\net45\EveLib.EveMarketData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.EveWho">
+      <HintPath>..\packages\eZet.EveLib.EveWho.3.0.0\lib\net45\EveLib.EveWho.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.EveXml">
+      <HintPath>..\packages\eZet.EveLib.EveXml.3.0.9\lib\net45\EveLib.EveXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.StaticData">
+      <HintPath>..\packages\eZet.EveLib.StaticData.3.0.0\lib\net45\EveLib.StaticData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EveLib.ZKillboard">
+      <HintPath>..\packages\eZet.EveLib.ZKillboard.3.0.2.0\lib\net45\EveLib.ZKillboard.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FSharp.Core">
       <HintPath>..\packages\FSharp.Core.4.1.0.2\lib\net45\FSharp.Core.dll</HintPath>
       <Private>True</Private>
@@ -156,6 +200,18 @@
       <HintPath>..\Gma.UserActivityMonitor\Gma.UserActivityMonitor\bin\Debug\Gma.UserActivityMonitor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Controls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
@@ -177,6 +233,26 @@
       <HintPath>..\packages\Nancy.Viewengines.Razor.1.4.3\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NetJSON">
+      <HintPath>..\packages\NetJSON.1.2.1.9\lib\net40\NetJSON.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -185,6 +261,8 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Discovery" />
     <Reference Include="System.ValueTuple">
       <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
