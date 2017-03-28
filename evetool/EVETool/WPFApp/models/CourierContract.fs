@@ -85,32 +85,32 @@ module CourierContractFunctions =
                 | Jita -> "Jita IV - Moon 4 - Caldari Navy"
                 | Perimeter -> "Perimeter - Max Refine at Jita - Freeport"
                 | Osmon -> "Osmon II - Moon 1 - Sisters of EVE Bureau"
-            Reward = 
-                match (float numberOfJumps) with
-                | x when x < 2. -> 
-                    match cont with 
-                    | WhiteGlaze -> IskString "4m" // white glaze
-                    | NitroIsotopes -> IskString "15m" // nitrogen isotopes
-                    | LiquidOzone -> IskString "1.5m"  // liquid ozone
-                    | HeavyWater -> IskString "3m"  // heavy water
-                    | CompGlaze -> IskString "12m" // compressed white glaze
-                    | StrontClathrates -> IskString "8m" // stront
-                | x -> 
-                    match cont with 
-                    | WhiteGlaze -> IskString <| sprintf "%Am" (1.5 * x) // white glaze
-                    | NitroIsotopes -> IskString <| sprintf "%Am" (4.5 * x) // nitrogen isotopes
-                    | LiquidOzone -> IskString <| sprintf "%Am" (1.5 * x) // liquid ozone
-                    | HeavyWater -> IskString <| sprintf "%Am" (2. * x) // heavy water
-                    | CompGlaze -> IskString <| sprintf "%Am" (4. * x) // compressed white glaze
-                    | StrontClathrates -> IskString <| sprintf "%Am" (3. * x) // stront
-            Collateral = 
+            Reward =                 
                 match cont with 
-                | WhiteGlaze -> IskString "325m" // white glaze
-                | NitroIsotopes -> IskString "1.9b" // nitrogen isotopes
-                | LiquidOzone -> IskString "150m"  // liquid ozone
-                | HeavyWater -> IskString "625m"  // heavy water
-                | CompGlaze -> IskString "1650m" // compressed white glaze
-                | StrontClathrates -> IskString "1050m" // stront
+                // base payment per jump depending on item type
+                | WhiteGlaze -> 1.5
+                | NitroIsotopes -> 4.5
+                | LiquidOzone -> 1.5
+                | HeavyWater -> 2.
+                | CompGlaze -> 4.
+                | StrontClathrates -> 3.
+                |> fun payPerJump -> 
+                    match numberOfJumps with 
+                    // flat 3x reward for two or less jumps
+                    | numberOfJumps when numberOfJumps <= 2 -> payPerJump * 3. 
+                    // pay per jump * number of jumps
+                    | _ -> payPerJump * float numberOfJumps 
+                |> fun reward -> 
+                    IskString <| sprintf "%Am" reward
+            Collateral =                 
+                match cont with 
+                | WhiteGlaze -> "325m"  
+                | NitroIsotopes -> "1.9b" 
+                | LiquidOzone -> "195m"  
+                | HeavyWater -> "495m"  
+                | CompGlaze -> "1650m" 
+                | StrontClathrates -> "1050m" 
+                |> fun x -> IskString x
         }
     
 

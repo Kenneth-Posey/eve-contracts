@@ -22,8 +22,9 @@
             </TabItem>
             <TabItem Name="MainTabMonitor">
                 <TabItem.Header>
-                    <TextBlock>Contract Monitor</TextBlock>
+                    <TextBlock>Nectar Parse</TextBlock>
                 </TabItem.Header>
+                <local:NectarMenu Margin="10,10,10,10" Name="NectarMenuControl" Width="400" Height="200"/>
             </TabItem>
         </TabControl>
     </Grid>
