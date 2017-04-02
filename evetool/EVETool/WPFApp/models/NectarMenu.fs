@@ -1,18 +1,14 @@
 ﻿namespace WPFApp
 
 open System
-open System.Text
-open System.Text.RegularExpressions
-open System.Windows
-
-open FSharp.Data
-
-open FsXaml
 open ViewModule
 open ViewModule.FSharp
-open ViewModule.Validation.FSharp
 
-module NectarModelFunctions =             
+open FunEve.Utility
+
+module NectarModelFunctions =          
+    open System.Text.RegularExpressions
+    open System.Web   
     open System.Windows.Forms
     open System.Windows.Controls
 
@@ -39,16 +35,16 @@ module NectarModelFunctions =
         int <| parse input "(?>item-id=\\\")(?<strainid>[0-9]*)(?>[\\\"])"
         
     let parseName input = 
-        parse input "(?>item-name=\\\")(?<name>[\w ]*)(?>\\\")"
+        parse input "(?>item-name=\\\")(?<name>[\w ;&'#-]*)(?>\\\")"
 
     let parseScore input = 
         parse input "(?>score[\\\">]{3}[\S]{4}[ ]*)(?<score>[0-9of .]*)"
         
     let parseDescription input = 
-        parse input "(?>item-heading--description[a-z-0-9 ]*\\\">\\r\\n[ ]*)(?<desc>[\w |:.%#]*)"
+        parse input "(?>item-heading--description[a-z-0-9 ]*\\\">\\r\\n[ ]*)(?<desc>[\w |:.%#;&]*)"
 
     let parsePrices input = 
-        let pricesregex = "(?:item-heading--price[\s\S]*?>\$(?<price>[0-9]*?)</span[\s\S]*?hidden-xs[\s\S]*?\\\">(?<qty>[a-zA-Z]*?)</span)+?"
+        let pricesregex = "(?>(?>item-heading--price[\s\S]*?>\$)(?<price>[0-9]*?)(?></span[\s\S]*?hidden-xs[\s\S]*?\\\">)(?<qty>[a-zA-Z]*?)</span)+?"
         let pricesParser = new Regex(pricesregex)
         let prices = pricesParser.Matches(input)
 
@@ -75,36 +71,48 @@ module NectarModelFunctions =
         let halfprice, _ = if normalizedPrices.Length > 3 then normalizedPrices.[3] else (0.0, "")
         let ounceprice, _ = if normalizedPrices.Length > 4 then normalizedPrices.[4] else (0.0, "")
                 
-        sprintf "%A,%A,%A,%A,%A,%A,%A,%A,%A" strain.Name strain.ItemId strain.Description strain.Score gramprice eighthprice quarterprice halfprice ounceprice
+        sprintf "%A,%A,%A,%A,%A,%A,%A" strain.Name strain.Description gramprice eighthprice quarterprice halfprice ounceprice
         
-    let processMenu inputHtml =         
-        let baseRegex = "(?>\r\n[ ]{12}<[\w =\\\"-]*\['Flower'\]\\\">)[\s\S]+?(?>\r\n[ ]{12}<)"
-        let regex = new Regex(baseRegex)
-        let mainListChunk = regex.Match(inputHtml).Groups.[0].Value
 
+    let parseText text = 
+        {
+            Name = parseName text |> HttpUtility.HtmlDecode
+            ItemId = parseItemId text
+            Score = parseScore text
+            Description = parseDescription text |> HttpUtility.HtmlDecode
+            Prices = parsePrices text
+        }
+        
+    let extractItems (targetType:string) (inputHtml:string) = 
+        // first extract the chunk that corresponds to the menu of a type of item
+        let baseRegex = "(?>\r\n[ ]{12}<[\w =\\\"-]*\['" + targetType + "'\]\\\">)[\s\S]+?(?>\r\n[ ]{12}<)"
+        let regex = new Regex(baseRegex)
+        let mainListChunk = regex.Match(inputHtml).Value
+
+        // then extract the individual menu items
         let itemPattern = "(?<item>(?>\\r\\n[ ]{20}<div)[\s\S]+?(?>\\r\\n[ ]{20}</div))"
         let itemsRegex = new Regex(itemPattern)
         let itemMatches = itemsRegex.Matches(mainListChunk)
+
+        itemMatches
+
+    let processMenu inputHtml =         
+        let itemMatches = extractItems "Flower" inputHtml
 
         let parseditems = [
             for menuMatch in itemMatches do
                 yield menuMatch.Value.ToString()
         ]
 
-        let parseText text = 
-            {
-                Name = parseName text
-                ItemId = parseItemId text
-                Score = parseScore text
-                Description = parseDescription text
-                Prices = parsePrices text
-            }
-
         let finalItems = Array.Parallel.map parseText (Array.ofList parseditems)
 
         if System.IO.File.Exists("output.csv") then System.IO.File.Delete("output.csv")
         use file = new System.IO.StreamWriter("output.csv")
+
+        let headers :string = 
+            sprintf "%A,%A,%A,%A,%A,%A,%A" "Name" "Description" "Gram" "Eighth" "Quarter" "Half" "Oz"
         
+        file.WriteLine(headers)
         for item in finalItems do
             file.WriteLine(strainWriter item)
         file.Flush()
@@ -116,12 +124,12 @@ open NectarModelFunctions
 type NectarMenuViewModel () as this = 
     inherit ViewModelBase ()
 
+    let url = @"https://www.leafly.com/dispensary-info/nectar-3/menu"
+
     let mutable inputHtml = ""    
     let processMenuHtml = 
         this.Factory.CommandSync (fun x -> 
-            let page = FunEve.Utility.HttpTools.loadWithEmptyResponse @"https://www.leafly.com/dispensary-info/nectar-3/menu" ""
-            page.ToString() |> processMenu)
-
+            HttpTools.loadWithEmptyResponse url "" |> processMenu)
 
     member this.InputHtml 
         with get () = inputHtml
