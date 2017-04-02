@@ -36,16 +36,16 @@ module NectarModelFunctions =
         parser.Match(input).Groups.[1].Value.ToString().Trim()
         
     let parseItemId input = 
-        int <| parse input "(?:[\s\S]*item-id=\\\"(?<strainid>[0-9]*)\\\"[\s\S]*)"
+        int <| parse input "(?>item-id=\\\")(?<strainid>[0-9]*)(?>[\\\"])"
         
     let parseName input = 
-        parse input "(?:[\s\S]*item-name=\\\"(?<name>[a-zA-Z ]*)\\\"[\s\S]*)"
+        parse input "(?>item-name=\\\")(?<name>[\w ]*)(?>\\\")"
 
     let parseScore input = 
-        parse input "(?:[\s\S]*score[\\\">\r\n ]*)(?<score>[0-9of .]*)"
+        parse input "(?>score[\\\">]{3}[\S]{4}[ ]*)(?<score>[0-9of .]*)"
         
     let parseDescription input = 
-        parse input "(?:[\s\S]*item-heading--description[\\\">\r\na-zA-Z-0-9 ]*[ ]{2}(?<desc>[a-zA-Z |:.%0-9-#$]*)\r\n)"
+        parse input "(?>item-heading--description[a-z-0-9 ]*\\\">\\r\\n[ ]*)(?<desc>[\w |:.%#]*)"
 
     let parsePrices input = 
         let pricesregex = "(?:item-heading--price[\s\S]*?>\$(?<price>[0-9]*?)</span[\s\S]*?hidden-xs[\s\S]*?\\\">(?<qty>[a-zA-Z]*?)</span)+?"
@@ -60,7 +60,8 @@ module NectarModelFunctions =
         ]
         
     let strainWriter (strain:StrainRow) = 
-
+        // refactor to pattern match the prices into the columns
+        // to avoid issues with odd priced strains
         let normalizedPrices = 
             match strain.Prices.Length with
             | x when x <= 4 -> 
@@ -77,12 +78,16 @@ module NectarModelFunctions =
         sprintf "%A,%A,%A,%A,%A,%A,%A,%A,%A" strain.Name strain.ItemId strain.Description strain.Score gramprice eighthprice quarterprice halfprice ounceprice
         
     let processMenu inputHtml =         
-        let baseRegex = "(?<opentag>(?:^[ ]{12}<div.*?\['Flower'\]\">)(?:(?<open>^[ ]{20}<div)(?s:(?<item>[\s\S]+?))(?<end>^[ ]{20}</div>))+?(?<endtag>^[ ]{12}</div>))"
-        let regex = new Regex(baseRegex.Replace("^", "\r\n"))
-        let mainListChunk = regex.Match(inputHtml)
+        let baseRegex = "(?>\r\n[ ]{12}<[\w =\\\"-]*\['Flower'\]\\\">)[\s\S]+?(?>\r\n[ ]{12}<)"
+        let regex = new Regex(baseRegex)
+        let mainListChunk = regex.Match(inputHtml).Groups.[0].Value
+
+        let itemPattern = "(?<item>(?>\\r\\n[ ]{20}<div)[\s\S]+?(?>\\r\\n[ ]{20}</div))"
+        let itemsRegex = new Regex(itemPattern)
+        let itemMatches = itemsRegex.Matches(mainListChunk)
 
         let parseditems = [
-            for menuMatch in mainListChunk.Groups.[3].Captures do
+            for menuMatch in itemMatches do
                 yield menuMatch.Value.ToString()
         ]
 
