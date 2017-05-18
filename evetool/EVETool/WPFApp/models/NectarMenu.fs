@@ -125,8 +125,7 @@ module NectarModelFunctions =
             file.WriteLine(strainWriter item)
         file.Flush()        
 
-    let processMenu inputHtml =         
-
+    let processMenu inputHtml =
         // let dispensaryLinks = extractDispensaries inputHtml
         let regions = extractRegions inputHtml
                 

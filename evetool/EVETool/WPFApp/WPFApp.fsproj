@@ -121,6 +121,8 @@
     <Content Include="packages.config" />
     <None Include="App.config" />
     <Content Include="notes.txt" />
+    <None Include="any\netstandard1.6\FSharp.Core.sigdata" />
+    <None Include="any\netstandard1.6\FSharp.Core.optdata" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EveLib">
@@ -140,7 +142,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EveLib.EveCentral">
-      <HintPath>..\packages\eZet.EveLib.EveCentral.3.0.0\lib\net45\EveLib.EveCentral.dll</HintPath>
+      <HintPath>..\packages\eZet.EveLib.EveCentral.3.0.1\lib\net45\EveLib.EveCentral.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EveLib.EveCrest">
@@ -152,7 +154,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EveLib.EveWho">
-      <HintPath>..\packages\eZet.EveLib.EveWho.3.0.0\lib\net45\EveLib.EveWho.dll</HintPath>
+      <HintPath>..\packages\eZet.EveLib.EveWho.3.1.0.0\lib\net45\EveLib.EveWho.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EveLib.EveXml">
@@ -160,19 +162,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EveLib.StaticData">
-      <HintPath>..\packages\eZet.EveLib.StaticData.3.0.0\lib\net45\EveLib.StaticData.dll</HintPath>
+      <HintPath>..\packages\eZet.EveLib.StaticData.3.0.1\lib\net45\EveLib.StaticData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EveLib.ZKillboard">
-      <HintPath>..\packages\eZet.EveLib.ZKillboard.3.0.2.0\lib\net45\EveLib.ZKillboard.dll</HintPath>
+      <HintPath>..\packages\eZet.EveLib.ZKillboard.3.0.5\lib\net45\EveLib.ZKillboard.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.1.0.2\lib\net45\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.1.12\lib\net45\FSharp.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Data">
-      <HintPath>..\packages\FSharp.Data.2.3.2\lib\net40\FSharp.Data.dll</HintPath>
+      <HintPath>..\packages\FSharp.Data.2.3.3\lib\net40\FSharp.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Data.TypeProviders">
@@ -242,7 +244,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nito.AsyncEx">

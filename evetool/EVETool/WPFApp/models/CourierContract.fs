@@ -70,10 +70,8 @@ module CourierContractFunctions =
         else if input = "Liquid Ozone" then LiquidOzone
         else StrontClathrates
 
-    let loadContractInfo (source) (destination) (contents) (isPrivate) =      
-        let numberOfJumps = FunEve.Geography.Route.getRouteLength source destination  
-        let des = matchDestination(destination)
-        let cont = matchContents(contents)
+    let loadContractInfo (source) (dest) (contents) (isPrivate) =      
+        let numberOfJumps = FunEve.Geography.Route.getRouteLength source dest
 
         {
             Message = 
@@ -81,33 +79,34 @@ module CourierContractFunctions =
                 | true -> ""
                 | false -> "We pay for fast service! Join the Haulers Channel."
             Destination = 
-                match des with 
+                match matchDestination(dest) with 
                 | Jita -> "Jita IV - Moon 4 - Caldari Navy"
                 | Perimeter -> "Perimeter - Max Refine at Jita - Freeport"
                 | Osmon -> "Osmon II - Moon 1 - Sisters of EVE Bureau"
             Reward =                 
-                match cont with 
                 // base payment per jump depending on item type
+                match matchContents(contents) with 
                 | WhiteGlaze -> 1.5
-                | NitroIsotopes -> 4.5
-                | LiquidOzone -> 1.5
-                | HeavyWater -> 2.
-                | CompGlaze -> 4.
+                | NitroIsotopes -> 4.
+                | LiquidOzone -> 1.25
+                | HeavyWater -> 1.5
+                | CompGlaze -> 3.5
                 | StrontClathrates -> 3.
                 |> fun payPerJump -> 
-                    match numberOfJumps with 
-                    // flat 3x reward for two or less jumps
-                    | numberOfJumps when numberOfJumps <= 2 -> payPerJump * 3. 
                     // pay per jump * number of jumps
+                    match numberOfJumps with 
+                    | 0 -> payPerJump * 1.5
+                    | 1 -> payPerJump * 2. 
+                    | 2 -> payPerJump * 2.5 
                     | _ -> payPerJump * float numberOfJumps 
                 |> fun reward -> 
                     IskString <| sprintf "%Am" reward
             Collateral =                 
-                match cont with 
+                match matchContents(contents) with 
                 | WhiteGlaze -> "325m"  
                 | NitroIsotopes -> "1.9b" 
                 | LiquidOzone -> "195m"  
-                | HeavyWater -> "495m"  
+                | HeavyWater -> "395m"  
                 | CompGlaze -> "1650m" 
                 | StrontClathrates -> "1050m" 
                 |> fun x -> IskString x
