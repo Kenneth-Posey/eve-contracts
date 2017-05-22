@@ -18,10 +18,15 @@ module NectarModelFunctions =
         Prices: (float * string) list
     }
     
-    let parse input regex = (new Regex(regex)).Match(input).Value.Trim()
+    let parse input regex (groupName:string) = 
+        let m = (new Regex(regex)).Matches(input)
+
+        match m.Count > 0 with
+        | true -> m.Item(0).Groups.Item(groupName).Value.Trim()
+        | false -> ""
 
     let itemIdPattern = "(?>item-id=\\\")(?<strainid>[0-9]*)(?>[\\\"])"
-    let namePattern = "(?>item-name=\\\")(?<name>[\w ;&'#-]*)(?>\\\")"
+    let namePattern = "(?>item-name=\\\")(?<name>.*?)(?>\\\" )"
     let scorePattern = "(?>score[\\\">]{3}\\r\\n[ ]*)(?<score>[0-9of .]*)"
     let descriptionPattern = "(?>item-heading--description[a-z-0-9 ]*\\\">\\r\\n[ ]*)(?<desc>[\w |:.%#;&]*)"
     let pricesPattern = "(?>(?>item-heading--price[\s\S]*?>\$)(?<price>[0-9]*?)(?></span[\s\S]*?hidden-xs[\s\S]*?\\\">)(?<qty>[a-zA-Z]*?)</span)+?"
@@ -32,16 +37,16 @@ module NectarModelFunctions =
     let regionLinkPattern = "(?>divider-top[a-z- ]+\\\">)(?<region>[a-zA-Z0-9-]+?)<(?<html>[\s\S]+?)(?>\\r\\n[ ]{32}</div)"
 
     let parseItemId input = 
-        int <| parse input itemIdPattern
+        int <| parse input itemIdPattern "strainid"        
         
     let parseName input = 
-        parse input namePattern
+        parse input namePattern "name"
 
     let parseScore input = 
-        parse input scorePattern
+        parse input scorePattern "score"
         
     let parseDescription input = 
-        parse input descriptionPattern
+        parse input descriptionPattern "desc"
 
     let parsePrices input = 
         [
@@ -60,27 +65,27 @@ module NectarModelFunctions =
             Prices = parsePrices text
         }
 
-    let strainWriter (strain:StrainRow) = 
-        // refactor to pattern match the prices into the columns
-        // to avoid issues with odd priced strains
-        let normalizedPrices = 
-            match strain.Prices.Length with
-            | x when x <= 4 -> 
-               (0.0, "") :: strain.Prices
-            | _ -> 
-                strain.Prices
-
-        let gramprice, _ = normalizedPrices.[0]
-        let eighthprice, _ = if normalizedPrices.Length > 1 then normalizedPrices.[1] else (0.0, "")
-        let quarterprice, _ = if normalizedPrices.Length > 2 then normalizedPrices.[2] else (0.0, "")
-        let halfprice, _ = if normalizedPrices.Length > 3 then normalizedPrices.[3] else (0.0, "")
-        let ounceprice, _ = if normalizedPrices.Length > 4 then normalizedPrices.[4] else (0.0, "")
-                
-        sprintf "%A,%A,%A,%A,%A,%A,%A" strain.Name strain.Description gramprice eighthprice quarterprice halfprice ounceprice
-                
+    let strainWriter (strain:StrainRow) (headers:string array) = 
+        // seed the list with the name to avoid a comma at the front of the string
+        // refactor later with accumulated string to avoid mutable row value
+        let mutable row = strain.Name
+        for header in headers do
+            let value = 
+                match header with 
+                | "Description" -> strain.Description
+                | _ -> 
+                    let matcher = (fun (x,y) -> y = header)
+                    if (List.exists matcher strain.Prices) then
+                        let price, qty = (List.where (matcher) strain.Prices).[0]
+                        price.ToString()
+                    else
+                        "0.0"                       
+            row <- row + "," + value             
+        row
+            
     let extractItems (targetType:string) (inputHtml:string) = 
         // first extract the chunk that corresponds to the menu of a type of item
-        let baseRegex = "(?>\r\n[ ]{12}<[\w =\\\"-]*\['" + targetType + "'\]\\\">)[\s\S]+?(?>\r\n[ ]{12}<)"
+        let baseRegex = "(?>hideSection\['" + targetType + "']\\\")(?:[\s\S]+?)(?>\r\n[ ]{12}</div)" 
         let mainListChunk = (new Regex(baseRegex)).Match(inputHtml).Value
 
         // then extract the individual menu items
@@ -113,20 +118,34 @@ module NectarModelFunctions =
                 yield regionName, regionHtml
         ]
 
-    let writefile filename parsedItems = 
-        if System.IO.File.Exists(filename) then System.IO.File.Delete(filename)
-        use file = new System.IO.StreamWriter(filename)
+    let extractQuantities (x:StrainRow) =         
+        List.fold (fun acc (price, quantity) -> quantity :: acc) [] x.Prices
 
-        let headers :string = 
-            sprintf "%A,%A,%A,%A,%A,%A,%A" "Name" "Description" "Gram" "Eighth" "Quarter" "Half" "Oz"
+    let writefile filename parsedItems =         
+        let headers = 
+            Array.fold (fun acc x -> acc @ extractQuantities(x)) [] parsedItems 
+            |> fun x -> ["Name"; "Description"] @ x
+            |> List.distinct  
+            |> Array.ofList
+             
+        // let mutable fileRows:string list = []
+        // fileRows <- String.Join(",", headers).ToString() :: fileRows
+        // for item in parsedItems do
+        //     fileRows <- strainWriter item headers :: fileRows 
+        // fileRows <- List.rev fileRows
+
+        let fileDir = System.IO.Path.GetDirectoryName(filename)
+        if System.IO.Directory.Exists(fileDir) <> true then System.IO.Directory.CreateDirectory(fileDir) |> ignore
         
-        file.WriteLine(headers)
+        if System.IO.File.Exists(filename) then System.IO.File.Delete(filename)
+        use file = new System.IO.StreamWriter(filename, true)
+        
+        String.Join(",", headers) |> file.WriteLine
         for item in parsedItems do
-            file.WriteLine(strainWriter item)
+            strainWriter item headers |> file.WriteLine
         file.Flush()        
 
     let processMenu inputHtml =
-        // let dispensaryLinks = extractDispensaries inputHtml
         let regions = extractRegions inputHtml
                 
         let oregon = [
@@ -134,29 +153,42 @@ module NectarModelFunctions =
                 if String.Equals(name, "Oregon") then
                     yield name, cities
         ]
-
+        
         let oregonDispensaries = [
             let name, cities = oregon.Head 
+
+            // shortening the number of cities to retrieve for faster testing
+            // let cities = List.truncate 2 oregon.Head.Item2
             for city in cities do           
                 let html = HttpTools.loadWithEmptyResponse city ""
                 let dispensaries = extractDispensaries html
+
+                // shortening the number of dispensaries to retrieve for faster testing
+                // let dispensaries = List.truncate 2 (extractDispensaries html)
+
                 yield name, city, dispensaries
         ]
 
         let oregonMenus = [
             for state, city, dispensaries in oregonDispensaries do
-                yield [
-                    for dispensary in dispensaries do
-                        let menu = extractItems "Flower" <| HttpTools.loadWithEmptyResponse dispensary ""
-                        let items = Array.Parallel.map parseText (Array.ofList menu)
-                        yield (state, city, dispensary, items)
-            ]       
+                for dispensary in dispensaries do
+                    let menu = extractItems "Concentrate" <| HttpTools.loadWithEmptyResponse dispensary ""
+                    let items = Array.Parallel.map parseText (Array.ofList menu)     
+                    let safeName = dispensary.Split('/') |> fun x -> x.[x.Length - 2]
+                    let safeCity = city.Split('/') |> fun x -> x.[x.Length - 2]
+                    let filename = 
+                        System.IO.Path.Combine [|
+                                Environment.SpecialFolder.MyDocuments |> Environment.GetFolderPath
+                                "output-documents"
+                                state
+                                safeCity
+                                safeName + ".csv"
+                            |]
+            
+                    writefile filename items                
+                    yield (state, city, dispensary, items)
         ]
         
-        let tempFolder = System.IO.Path.Combine [| Environment.SpecialFolder.MyDocuments.ToString(); "output-documents" |]
-        // let filename = dispensaryname + ".csv"
-
-
         ()
 
 
@@ -164,8 +196,8 @@ open NectarModelFunctions
 type NectarMenuViewModel () as this = 
     inherit ViewModelBase ()
 
-    let url = @"https://www.leafly.com/dispensary-info/nectar-3/menu"
-    let cityurl = @"https://www.leafly.com/finder/albany-or"
+    // let url = @"https://www.leafly.com/dispensary-info/nectar-3/menu"
+    // let cityurl = @"https://www.leafly.com/finder/albany-or"
     let browseUrl = @"https://www.leafly.com/finder/browse"
 
     let mutable inputHtml = ""    

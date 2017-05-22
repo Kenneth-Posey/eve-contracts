@@ -121,8 +121,6 @@
     <Content Include="packages.config" />
     <None Include="App.config" />
     <Content Include="notes.txt" />
-    <None Include="any\netstandard1.6\FSharp.Core.sigdata" />
-    <None Include="any\netstandard1.6\FSharp.Core.optdata" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EveLib">
