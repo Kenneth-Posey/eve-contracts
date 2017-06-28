@@ -72,7 +72,7 @@ module CourierContractFunctions =
 
     let loadContractInfo (source) (dest) (contents) (isPrivate) =      
         let numberOfJumps = FunEve.Geography.Route.getRouteLength source dest
-
+        // let numberOfJumps = 1
         {
             Message = 
                 match isPrivate with
@@ -89,7 +89,7 @@ module CourierContractFunctions =
                 | WhiteGlaze -> 1.5
                 | NitroIsotopes -> 4.
                 | LiquidOzone -> 1.25
-                | HeavyWater -> 1.5
+                | HeavyWater -> 2.
                 | CompGlaze -> 3.5
                 | StrontClathrates -> 3.
                 |> fun payPerJump -> 
@@ -103,12 +103,12 @@ module CourierContractFunctions =
                     IskString <| sprintf "%Am" reward
             Collateral =                 
                 match matchContents(contents) with 
-                | WhiteGlaze -> "325m"  
-                | NitroIsotopes -> "1.9b" 
-                | LiquidOzone -> "195m"  
-                | HeavyWater -> "395m"  
-                | CompGlaze -> "1650m" 
-                | StrontClathrates -> "1050m" 
+                | WhiteGlaze -> "300m"  
+                | NitroIsotopes -> "1.55b" 
+                | LiquidOzone -> "155m"  
+                | HeavyWater -> "595m"  
+                | CompGlaze -> "1450m" 
+                | StrontClathrates -> "999m" 
                 |> fun x -> IskString x
         }
     
