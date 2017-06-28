@@ -38,7 +38,7 @@ module Market =
         
     // load a material's data
     let loadItem (loc:TradeHub) (item:Material)= 
-        string (TypeId item).Value
+        string (TypeId item)
         |> baseUrl loc
         |> loadUrl
         |> parse 
@@ -161,11 +161,11 @@ module Market =
 
         let calcValue (item:string * int) = 
             let oreType, oreRarity, _ = OreDataMap.Item (fst item)                    
-            let refineValue = GetRefineValue (GetYield (OreType oreType)) mineralPrices
+            let (Price refineValue) = GetRefineValue (GetYield (OreType oreType)) mineralPrices
             match oreRarity with
-                | Common -> refineValue.Value
-                | Uncommon -> refineValue.Value * 1.05f
-                | Rare -> refineValue.Value * 1.1f
+                | Common -> refineValue
+                | Uncommon -> refineValue * 1.05f
+                | Rare -> refineValue * 1.1f
             |> fun x -> double x * (double (snd item))
                     
         let SumItems (items:(string * int) list) =
@@ -193,7 +193,7 @@ module Market =
         let calcValue (item:string * int) = 
             let iceType, _ = IceDataMap.Item (fst item)                    
             GetRefineValue (GetYield (IceType iceType)) iceProductPrices
-            |> fun x -> double x.Value * (double (snd item))
+            |> fun (Price x) -> double x * (double (snd item))
                     
         let SumItems (items:(string * int) list) =
             let rec SumRec (items:(string * int) list) (total:double) = 
@@ -261,11 +261,11 @@ module Market =
     module internal unusedCode = 
         // If I have the volume of 100 units and the value of 100 units, I can work out
         // the value per m^3 by dividing the value by the volume
-        let GetVolumePrice (vol:Volume) price com mat :Price =         
+        let GetVolumePrice (Volume vol) price com mat :Price =         
             GetYield mat
             |> fun _yield -> GetRefineValue _yield price
             |> fun refine -> refine, GetVolume com mat
-            |> fun (refine, unitVolume) -> refine.Value / unitVolume.Value * vol.Value
+            |> fun (Price refine, Volume unitVolume) -> refine / unitVolume * vol
             |> Price
         
         // main refined product price function

@@ -1,6 +1,7 @@
 namespace FunEve.DataDomain
 
 module Collections = 
+    open FunEve.Base.Types
     open FunEve.ProductDomain.UnionTypes
     open FunEve.OreDomain.Types
     open FunEve.IceDomain.Types
@@ -67,7 +68,8 @@ module Collections =
         
     let OreNameList = 
         let buildTuple (ore) (compressed) = 
-            fun oreRarity -> (OreData ore oreRarity compressed).Name.Value
+            fun oreRarity -> 
+                (OreData ore oreRarity compressed).Name |> fun (Name x) -> x // this is one line, do not break up
             |> fun getName -> (getName Common, getName Uncommon, getName Rare)
 
         [
@@ -81,7 +83,8 @@ module Collections =
             for ore in OreTypeList do
                 for rarity in [ Common; Uncommon; Rare ] do
                     for compressed in [ IsCompressed; IsNotCompressed; ] do
-                        yield (RawOreName ore).Value, (ore, rarity, compressed)
+                        let (Name oreName) = RawOreName ore
+                        yield oreName, (ore, rarity, compressed)
         ]
         |> Map.ofList
     
@@ -90,6 +93,7 @@ module Collections =
         [
             for ice in IceTypeList do
                 for compressed in [ IsCompressed; IsNotCompressed ] do
-                    yield (RawIceName ice).Value, (ice, compressed)
+                    let (Name iceName) = RawIceName ice
+                    yield iceName, (ice, compressed)
         ]
         |> Map.ofList

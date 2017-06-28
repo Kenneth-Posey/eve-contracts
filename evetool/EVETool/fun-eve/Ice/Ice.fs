@@ -130,13 +130,13 @@ module Ice =
 
 
     let CompressedIceName (x:IceType) :Name = 
-        Name <| "Compressed " + (RawIceName x).Value
+        let (Name name) = RawIceName x 
+        Name <| "Compressed " + name
 
     let IceName (x:IceType) (y:Compressed) :Name=
         match y with
         | IsCompressed -> RawIceName x
-        | IsNotCompressed -> CompressedIceName x
-        
+        | IsNotCompressed -> CompressedIceName x        
     
     let IceFactory (c:Compressed) (q:Qty) (n:IceType) :RawIce=
         {
